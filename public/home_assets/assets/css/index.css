@@ -840,7 +840,7 @@ Banner Style
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
-  padding: 90px 0px 0px 0px;
+  padding: 120px 0px 0px 0px;
   position: relative;
   overflow: hidden;
   background-color: #f8eee6;
@@ -1253,7 +1253,7 @@ contact
 */
 
 .contact-us {
-  padding: 150px 0px;
+  padding: 120px 0px;
   background-image: url(../images/about-bg.png);
   background-repeat: no-repeat;
   background-position: center center;
@@ -1263,7 +1263,7 @@ contact
 
 .contact-us .section-heading h2,
 .contact-us .section-heading h2 em,
-.contact-us .section-heading h2 span {
+.-us .section-heading h2 span {
   color: #fff;
 }
 
@@ -1476,7 +1476,7 @@ responsive
   .main-banner .left-content {
     margin-right: 0px;
     text-align: center;
-    margin-bottom: 45px;
+    margin-bottom: 40px;
   }
   .main-banner:after {
     top: 76px;
@@ -1555,8 +1555,8 @@ responsive
     margin-bottom: 45px;
   }
   .contact-us {
-    margin-top: 10px;
-    padding: 100px 0px;
+    margin-top: 5px;
+    padding: 80px 0px;
   }
   .contact-us .section-heading {
     text-align: center;
@@ -1569,7 +1569,7 @@ responsive
     display: none;
   }
   footer p {
-    margin: 15px 0px 30px 0px;
+    margin: 20px 0px 20px 0px;
   }
 }
 
