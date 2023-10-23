@@ -34,21 +34,18 @@ require __DIR__.'/auth.php';
 
 
 Route::get('/login', [LoginController::class, 'index'])->name('login');
+Route::post('/login', [LoginController::class, 'auth'])->name('login.auth');
 
 
-// Admin routes
-Route::middleware(['auth:admin'])->group(function () {
-    // Define admin routes here
-    //Route::get('/admin', 'AdminController')->name('admin.auth');
-    Route::post('/admin', [AdminController::class, 'auth'])->name('admin.auth');
+Route::post('/admin', [AdminController::class, 'login'])->name('admin.auth');
+Route::post('/donors', [DonorController::class, 'login'])->name('donors.auth');
+
+
+Route::get('/admin', [AdminController::class, 'index'])->name('admin');
+Route::get('/donors', [DonorsController::class, 'index'])->name('donors');
+
+
+Route::middleware('auth')->group(function () {
+    Route::get('/admin', [AdminController::class, 'index'])->name('admin');
+    Route::get('/donors', [DonorsController::class, 'index'])->name('donors');
 });
-
-// Donor routes
-Route::middleware(['auth:donor'])->group(function () {
-    // Define donor routes here
-    //Route::get('/donors', 'DonorsController')->name('donor.auth');
-    Route::post('/donors', [DonorsController::class, 'auth'])->name('donors.auth');
-});
-
-
-Route::get('/admin', [AdminController::class, 'index']);
