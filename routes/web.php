@@ -33,6 +33,6 @@ require __DIR__.'/auth.php';
 
 
 Route::get('/login', [LoginController::class, 'index']);
-Route::post('/login/auth', [LoginController::class, 'auth'])->name('admin.auth');
+Route::post('/admin/auth', [LoginController::class, 'auth'])->name('admin.auth');
 
 Route::get('/admin', [AdminController::class, 'index']);

@@ -297,18 +297,6 @@
                           <div class="input-group password">
                             <input type="password" placeholder="Password" name="password" required/>
                           </div>
-
-                        <div class="input-group role">
-                          <div class="column">
-                            <label for="login-role">Sign as:</label>
-                          </div>
-                          <div class="column">
-                            <select id="login-role" name="login-role" class="rounded-select" required>
-                              <option value="donor">Donor</option>
-                              <option value="admin">Admin</option>
-                            </select>
-                          </div>  
-                        </div>
                         
                       </div>
                         <div class="card-footer">
