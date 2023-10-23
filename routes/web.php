@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\DonorsController;
 use Illuminate\Support\Facades\Route;
 
 /*
