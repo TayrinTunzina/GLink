@@ -12,14 +12,23 @@ class Authenticate extends Middleware
      */
     protected function redirectTo(Request $request): ?string
     {
-        $role = $request->input('login-role'); // Assuming you have a 'login-role' field in your form
+        //return $request->expectsJson() ? null : route('login');
+    }
 
-        if ($role === 'admin') {
-            return route('admin.auth'); // Redirect to the admin login page
-        } elseif ($role === 'donor') {
-            return route('donors.auth'); // Redirect to the donor login page
+    public function handle($request, Closure $next)
+    {
+        // Get the user's role from the database.
+        $role = Auth::user()->role;
+
+        // Check the user's role and redirect them to the appropriate page.
+        if ($role === 'donor') {
+            return redirect('donors');
+        } else if ($role === 'admin') {
+            return redirect('admin');
         } else {
-            return route('login'); // Redirect to the default login page if the role is not recognized
+            // Redirect to the home page if the user's role is not recognized.
+            return redirect('/');
         }
     }
+
 }

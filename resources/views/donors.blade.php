@@ -9,10 +9,10 @@
 	<!-- PAGE TITLE HERE -->
 	<title>Admin</title>
 	
-    <link href="{{ asset('admin_assets/vendor/jquery-nice-select/css/nice-select.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('admin_assets/vendor/nouislider/nouislider.min.css') }}">
+    <link href="{{ asset('users_assets/vendor/jquery-nice-select/css/nice-select.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('users_assets/vendor/nouislider/nouislider.min.css') }}">
     <!-- Style css -->
-    <link href="{{ asset('admin_assets/css/style.css') }}" rel="stylesheet">
+    <link href="{{ asset('users_assets/css/style.css') }}" rel="stylesheet">
 	
 </head>
 <body>
@@ -876,22 +876,22 @@
         Scripts
     ***********************************-->
     <!-- Required vendors -->
-    <script src="{{ asset('admin_assets/vendor/global/global.min.js') }}"></script>
-    <script src="{{ asset('admin_assets/vendor/chart.js/Chart.bundle.min.js') }}"></script>
-    <script src="{{ asset('admin_assets/vendor/jquery-nice-select/js/jquery.nice-select.min.js') }}"></script>
+    <script src="{{ asset('users_assets/vendor/global/global.min.js') }}"></script>
+    <script src="{{ asset('users_assets/vendor/chart.js/Chart.bundle.min.js') }}"></script>
+    <script src="{{ asset('users_assets/vendor/jquery-nice-select/js/jquery.nice-select.min.js') }}"></script>
 
     <!-- Apex Chart -->
-    <script src="{{ asset('admin_assets/vendor/apexchart/apexchart.js') }}"></script>
-    <script src="{{ asset('admin_assets/vendor/nouislider/nouislider.min.js') }}"></script>
-    <script src="{{ asset('admin_assets/vendor/wnumb/wNumb.js') }}"></script>
+    <script src="{{ asset('users_assets/vendor/apexchart/apexchart.js') }}"></script>
+    <script src="{{ asset('users_assets/vendor/nouislider/nouislider.min.js') }}"></script>
+    <script src="{{ asset('users_assets/vendor/wnumb/wNumb.js') }}"></script>
 
     <!-- Dashboard 1 -->
-    <script src="{{ asset('admin_assets/js/dashboard/dashboard-1.js') }}"></script>
+    <script src="{{ asset('users_assets/js/dashboard/dashboard-1.js') }}"></script>
 
-    <script src="{{ asset('admin_assets/js/custom.min.js') }}"></script>
-    <script src="{{ asset('admin_assets/js/dlabnav-init.js') }}"></script>
-    <script src="{{ asset('admin_assets/js/demo.js') }}"></script>
-    <script src="{{ asset('admin_assets/js/styleSwitcher.js') }}"></script>
+    <script src="{{ asset('users_assets/js/custom.min.js') }}"></script>
+    <script src="{{ asset('users_assets/js/dlabnav-init.js') }}"></script>
+    <script src="{{ asset('users_assets/js/demo.js') }}"></script>
+    <script src="{{ asset('users_assets/js/styleSwitcher.js') }}"></script>
 	
 </body>
 

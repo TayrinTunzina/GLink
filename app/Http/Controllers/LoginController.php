@@ -15,23 +15,19 @@ class LoginController extends Controller
         return view('home.login');
     }
 
-    public function auth(Request $request)
+    public function login(Request $request)
     {
-        $email = $request->post('email');
-        $password = $request->post('password');
-        $role = $request->post('login-role'); // Assuming you have a role field in your form
 
-        if (Auth::guard('admin')->attempt(['email' => $email, 'password' => $password])) {
-            // Authentication for admin
-            session(['admin_logged_in' => true]);
-            return redirect()->route('admin');
-        } elseif (Auth::guard('donors')->attempt(['email' => $email, 'password' => $password])) {
-            // Authentication for donor
-            session(['donor_logged_in' => true]);
-            return redirect()->route('donors');
-        } else {
-            // Authentication failed
-            return redirect()->back()->with('error', 'Invalid credentials');
+        if (Auth::user() && Auth::user()->role) {
+            $role = Auth::user()->role;
+        
+            if ($role === 'donor') {
+                return redirect('donors.auth');
+            } else if ($role === 'admin') {
+                return redirect('admin.auth');
+            } else {
+                return redirect('/');
+            }
         }
         
     }

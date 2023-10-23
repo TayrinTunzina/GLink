@@ -9,5 +9,5 @@ class Donors extends Model
 {
     use HasFactory;
 
-    protected $table = 'donors';
+    protected $table = 'users';
 }

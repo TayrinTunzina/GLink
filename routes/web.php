@@ -34,18 +34,14 @@ require __DIR__.'/auth.php';
 
 
 Route::get('/login', [LoginController::class, 'index'])->name('login');
-Route::post('/login', [LoginController::class, 'auth'])->name('login.auth');
-
-
-Route::post('/admin', [AdminController::class, 'login'])->name('admin.auth');
-Route::post('/donors', [DonorController::class, 'login'])->name('donors.auth');
-
-
 Route::get('/admin', [AdminController::class, 'index'])->name('admin');
 Route::get('/donors', [DonorsController::class, 'index'])->name('donors');
 
+Route::post('/admin', [LoginController::class, 'login'])->name('admin.auth');
+Route::post('/login', [LoginController::class, 'login'])->name('donors.auth');
 
-Route::middleware('auth')->group(function () {
-    Route::get('/admin', [AdminController::class, 'index'])->name('admin');
-    Route::get('/donors', [DonorsController::class, 'index'])->name('donors');
-});
+// Redirect users to the donor dashboard.
+Route::get('/donors', [DonorDashboardController::class, 'index'])->middleware('auth', 'role:donor');
+
+// Redirect users to the admin dashboard.
+Route::get('/admin', [AdminDashboardController::class, 'index'])->middleware('auth', 'role:admin');

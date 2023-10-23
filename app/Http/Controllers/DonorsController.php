@@ -9,29 +9,6 @@ use Illuminate\Support\Facades\Auth; // Import the Auth facade
 class DonorsController extends Controller
 {
 
-    public function login(Request $request)
-    {
-        $request->validate([
-            'email' => 'required|email',
-            'password' => 'required',
-        ]);
-
-        if (Auth::guard('donors')->attempt([
-            'email' => $request->input('email'),
-            'password' => $request->input('password'),
-        ])) {
-            return redirect()->route('donors');
-        }
-
-        return redirect()->back()->withErrors([
-            'email' => 'Invalid email or password.',
-        ]);
-    }
-
-
-
-
-
     /**
      * Display a listing of the resource.
      */

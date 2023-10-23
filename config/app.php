@@ -185,4 +185,11 @@ return [
         // 'Example' => App\Facades\Example::class,
     ])->toArray(),
 
+    
+
+    'middleware' => [
+        'auth' => \App\Http\Middleware\Authenticate::class,
+    ],
+    
+
 ];
