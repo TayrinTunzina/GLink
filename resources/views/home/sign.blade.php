@@ -247,66 +247,77 @@
 </head>
 <body>
     
-        <div class="form-collection">
-        <div class="card elevation-3 limit-width log-in-card below turned">
-            <div class="card-body">
-              <div class="input-group email">
-                <input type="text" placeholder="Email" />
-              </div>
-              <div class="input-group password">
-                <input type="password" placeholder="Password" />
-              </div>
-            <div class="input-group role">
-              <div class="column">
-                <label for="login-role">Login as:</label>
-              </div>
-              <div class="column">
-                <select id="login-role" name="login-role" class="rounded-select">
-                  <option value="donor">Donor</option>
-                  <option value="admin">Admin</option>
-                </select>
-              </div>
-            </div>
-              <a href="#" class="box-btn">Forgot Password?</a>
-            </div>
-            <div class="card-footer">
-              <button type="submit" class="login-btn">Log in</button>
-            </div>
-          </div>
+    <div class="form-collection">
 
-                  <div class="card elevation-2 limit-width sign-up-card above">
-                    <div class="card-body">
-                      <div class="input-group fullname">
-                        <input type="text" placeholder="Full Name"/>
-                      </div>
+        <div class="card elevation-3 limit-width log-in-card below turned">
+          <form method="POST" action="{{ route('admin.auth') }}">
+            @csrf
+                <div class="card-body">
+
                       <div class="input-group email">
-                        <input type="email" placeholder="Email"/>
+                        <input type="text" placeholder="Email" name="email" required/>
                       </div>
                       <div class="input-group password">
-                        <input type="password" placeholder="Password"/>
+                        <input type="password" placeholder="Password" name="password" required/>
                       </div>
 
-                    <div class="input-group role">
-                      <div class="column">
-                        <label for="login-role">Sign as:</label>
-                      </div>
-                      <div class="column">
-                        <select id="login-role" name="login-role" class="rounded-select">
-                          <option value="donor">Donor</option>
-                          <option value="admin">Admin</option>
-                        </select>
-                      </div>
-                   </div>
+                      <div class="input-group role">
+                        <div class="column">
+                          <label for="login-role">Login as:</label>
+                        </div>
 
-                    </div>
+                        <div class="column">
+                          <select id="login-role" name="login-role" class="rounded-select" required>
+                            <option value="donor">Donor</option>
+                            <option value="admin">Admin</option>
+                          </select>
+                        </div>
+                      </div>
 
+                    <a href="#" class="box-btn">Forgot Password?</a>
+                  </div>
 
                     <div class="card-footer">
-                      <button type="submit" class="signup-btn">Sign Up</button>
+                      <button type="submit" class="login-btn">Log in</button>
                     </div>
-                  </div>
                 </div>
+          </form>   
+
+          <form method="POST" action="{{ route('admin.auth') }}">
+            @csrf
+              <div class="card elevation-2 limit-width sign-up-card above">
+                
+                      <div class="card-body">
+                          <div class="input-group fullname">
+                            <input type="text" placeholder="Full Name" name="name"required/>
+                          </div>
+                          <div class="input-group email">
+                            <input type="email" placeholder="Email" name="email" required/>
+                          </div>
+                          <div class="input-group password">
+                            <input type="password" placeholder="Password" name="password" required/>
+                          </div>
+
+                        <div class="input-group role">
+                          <div class="column">
+                            <label for="login-role">Sign as:</label>
+                          </div>
+                          <div class="column">
+                            <select id="login-role" name="login-role" class="rounded-select" required>
+                              <option value="donor">Donor</option>
+                              <option value="admin">Admin</option>
+                            </select>
+                          </div>  
+                        </div>
+                        
+                      </div>
+                        <div class="card-footer">
+                          <button type="submit" class="signup-btn">Sign Up</button>
+                        </div>
               </div>
+          </form>       
+        </div>  
+    </div>
 
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
