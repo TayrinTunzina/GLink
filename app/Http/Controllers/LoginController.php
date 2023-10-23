@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\HttpModels\login;
+use Illuminate\Support\Facades\Auth; // Import the Auth facade
+use App\Http\Models\login;
 use Illuminate\Http\Request;
-use App\admin;
-
+use App\Http\Models\admin;
+use App\Http\Models\donors;
 
 class LoginController extends Controller
 {
-    //
     public function index()
     {
         return view('home.login');
@@ -20,18 +20,17 @@ class LoginController extends Controller
         $email = $request->post('email');
         $password = $request->post('password');
         $role = $request->post('login-role'); // Assuming you have a role field in your form
-    
-        if (Auth::login(['email' => $email, 'password' => $password])) {
-            // Authentication passed for the provided email and password
-    
-            if ($role === 'admin') {
-                return redirect()->route('admin.dashboard'); // Redirect to the admin dashboard route
-            } elseif ($role === 'donor') {
-                return redirect()->route('donor.dashboard'); // Redirect to the donor dashboard route
-            }
+
+        if (Auth::guard('admin')->attempt(['email' => $email, 'password' => $password])) {
+            // Authentication for admin
+            return redirect()->route('admin');
+        } elseif (Auth::guard('donors')->attempt(['email' => $email, 'password' => $password])) {
+            // Authentication for donor
+            return redirect()->route('donors');
         } else {
             // Authentication failed
-            return redirect()->back()->with('error', 'Invalid credentials'); // Redirect back with an error message
+            return redirect()->back()->with('error', 'Invalid credentials');
         }
+        
     }
 }

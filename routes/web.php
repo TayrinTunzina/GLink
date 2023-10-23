@@ -33,7 +33,22 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 
 
-Route::get('/login', [LoginController::class, 'index']);
-Route::post('/admin/auth', [LoginController::class, 'auth'])->name('admin.auth');
+Route::get('/login', [LoginController::class, 'index'])->name('login');
+
+
+// Admin routes
+Route::middleware(['auth:admin'])->group(function () {
+    // Define admin routes here
+    //Route::get('/admin', 'AdminController')->name('admin.auth');
+    Route::post('/admin', [AdminController::class, 'auth'])->name('admin.auth');
+});
+
+// Donor routes
+Route::middleware(['auth:donor'])->group(function () {
+    // Define donor routes here
+    //Route::get('/donors', 'DonorsController')->name('donor.auth');
+    Route::post('/donors', [DonorsController::class, 'auth'])->name('donors.auth');
+});
+
 
 Route::get('/admin', [AdminController::class, 'index']);

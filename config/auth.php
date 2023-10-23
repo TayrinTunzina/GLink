@@ -40,6 +40,16 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+
+        'admin' => [ // Custom guard for admin
+            'driver' => 'session',
+            'provider' => 'admin', // Use the 'admin' provider
+        ],
+    
+        'donors' => [ // Custom guard for donors
+            'driver' => 'session',
+            'provider' => 'donors', // Use the 'donors' provider
+        ],
     ],
 
     /*
@@ -69,8 +79,18 @@ return [
         //     'driver' => 'database',
         //     'table' => 'users',
         // ],
+    
+        'admin' => [ // Custom user provider for admin
+            'driver' => 'eloquent',
+            'model' => App\Models\Admin::class, // Replace with the actual admin model
+        ],
+    
+        'donors' => [ // Custom user provider for donors
+            'driver' => 'eloquent',
+            'model' => App\Models\Donors::class, // Replace with the actual donor model
+        ],
     ],
-
+    
     /*
     |--------------------------------------------------------------------------
     | Resetting Passwords

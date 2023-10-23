@@ -283,7 +283,7 @@
                 </div>
           </form>   
 
-          <form method="POST" action="{{ route('admin.auth') }}">
+          <form method="POST" action="{{ route('donors.auth') }}">
             @csrf
               <div class="card elevation-2 limit-width sign-up-card above">
                 
