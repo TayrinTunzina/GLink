@@ -7,7 +7,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!-- PAGE TITLE HERE -->
-	<title>Admin</title>
+	<title>Donor</title>
 	
     <link href="{{ asset('users_assets/vendor/jquery-nice-select/css/nice-select.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('users_assets/vendor/nouislider/nouislider.min.css') }}">
@@ -53,7 +53,7 @@
 					<path class="svg-logo-primary-path" d="M51.4473 29.4238H41.0957C38.5272 29.4238 36.4375 31.5135 36.4375 34.082C36.4375 36.6506 38.5272 38.7402 41.0957 38.7402H51.4473C52.3034 38.7402 53 38.0437 53 37.1875V30.9766C53 30.1204 52.3034 29.4238 51.4473 29.4238ZM41.0957 35.6348C40.2382 35.6348 39.543 34.9396 39.543 34.082C39.543 33.2245 40.2382 32.5293 41.0957 32.5293C41.9532 32.5293 42.6484 33.2245 42.6484 34.082C42.6484 34.9396 41.9532 35.6348 41.0957 35.6348Z" fill="#5BCFC5"/>
 				</svg>
                 
-				<p class="brand-title" width="124px" height="33px"  style="font-size: 30px;">Admin</p>
+				<p class="brand-title" width="124px" height="33px"  style="font-size: 30px;">Donor</p>
             </a>
             <div class="nav-control">
                 <div class="hamburger">
@@ -112,7 +112,10 @@
                                 </a>
 							</li>
                             <li class="nav-item">
-								<a href="javascript:void(0);" class="btn btn-primary d-sm-inline-block d-none">Generate Report<i class="las la-signal ms-3 scale5"></i></a>
+								<a href="javascript:void(0);" class="btn btn-primary d-sm-inline-block d-none" style="color: rgb(21, 97, 97); font-weight: bold; font-size: 1.3em;">
+										GENEROSITY LINK
+										<i class="las la-signal ms-3 scale5"></i>
+                                </a>
 							</li>
                         </ul>
                     </div>
