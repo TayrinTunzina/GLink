@@ -15,20 +15,20 @@ class LoginController extends Controller
         return view('home.login');
     }
 
-    public function login(Request $request)
+    public function donors(Request $data)
     {
-
-        if (Auth::user() && Auth::user()->role) {
-            $role = Auth::user()->role;
-        
-            if ($role === 'donor') {
-                return redirect('donors.auth');
-            } else if ($role === 'admin') {
-                return redirect('admin.auth');
-            } else {
-                return redirect('/');
-            }
+        $newUser=new User();
+        $newUser->role="donor";
+        $newUser->name=$data->input('name');
+        $newUser->email=$data->input('email');
+        $newUser->password=$data->input('password');
+        $newUser->picture=$data->file('file')->getClientOriginalName();
+        $data->file('file')->move('uploads/profiles/',$newUser->picture);
+        if($newUser->save())
+        {
+            return redirect('donors')->with('success','Congratulations! Your account is ready.');
         }
-        
+        else
+            return view('home.login');
     }
 }

@@ -9,6 +9,6 @@ class Login extends Model
 {
     use HasFactory;
 
-    protected $table = 'user'; // Specify the table name for the Login model
+    protected $table = 'users'; // Specify the table name for the Login model
     
 }

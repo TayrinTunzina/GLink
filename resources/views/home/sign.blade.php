@@ -3,6 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" 
+    integrity="sha384-o9IflTXNQ6pJFj3e5Pkej46Yy3peOgR/T46W7BGn8A2Or1hStt6E03a4AoyMApTJ" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" 
+    integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
     <title>SignUp/In</title>
 
 <style>
@@ -38,7 +42,7 @@
 
 .card {
   font-family: "Open Sans", sans-serif;
-  background: #f0f0f0; /* Background color for the neumorphic effect */
+  background: #ecf0f3; /* Background color for the neumorphic effect */
   position: absolute;
   -webkit-transition: 0.3s ease all;
   transition: 0.3s ease all;
@@ -50,6 +54,26 @@
 .card-body {
   padding: 20px;
 }
+
+.title {
+    text-align: center;
+    font-size: 28px;
+    padding-top: 24px;
+    letter-spacing: 0.5px;
+    color: #136767;
+    text-shadow: 2px 2px 4px #c0c0c0, -2px -2px 4px #ffffff; /* Neumorphic text shadow */
+}
+
+
+.input-group i {
+    position: absolute;
+    top: 50%;
+    left: 10px; /* Adjust the left position to align the icon */
+    transform: translateY(-50%);
+    font-size: 20px; /* Adjust the size of the icon */
+    color: #555; /* Adjust the color of the icon */
+}
+
 
 .box-btn {
   text-decoration: none;
@@ -87,28 +111,37 @@
 
 
 .input-group input {
-  border: none;
-  background: transparent;
-  width: 100%;
-  outline: none;
-  font-weight: 500;
-  font-family: "Open Sans", sans-serif;
-  font-size: 16px;
-  padding: 10px;
-  border-radius: 10px; /* Adjust the border-radius as needed */
-  box-shadow: inset 4px 4px 6px #c0c0c0, inset -4px -4px 6px #ffffff; /* Neumorphic inset shadow */
+    border: none;
+    background: transparent;
+    width: 100%;
+    outline: none;
+    font-weight: 500;
+    font-family: "Open Sans", sans-serif;
+    font-size: 16px;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: inset 4px 4px 6px #c0c0c0, inset -4px -4px 6px #ffffff;
+    padding-left: 40px; /* Add padding to the left to make space for the icon */
+}
+
+.input-group i {
+    position: absolute;
+    top: 50%;
+    left: 20px; /* Adjust this value to control the distance from the left */
+    transform: translateY(-50%);
+    color: #aaa; /* Color of the icon */
 }
 
 .input-group label {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  padding-left: 5px;
-  font-weight: 500;
-  color: #aaa;
-  background: #f0f0f0; /* Background color for label */
-  border-radius: 10px; /* Adjust the border-radius as needed */
-  box-shadow: 2px 2px 4px #c0c0c0, -2px -2px 4px #ffffff; /* Neumorphic inset shadow for label */
+    position: absolute;
+    top: 10px;
+    left: 40px; /* Adjust this value to control the distance from the left */
+    padding-left: 5px;
+    font-weight: 500;
+    color: #aaa;
+    background: #f0f0f0;
+    border-radius: 10px;
+    box-shadow: 2px 2px 4px #c0c0c0, -2px -2px 4px #ffffff;
 }
 
 .input-group.role {
@@ -157,91 +190,6 @@
   padding: 10px;
 }
 
-.above {
-  z-index: 1;
-}
-
-.below {
-  z-index: 0;
-}
-
-.turned {
-  opacity: 0.8;
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
-}
-
-.sign-up-card, .log-in-card {
-  box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
-}
-
-.sign-up-card.turned {
-  filter: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg"><filter id="filter"><feGaussianBlur stdDeviation="0.8" /></filter></svg>#filter');
-  -webkit-filter: blur(0.8px);
-  filter: blur(0.8px);
-  webkit-filter: blur(0.8px);
-  -webkit-transform: rotateZ(-90deg) translate3d(0, 100px, 0) scale(0.7);
-  transform: rotateZ(-90deg) translate3d(0, 100px, 0) scale(0.7);
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-}
-
-.log-in-card.turned {
-  filter: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg"><filter id="filter"><feGaussianBlur stdDeviation="1" /></filter></svg>#filter');
-  -webkit-filter: blur(1px);
-  filter: blur(1px);
-  webkit-filter: blur(1px);
-  -webkit-transform: rotateZ(-90deg) translateX(0px) translateY(100px) scale(0.7);
-  transform: rotateZ(-90deg) translateX(0px) translateY(100px) scale(0.56);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
-}
-
-.animation-state-1 .sign-up-card.below {
-  -webkit-transform: rotateZ(-7deg) translateY(150px) scale(0.78);
-  transform: rotateZ(-7deg) translateY(150px) scale(0.78);
-  opacity: 1;
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
-  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-  filter: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg"><filter id="filter"><feGaussianBlur stdDeviation="0.4" /></filter></svg>#filter');
-  -webkit-filter: blur(0.4px);
-  filter: blur(0.4px);
-  webkit-filter: blur(0.4px);
-}
-
-.animation-state-1 .log-in-card.above {
-  -webkit-transform: rotateZ(-83deg) translateY(-180px) translateX(100px) scale(0.78);
-  transform: rotateZ(-83deg) translateY(-180px) translateX(100px) scale(0.78);
-  opacity: 1;
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
-  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-  filter: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg"><filter id="filter"><feGaussianBlur stdDeviation="0.5" /></filter></svg>#filter');
-  -webkit-filter: blur(0.5px);
-  filter: blur(0.5px);
-  webkit-filter: blur(0.5px);
-}
-
-.animation-state-finish .sign-up-card.above {
-  -webkit-transform-origin: left top;
-  transform-origin: left top;
-  -webkit-transform: rotateZ(5deg) translateY(0px) scale(1);
-  transform: rotateZ(5deg) translateY(0px) scale(1);
-  opacity: 1;
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
-    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-    filter: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg"><filter id="filter"><feGaussianBlur stdDeviation="0" /></filter></svg>#filter');
-    -webkit-filter: blur(0);
-    filter: blur(0);
-    webkit-filter: blur(0);
-}
-  .sign-up-card.below{
-    filter: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg"><filter id="filter"><feGaussianBlur stdDeviation="0.4" /></filter></svg>#filter');
-    -webkit-filter: blur(0.4px);
-    filter: blur(0.4px);
-    webkit-filter: blur(0.4px);
-    -webkit-transform: rotateZ(-90deg) translate3d(0, 100px, 0) scale(0.7);
-    transform: rotateZ(-90deg) translate3d(0, 100px, 0) scale(0.7);
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-    opacity: 0.7;
-    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
-  }
     </style>
 
 </head>
@@ -249,90 +197,37 @@
     
     <div class="form-collection">
 
-        <div class="card elevation-3 limit-width log-in-card below turned">
-          <form method="POST" action="{{ route('admin.auth') }}">
+        <div class="card">
+
+         <form method="POST" action="((URL::to('loginUser'))" enctype="multipart/form-data">
             @csrf
                 <div class="card-body">
 
-                      <div class="input-group email">
-                        <input type="text" placeholder="Email" name="email" required/>
-                      </div>
-                      <div class="input-group password">
-                        <input type="password" placeholder="Password" name="password" required/>
-                      </div>
+                <div class="title">LOGIN FORM</div>
 
-                      <div class="input-group role">
-                        <div class="column">
-                          <label for="login-role">Login as:</label>
-                        </div>
+                <div class="input-group email">
+                    <i class="fas fa-envelope"></i>
+                    <input type="text" placeholder="Email" name="email" required/>
+                </div>
+                <div class="input-group password">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" placeholder="Password" name="password" required/>
+                </div>
 
-                        <div class="column">
-                          <select id="login-role" name="login-role" class="rounded-select" required>
-                            <option value="donor">Donor</option>
-                            <option value="admin">Admin</option>
-                          </select>
-                        </div>
-                      </div>
 
                     <a href="#" class="box-btn">Forgot Password?</a>
                   </div>
 
                     <div class="card-footer">
-                      <button type="submit" class="login-btn">Log in</button>
+                      <button type="submit" name="login" class="login-btn">Log in</button>
                     </div>
                 </div>
           </form>   
-
-          <form method="POST" action="{{ route('donors.auth') }}">
-            @csrf
-              <div class="card elevation-2 limit-width sign-up-card above">
-                
-                      <div class="card-body">
-                          <div class="input-group fullname">
-                            <input type="text" placeholder="Full Name" name="name"required/>
-                          </div>
-                          <div class="input-group email">
-                            <input type="email" placeholder="Email" name="email" required/>
-                          </div>
-                          <div class="input-group password">
-                            <input type="password" placeholder="Password" name="password" required/>
-                          </div>
-                        
-                      </div>
-                        <div class="card-footer">
-                          <button type="submit" class="signup-btn">Sign Up</button>
-                        </div>
-              </div>
-          </form>       
+      
         </div>  
     </div>
 
-
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-    $(document).ready(function() {
-    $(document).on('click', '.below button', function(){
-        var belowCard = $('.below'),
-            aboveCard = $('.above'),
-            parent = $('.form-collection');
-        parent.addClass('animation-state-1');
-        setTimeout(function(){
-        belowCard.removeClass('below');
-        aboveCard.removeClass('above');
-        belowCard.addClass('above');
-        aboveCard.addClass('below');
-        setTimeout(function(){
-            parent.addClass('animation-state-finish');
-            parent.removeClass('animation-state-1');
-            setTimeout(function(){
-            aboveCard.addClass('turned');
-            belowCard.removeClass('turned');
-            parent.removeClass('animation-state-finish');
-            }, 300)
-        }, 10)
-        }, 300);
-    });
-    });
-</script>
 </body>
+
+
 </html>
