@@ -199,7 +199,7 @@
 
         <div class="card">
 
-         <form method="POST" action="" enctype="multipart/form-data">
+         <form method="POST" action="{{ route('login.post') }}" enctype="multipart/form-data">
             @csrf
                 <div class="card-body">
 

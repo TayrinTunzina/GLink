@@ -14,8 +14,9 @@ class DonorsController extends Controller
      */
     public function index()
     {
-        return view('donors'); // Return the donor dashboard view
+        return view('donors');
     }
+    
 
     /**
      * Show the form for creating a new resource.

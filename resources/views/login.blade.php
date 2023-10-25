@@ -77,7 +77,7 @@ https://templatemo.com/tm-562-space-dynamic
     <div class="row">
       <div class="col-lg-5 align-self-center">
         <div class="left-content header-text wow fadeInLeft" data-wow-duration="1s" data-wow-delay="1s">
-            @include('home.sign')
+            @include('sign')
         </div>
         <div class="col-lg-3">
         <div class="right-video wow fadeInRight" data-wow-duration="1s" data-wow-delay="0.5s">

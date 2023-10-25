@@ -2,13 +2,16 @@
 
 namespace App\Models;
 
+use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as AuthenticatableUser;
+use Illuminate\Notifications\Notifiable;
 
-class Login extends Model
+class Login extends AuthenticatableUser implements Authenticatable
 {
-    use HasFactory;
+    use HasFactory, Notifiable;
 
-    protected $table = 'users'; // Specify the table name for the Login model
-    
+    protected $table = 'users';
+
+    // Your model's code here
 }

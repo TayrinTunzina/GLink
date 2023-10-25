@@ -41,6 +41,16 @@ return [
             'provider' => 'users',
         ],
 
+        'donors' => [
+            'driver' => 'session',
+            'provider' => 'donors',
+        ],
+    
+        'admin' => [
+            'driver' => 'session',
+            'provider' => 'admin',
+        ],
+
     ],
 
     /*
@@ -63,8 +73,19 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => App\Models\User::class,
+            'model' => App\Models\Login::class,
         ],
+    
+        'donors' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Donors::class,
+        ],
+    
+        'admin' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Admin::class,
+        ],
+    
 
         // 'users' => [
         //     'driver' => 'database',

@@ -37,5 +37,7 @@ Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::get('/admin', [AdminController::class, 'index'])->name('admin');
 Route::get('/donors', [DonorsController::class, 'index'])->name('donors');
 
-Route::post('/donors', [LoginController::class, 'donors']);
+
+Route::post('/login', [LoginController::class, 'login'])->name('login.post');
+
 
