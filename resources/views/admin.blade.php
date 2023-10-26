@@ -153,6 +153,7 @@
 							<li><a href="javascript:void(0);" data-content="campaigns"><i class="flaticon-086-star"></i> Campaigns</a></li>
 							<li><a href="javascript:void(0);" data-content="donations"><i class="flaticon-041-graph"></i> Donations</a></li>
 							<li><a href="javascript:void(0);" data-content="donors"><i class="flaticon-045-heart"></i> Donors</a></li>
+							<li><a href="javascript:void(0);" data-content="pet"><i class="fas fa-paw"></i> Pet Adoption</a></li>
 						</ul>
 				    </div>
                 </ul>
@@ -268,6 +269,11 @@
 						<div id="donors" class="content-section">
 							<h2>Donors Content</h2>
 							<p>This is the Donors content.</p>
+						</div>
+
+						<div id="pet" class="content-section">
+							<h2>Pet Content</h2>
+							<p>This is the Pet content.</p>
 						</div>
 
 						</div>
