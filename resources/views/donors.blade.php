@@ -15,10 +15,69 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
 <style>
 html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
+
+.frDonation {
+    padding: 8px 14px 8px 14px;
+    background-color: #f3f3f3;
+    border-bottom: 2px solid #e0e0e0;
+    overflow: hidden;
+    position: relative
+}
+
+.frDonation .frPie {
+    border: 1px solid #ececec;
+    -moz-border-radius: 27px;
+    -webkit-border-radius: 27px;
+    border-radius: 27px;
+    height: 54px;
+    width: 54px;
+    float: left;
+    margin-right: 16px;
+    background-color: #8bd091;
+    overflow: hidden;
+}
+
+.frAmount {
+    padding-top: 9px;
+    float: left;
+    margin-right: 12px;
+}
+
+.frDonation .frPercentage {
+    display: block;
+    position: absolute;
+    background-color: transparent;
+    color: #596364;
+    font-size: 13px;
+    line-height: 54px;
+    width: 54px;
+    text-align: center;
+}
+
+.frDonation .frButton {
+    margin-top: 8px;
+    float: right;
+}
+
+.frButton {
+    -webkit-border-radius: 5;
+    -moz-border-radius: 5;
+    border-radius: 5px;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+    background: #5bc062;
+    padding: 8px;
+    border: solid #379f3e 1px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
 </style>
 </head>
 <body class="w3-theme-l5">
@@ -61,7 +120,7 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
     <div class="w3-col m3">
       <!-- Profile -->
       <div class="w3-card w3-round w3-white">
-        <div class="w3-container">
+        <div class="w3-container"><br>
          <h4 class="w3-center">My Profile</h4>
          <p class="w3-center"><img src="/w3images/avatar3.png" class="w3-circle" style="height:106px;width:106px" alt="Avatar"></p>
          <hr>
@@ -165,21 +224,16 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
               <header id="portfolio">
                 <a href="#"><img src="/w3images/avatar_g2.jpg" style="width:65px;" class="w3-circle w3-right w3-margin w3-hide-large w3-hover-opacity"></a>
                 <span class="w3-button w3-hide-large w3-xxlarge w3-hover-text-grey" onclick="w3_open()"><i class="fa fa-bars"></i></span>
-                <div class="w3-container">
-                <h1><b>Campaigns</b></h1>
-                <div class="w3-section w3-bottombar w3-padding-16">
-                  <span class="w3-margin-right">Filter:</span> 
-                  <button class="w3-button w3-black">ALL</button>
-                  <button class="w3-button w3-white"><i class="fa fa-diamond w3-margin-right"></i>Design</button>
-                  <button class="w3-button w3-white w3-hide-small"><i class="fa fa-photo w3-margin-right"></i>Photos</button>
-                  <button class="w3-button w3-white w3-hide-small"><i class="fa fa-map-pin w3-margin-right"></i>Art</button>
-                </div>
+                <div class="w3-container"><br>
+					<h1><b>Campaigns</b></h1>
+					<div class="w3-section w3-bottombar w3-padding-16">
+						<input style="box-shadow: 0px 1px 3px 3px #0e0c3d; width: 400px;" class="form-control font-bold" id="myInput" type="text" placeholder="Search..." onkeyup="search()">
+					</div>
                 </div>
               </header>
 
 
-              <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
-                <img src="/w3images/avatar2.png" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
+              <div class="w3-container w3-card w3-white w3-round w3-margin campaigns"><br>
                 <span class="w3-right w3-opacity">1 min</span>
                 <h4>John Doe</h4><br>
                 <hr class="w3-clear">
@@ -192,8 +246,54 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
                       <img src="/w3images/nature.jpg" style="width:100%" alt="Nature" class="w3-margin-bottom">
                   </div>
                 </div>
-                <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i>  Donate</button> 
+                <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom" data-toggle="modal" data-target="#myModal2"><i class="fa fa-thumbs-up"></i>  Donate</button> 
               </div>
+
+		<!-- Modal 2 -->
+		<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" style="font-family: 'Rubik', sans-serif;" id="myModalLabel">Create Donation Post</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body" style="font-family: 'Roboto', sans-serif;">
+                <form action="canteen.php" method="POST" enctype="multipart/form-data">
+                  <div class="form-group">
+                    <label for="file">Select pictures of item:</label>
+                    <input type="file" class="form-control-file" id="file" name="file">
+                  </div>
+                  <div class="form-group">
+                  <label for="category">Select Donation Category:</label>
+                    <select class="form-control" id="category" name="category">
+                        <option value="" selected disabled>Select a category</option>
+                        <option value="clothing">Clothing</option>
+                        <option value="electronics">Electronics</option>
+                        <option value="furniture">Furniture</option>
+                        <option value="books">Books</option>
+                    </select>
+                  </div>
+
+				  <div class="frDonation">
+						<span class="frPercentage">10%</span>
+					<div class="frPie"><span style="height:46px;"></span></div>
+					<div class="frAmount">
+						<label>Tk</label>
+						<input type="text" id="frAmount_2" name="amount" value="50" class="frText frW70 frAmountText">
+					</div>
+					<button class="frButton frButtonDonate">Donate</button>
+				</div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+
 
           
               <!-- Pagination -->
@@ -227,7 +327,7 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
     <div class="w3-col m2">
       <div class="w3-card w3-round w3-white w3-center">
         <div class="w3-container">
-        <p><strong>Services:</strong></p>
+        <br><p><strong>Services:</strong></p>
           <img src="/w3images/forest.jpg" alt="Forest" style="width:100%;">
 
           <p><button class="w3-button w3-block w3-theme-l4">Items Donation</button></p>
@@ -275,28 +375,24 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
 </footer>
  
 <script>
-// Accordion
-function myFunction(id) {
-  var x = document.getElementById(id);
-  if (x.className.indexOf("w3-show") == -1) {
-    x.className += " w3-show";
-    x.previousElementSibling.className += " w3-theme-d1";
-  } else { 
-    x.className = x.className.replace("w3-show", "");
-    x.previousElementSibling.className = 
-    x.previousElementSibling.className.replace(" w3-theme-d1", "");
-  }
+
+	function search() {
+
+	var searchInput = document.getElementById("myInput").value.toLowerCase();
+
+	var elements = document.getElementsByClassName("campaigns");
+
+	// Loop through the elements and check if the search input matches the content
+	for (var i = 0; i < elements.length; i++) {
+	var content = elements[i].innerText.toLowerCase();
+	if (content.includes(searchInput)) {
+		elements[i].style.display = "block";
+	} else {
+		elements[i].style.display = "none";
+	}
+	}
 }
 
-// Used to toggle the menu on smaller screens when clicking on the menu button
-function openNav() {
-  var x = document.getElementById("navDemo");
-  if (x.className.indexOf("w3-show") == -1) {
-    x.className += " w3-show";
-  } else { 
-    x.className = x.className.replace(" w3-show", "");
-  }
-}
 </script>
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
