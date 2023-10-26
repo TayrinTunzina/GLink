@@ -26,30 +26,22 @@ class LoginController extends Controller
             'password' => 'required',
         ]);
     
-        $credentials = $request->only('email', 'password');
+        // Get the user's data from the database.
+        $email = $request->input('email'); // Get email input from the form
+        $user = Login::where('email', $email)->first();
     
-        if (Auth::attempt($credentials)) {
-            // Authentication was successful.
-            $user = Auth::user(); // Get the authenticated user.
-    
-            // Log a successful login attempt.
-            \Log::info('User successfully authenticated: ' . $user->email);
-    
-            // Redirect the user based on their role.
-            if ($user->role === 'donor') {
-                return redirect()->route('donors');
-            } else {
-                // Handle other roles or provide a default route.
-                return redirect()->route('admin');
-            }
-        } else {
-            // Authentication failed.
-            \Log::warning('Login failed for email: ' . $request->email);
-    
-            return redirect()->route('login')->with('error', 'Invalid email or password.');
+        // Check if the user exists and their password is correct.
+        if ($user && Hash::check($request->password, $user->password)) {
+            // Redirect the user to the "donors" page upon successful authentication.
+            return redirect()->route('donors');
         }
     
-}
+        // Redirect to the login page with an error message if login fails.
+        //return redirect()->route('login')->with('error', 'Invalid email or password.');
+        echo $user->name;
+        dd('User authenticated successfully.');
+    } 
+    
 
     
     // Handle user logout.

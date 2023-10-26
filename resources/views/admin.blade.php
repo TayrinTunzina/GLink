@@ -136,11 +136,14 @@
 				<ul class="metismenu" id="menu">
 					<li class="dropdown header-profile">
 						<a class="nav-link" href="javascript:void(0);" role="button" data-bs-toggle="dropdown">
-							<img src="images/ion/man (1).png" width="20" alt=""/>
+						@foreach($users as $user)
+						<img src="data:image/png;base64,{{ base64_encode($user->pic) }}" width="20" alt=""/>
 							<div class="header-info ms-3">
-								<span class="font-w600 ">Hi,<b>AC</b></span>
-								<small class="text-end font-w400">xyz@gmail.com</small>
+								<span class="font-w600">Hi, <b>{{ $user->name }}</b></span>
+								<small class="text-end font-w400">{{ $user->email }}</small>
 							</div>
+						@endforeach
+
 						</a>
 						
 					</li>

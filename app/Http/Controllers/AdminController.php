@@ -6,6 +6,7 @@ use App\Models\cr;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Login;
+use App\Models\Admin;
 
 class AdminController extends Controller
 {
@@ -13,10 +14,14 @@ class AdminController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        return view('admin');
-    }
+
+     public function index()
+     {
+         $users = Admin::where('role', 'admin')->get(); // Fetch users where role is 'admin'
+     
+         return view('admin', ['users' => $users]);
+     }
+     
 
     /**
      * Show the form for creating a new resource.
