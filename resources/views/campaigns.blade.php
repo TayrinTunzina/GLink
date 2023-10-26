@@ -7,26 +7,47 @@
 </head>
 <body>    
 
-                <div id="content-container">
-					<div id="dashboard-content" class="content-section">
-						<h2>Dashboard Content</h2>
-						<p>This is the dashboard content.</p>
-					</div>
+    <div class="card-header d-block d-sm-flex border-0">
+        <div class="me-3">
+            <h4 class="card-title mb-2">Campaigns</h4>
+            <span class="fs-12">Lorem ipsum dolor sit amet, consectetur</span>
+        </div>
+        <div class="card-tabs mt-3 mt-sm-0">
+            <ul class="nav nav-tabs" role="tablist">
 
-					<div id="campaigns-content" class="content-section">
-						<h2>Campaigns Content</h2>
-						<p>This is the Campaigns content.</p>
-					</div>
-					<div id="donations-content" class="content-section">
-						<h2>Bootstrap Content</h2>
-						<p>This is the Bootstrap content.</p>
-					</div>
-					<div id="donors-content" class="content-section">
-						<h2>Plugins Content</h2>
-						<p>This is the Plugins content.</p>
-					</div>
+                <li class="nav-item">
+                    <a class="nav-link" data-bs-toggle="tab" href="#Campaigns" role="tab">Campaigns</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-bs-toggle="tab" href="#AddCampaigns" role="tab">Add Campaigns</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="card-body tab-content p-0">
 
-				</div>
+        <div class="tab-pane" id="Campaigns" role="tabpanel">
+            <div class="table-responsive">
+                <table class="table table-responsive-md card-table transactions-table">
+                    <tbody>
+                        Campaigns
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="tab-pane" id="AddCampaigns" role="tabpanel">
+            <div class="table-responsive">
+                <table class="table table-responsive-md card-table transactions-table">
+                    <tbody>
+
+                    Add Campaigns
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 
 
 </body>
