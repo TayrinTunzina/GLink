@@ -39,5 +39,6 @@ Route::get('/donors', [DonorsController::class, 'index'])->name('donors');
 
 
 Route::post('/login', [LoginController::class, 'login'])->name('login.post');
+Route::post('/logout', [DonorsController::class, 'logout'])->name('logout');
 
 

@@ -1,0 +1,121 @@
+html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
+
+.frDonation {
+    padding: 8px 14px 8px 14px;
+    background-color: #f3f3f3;
+    border-bottom: 2px solid #e0e0e0;
+    overflow: hidden;
+    position: relative
+}
+
+.frDonation .frPie {
+    border: 1px solid #ececec;
+    -moz-border-radius: 27px;
+    -webkit-border-radius: 27px;
+    border-radius: 27px;
+    height: 54px;
+    width: 54px;
+    float: left;
+    margin-right: 16px;
+    background-color: #8bd091;
+    overflow: hidden;
+}
+
+.frAmount {
+    padding-top: 9px;
+    float: left;
+    margin-right: 12px;
+}
+
+.frText {
+    height: 36px;
+    padding: 0px 8px 0px 8px;
+}
+
+.frText, .frContainer .frTextarea, .frContainer .frSelect {
+    background-color: #ffffff;
+    border: solid 1px #dbd9da;
+    border-radius: 3px;
+    line-height: 18px;
+    color: #5c6164;
+    font-family: Verdana, Geneva, sans-serif;
+    font-size: 13px;
+    box-shadow: inset 0px 2px 3px 0px rgba(227,224,226,0.7);
+}
+
+.frDonation .frPercentage {
+    display: block;
+    position: absolute;
+    background-color: transparent;
+    color: #596364;
+    font-size: 13px;
+    line-height: 54px;
+    width: 54px;
+    text-align: center;
+}
+
+.frDonation .frPie span {
+    display: block;
+    background-color: #ffffff;
+    width: 100%;
+}
+
+.frDonation .frButton {
+    margin-top: 8px;
+    float: right;
+}
+
+.frButton {
+    -webkit-border-radius: 5;
+    -moz-border-radius: 5;
+    border-radius: 5px;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+    background: #5bc062;
+    padding: 8px;
+    border: solid #379f3e 1px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.frCampaignStat {
+    padding: 14px;
+    overflow: hidden;
+}
+
+.frCampaignStat .frLeftCol {
+    width: 58%;
+    float: left;
+}
+.frCampaignStat label {
+    display: block;
+    color: #61686e;
+}
+
+.frCampaignStat .frLeftCol {
+    width: 58%;
+    float: left;
+}
+.frCampaignStat .frRightCol .frTimer {
+    background: url(https://demo.phpjabbers.com/1698378794_504/app/web/img/frontend/timer.png) 0 0 no-repeat;
+    padding-left: 26px;
+}
+.frCampaignStat .frRightCol label {
+    float: right;
+}
+.frCampaignStat label {
+    display: block;
+    color: #61686e;
+    line-height: 24px;
+    font-size: 12px;
+}
+.frCampaignStat .frRightCol {
+    width: 42%;
+    float: right;
+}
+.frCampaignStat label span {
+    font-weight: bold;
+    font-size: 13px;
+}
