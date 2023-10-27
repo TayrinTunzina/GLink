@@ -199,11 +199,16 @@
 
         <div class="card">
 
-         <form method="POST" action="{{ route('login.post') }}" enctype="multipart/form-data">
+        <form method="POST" action="{{ route('login.post') }}" enctype="multipart/form-data">
             @csrf
-                <div class="card-body">
-
+            <div class="card-body">
                 <div class="title">LOGIN FORM</div>
+
+                @if(session('error'))
+                <div class="alert alert-danger">
+                    {{ session('error') }}
+                </div>
+                @endif
 
                 <div class="input-group email">
                     <i class="fas fa-envelope"></i>
@@ -214,15 +219,15 @@
                     <input type="password" placeholder="Password" name="password" required/>
                 </div>
 
+                <a href="#" class="box-btn">Forgot Password?</a>
+            </div>
 
-                    <a href="#" class="box-btn">Forgot Password?</a>
-                  </div>
-
-                    <div class="card-footer">
-                      <button type="submit" name="login" class="login-btn">Log in</button>
-                    </div>
-                </div>
-          </form>   
+            <div class="card-footer">
+                <button type="submit" name="login" class="login-btn">Log in</button>
+            </div>
+        </div>
+        </form>
+  
       
         </div>  
     </div>

@@ -16,6 +16,13 @@ class DonorsController extends Controller
     {
         return view('donors');
     }
+
+    public function logout(Request $request)
+    {
+        Auth::logout(); // Log the user out
+        return redirect()->route('login')->with('success', 'You have been logged out.');
+    }
+
     
 
     /**
