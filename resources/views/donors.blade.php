@@ -9,76 +9,14 @@
 <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+<script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+<link rel="stylesheet" href="{{asset('donors_assets/donors.css')}}">
 
-<style>
-html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
-
-.frDonation {
-    padding: 8px 14px 8px 14px;
-    background-color: #f3f3f3;
-    border-bottom: 2px solid #e0e0e0;
-    overflow: hidden;
-    position: relative
-}
-
-.frDonation .frPie {
-    border: 1px solid #ececec;
-    -moz-border-radius: 27px;
-    -webkit-border-radius: 27px;
-    border-radius: 27px;
-    height: 54px;
-    width: 54px;
-    float: left;
-    margin-right: 16px;
-    background-color: #8bd091;
-    overflow: hidden;
-}
-
-.frAmount {
-    padding-top: 9px;
-    float: left;
-    margin-right: 12px;
-}
-
-.frDonation .frPercentage {
-    display: block;
-    position: absolute;
-    background-color: transparent;
-    color: #596364;
-    font-size: 13px;
-    line-height: 54px;
-    width: 54px;
-    text-align: center;
-}
-
-.frDonation .frButton {
-    margin-top: 8px;
-    float: right;
-}
-
-.frButton {
-    -webkit-border-radius: 5;
-    -moz-border-radius: 5;
-    border-radius: 5px;
-    color: #ffffff;
-    font-size: 14px;
-    font-weight: bold;
-    text-transform: uppercase;
-    background: #5bc062;
-    padding: 8px;
-    border: solid #379f3e 1px;
-    text-decoration: none;
-    cursor: pointer;
-}
-
-</style>
 </head>
 <body class="w3-theme-l5">
 
@@ -124,7 +62,7 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
          <h4 class="w3-center">My Profile</h4>
          <p class="w3-center"><img src="/w3images/avatar3.png" class="w3-circle" style="height:106px;width:106px" alt="Avatar"></p>
          <hr>
-         <p><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i> Designer, UI</p>
+         <p><i class="fas fa-pencil-alt fa-fw w3-margin-right w3-text-theme"></i> Designer, UI</p>
          <p><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i> London, UK</p>
          <p><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"></i> April 1, 1988</p>
         </div>
@@ -134,7 +72,7 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
       <!-- Accordion -->
       <div class="w3-card w3-round">
         <div class="w3-white">
-          <button  class="w3-button w3-block w3-theme-l1 w3-left-align" data-toggle="modal" data-target="#myModal"><i class="fa fa-pencil fa-fw w3-margin-right"></i> Create Donation Post</button>
+          <button  class="w3-button w3-block w3-theme-l1 w3-left-align" data-toggle="modal" data-target="#myModal"><i class="fa fa-pencil-square-o fa-fw w3-margin-right"></i> Create Donation Post</button>
 
 
 
@@ -150,13 +88,13 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
                 </button>
               </div>
               <div class="modal-body" style="font-family: 'Roboto', sans-serif;">
-                <form action="canteen.php" method="POST" enctype="multipart/form-data">
+                <form action="" method="POST" enctype="multipart/form-data">
                   <div class="form-group">
                     <label for="file">Select pictures of item:</label>
                     <input type="file" class="form-control-file" id="file" name="file">
                   </div>
                   <div class="form-group">
-                  <label for="category">Select Donation Category:</label>
+                  <label for="category">Donation Category:</label>
                     <select class="form-control" id="category" name="category">
                         <option value="" selected disabled>Select a category</option>
                         <option value="clothing">Clothing</option>
@@ -169,7 +107,7 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
 					<label for="description">Write Description:</label>
 					<textarea class="form-control" id="description" name="description" rows="4" placeholder="Enter your description here"></textarea>
 				  </div>
-                  <button type="submit" class="w3-button w3-theme fa fa-pencil" name="send_file">&nbsp; Post</button>
+                  <button type="submit" class="w3-button w3-theme fas fa-pencil-alt" name="send_file">&nbsp; Post</button>
                 </form>
               </div>
             </div>
@@ -184,7 +122,7 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
 
 
 
-          <button onclick="myFunction('Demo2')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-calendar-check-o fa-fw w3-margin-right"></i> Upload Pet Video</button>
+          <button onclick="myFunction('Demo2')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fas fa-paw w3-margin-right"></i> Upload Pet Video</button>
           <div id="Demo2" class="w3-hide w3-container">
             <p>Some other text..</p>
           </div>
@@ -246,7 +184,7 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
                       <img src="/w3images/nature.jpg" style="width:100%" alt="Nature" class="w3-margin-bottom">
                   </div>
                 </div>
-                <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom" data-toggle="modal" data-target="#myModal2"><i class="fa fa-thumbs-up"></i>  Donate</button> 
+                <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom" data-toggle="modal" data-target="#myModal2"><i class="fas fa-hand-holding-usd"></i>  Donate</button> 
               </div>
 
 		<!-- Modal 2 -->
@@ -254,37 +192,54 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" style="font-family: 'Rubik', sans-serif;" id="myModalLabel">Create Donation Post</h5>
+                <h5 class="modal-title" style="font-family: 'Rubik', sans-serif;" id="myModalLabel">Donation Form</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
               <div class="modal-body" style="font-family: 'Roboto', sans-serif;">
-                <form action="canteen.php" method="POST" enctype="multipart/form-data">
+                <form action="" method="POST" enctype="multipart/form-data">
                   <div class="form-group">
-                    <label for="file">Select pictures of item:</label>
-                    <input type="file" class="form-control-file" id="file" name="file">
-                  </div>
-                  <div class="form-group">
-                  <label for="category">Select Donation Category:</label>
-                    <select class="form-control" id="category" name="category">
-                        <option value="" selected disabled>Select a category</option>
-                        <option value="clothing">Clothing</option>
-                        <option value="electronics">Electronics</option>
-                        <option value="furniture">Furniture</option>
-                        <option value="books">Books</option>
-                    </select>
+                      <label for="name">Name:</label>
+                      <input type="text" class="form-control" id="name" name="name" placeholder="Enter your name">
                   </div>
 
-				  <div class="frDonation">
-						<span class="frPercentage">10%</span>
+                  <div class="form-group">
+                      <label for="phone">Phone:</label>
+                      <input type="tel" class="form-control" id="phone" name="phone" placeholder="Enter your phone number">
+                  </div>
+                  <div class="form-group">
+                  <label for="category">Payment Method:</label>
+                    <select class="form-control" id="payment" name="payment">
+                        <option value="" selected disabled>Select payment method</option>
+                        <option value="bKash">bKash</option>
+                        <option value="creditcard">Credit Card</option>
+                    </select>    
+                  </div>
+
+				<div class="frDonation">
+					<span class="frPercentage">10%</span>
 					<div class="frPie"><span style="height:46px;"></span></div>
 					<div class="frAmount">
 						<label>Tk</label>
-						<input type="text" id="frAmount_2" name="amount" value="50" class="frText frW70 frAmountText">
+						<input type="text" id="frAmount_2" name="amount" value="" class="frText frW70 frAmountText">
 					</div>
 					<button class="frButton frButtonDonate">Donate</button>
 				</div>
+
+				<div class="frCampaignStat">
+					<div class="frLeftCol">
+						<label><span>Tk10000.00&nbsp;</span>needed</label>
+						<label><abbr>Tk1000.00</abbr>&nbsp;received</label>
+					</div>
+					<div class="frRightCol">
+						<label class="frTimer"><span>1120&nbsp;</span>days left</label>
+						<label>1&nbsp;donation&nbsp;&nbsp;</label>
+					</div>
+			</div>
+
+
+
                 </form>
               </div>
             </div>
@@ -293,9 +248,6 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
 
 
 
-
-
-          
               <!-- Pagination -->
               <div class="w3-center w3-padding-32">
                 <div class="w3-bar">
@@ -353,7 +305,6 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
         </div>
       </div>
       <br>
-      
       
     <!-- End Right Column -->
     </div>
