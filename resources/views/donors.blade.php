@@ -64,9 +64,9 @@
          <h4 class="w3-center">My Profile</h4>
          <p class="w3-center"><img src="/w3images/avatar3.png" class="w3-circle" style="height:106px;width:106px" alt="Avatar"></p>
          <hr>
-         <p><i class="fas fa-pencil-alt fa-fw w3-margin-right w3-text-theme"></i> Designer, UI</p>
-         <p><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i> London, UK</p>
-         <p><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"></i> April 1, 1988</p>
+         <p><i class="fas fa-pencil-alt fa-fw w3-margin-right w3-text-theme"></i> Donor </p>
+         <p><i class="fa fa-user fa-fw w3-margin-right w3-text-theme"></i> Name</p>
+         <p><i class="fa fa-envelope fa-fw w3-margin-right w3-text-theme"></i> Email</p>
         </div>
       </div>
       <br>
@@ -180,10 +180,10 @@
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
                   <div class="w3-row-padding" style="margin:0 -16px">
                     <div class="w3-half">
-                      <img src="/w3images/lights.jpg" style="width:100%" alt="Northern Lights" class="w3-margin-bottom">
+                      <img src="/w3images/lights.jpg" style="width:100%" alt="pic" class="w3-margin-bottom">
                     </div>
                     <div class="w3-half">
-                      <img src="/w3images/nature.jpg" style="width:100%" alt="Nature" class="w3-margin-bottom">
+                      <img src="/w3images/nature.jpg" style="width:100%" alt="pic" class="w3-margin-bottom">
                   </div>
                 </div>
                 <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom" data-toggle="modal" data-target="#myModal2"><i class="fas fa-hand-holding-usd"></i>  Donate</button> 
@@ -282,7 +282,7 @@
       <div class="w3-card w3-round w3-white w3-center">
         <div class="w3-container">
         <br><p><strong>Services:</strong></p>
-          <img src="/w3images/forest.jpg" alt="Forest" style="width:100%;">
+          <img src="/w3images/forest.jpg" alt="pic" style="width:100%;">
 
           <p><button class="w3-button w3-block w3-theme-l4">Items Donation</button></p>
           <p><button class="w3-button w3-block w3-theme-l4">Food Donations</button></p>
@@ -291,7 +291,7 @@
       </div>
       <br>
       
-      <div class="w3-card w3-round w3-white w3-center">
+      <!-- <div class="w3-card w3-round w3-white w3-center">
         <div class="w3-container">
           <p>Friend Request</p>
           <img src="/w3images/avatar6.png" alt="Avatar" style="width:50%"><br>
@@ -305,7 +305,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
       <br>
       
     <!-- End Right Column -->
@@ -319,12 +319,9 @@
 <br>
 
 <!-- Footer -->
-<footer class="w3-container w3-theme-d3 w3-padding-16">
-  <h5>Footer</h5>
-</footer>
 
 <footer class="w3-container w3-theme-d5">
-  <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
+  <p>© Copyright 2023 Team ASPIRANTS. All Rights Reserved. <br><a rel="nofollow" href="#">GENEROSITY LINK</a></p>
 </footer>
  
 <script>
