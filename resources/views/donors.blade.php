@@ -62,8 +62,7 @@
       <div class="w3-card w3-round w3-white">
         <div class="w3-container"><br>
          <h4 class="w3-center">My Profile</h4>
-         <p class="w3-center"><img src="{{ $user->pic }}" class="w3-circle" style="height:106px;width:106px" alt="Avatar"></p>
-
+         <p class="w3-center"><img src="data:image/png;base64,{{ base64_encode($user->pic) }}" width="106" height="106" alt="Avatar"/></p>
           <hr>
           <p><i class="fas fa-pencil-alt fa-fw w3-margin-right w3-text-theme"></i> Role: {{ $user->role }}</p>
           <p><i class="fa fa-user fa-fw w3-margin-right w3-text-theme"></i> {{ $user->name }}</p>
