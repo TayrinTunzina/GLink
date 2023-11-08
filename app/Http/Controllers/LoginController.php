@@ -28,9 +28,10 @@ class LoginController extends Controller
 
         if ($user) {
             // Check if the provided password matches the hashed password from the database
-            if ($password === $user->password && $user->role === 'donor') {
+            if ($password === $user->password && $user->role === 'Donor') {
                 // Authentication successful
-                return redirect()->route('donors')->with('success', 'Login successful.');
+                //return redirect()->route('donors')->with('success', 'Login successful.');
+                return view('donors', ['user' => $user])->with('success', 'Login successful.');
             }
         }
 

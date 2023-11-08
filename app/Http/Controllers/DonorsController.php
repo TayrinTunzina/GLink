@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\cr;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth; // Import the Auth facade
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+
 
 class DonorsController extends Controller
 {
