@@ -63,10 +63,10 @@
         <div class="w3-container"><br>
          <h4 class="w3-center">My Profile</h4>
          <p class="w3-center"><img src="/w3images/avatar3.png" class="w3-circle" style="height:106px;width:106px" alt="Avatar"></p>
-         <hr>
-         <p><i class="fas fa-pencil-alt fa-fw w3-margin-right w3-text-theme"></i> Donor </p>
-         <p><i class="fa fa-user fa-fw w3-margin-right w3-text-theme"></i> Name</p>
-         <p><i class="fa fa-envelope fa-fw w3-margin-right w3-text-theme"></i> Email</p>
+          <hr>
+          <p><i class="fas fa-pencil-alt fa-fw w3-margin-right w3-text-theme"></i> {{ $user->role }}</p>
+          <p><i class="fa fa-user fa-fw w3-margin-right w3-text-theme"></i> {{ $user->name }}</p>
+          <p><i class="fa fa-envelope fa-fw w3-margin-right w3-text-theme"></i> {{ $user->email }}</p>
         </div>
       </div>
       <br>
