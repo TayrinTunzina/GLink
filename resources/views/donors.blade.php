@@ -17,6 +17,28 @@
 <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
 <link rel="stylesheet" href="{{asset('donors_assets/donors.css')}}">
 
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <style>
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+    </style>
+
 </head>
 <body class="w3-theme-l5">
 
@@ -173,21 +195,28 @@
               </header>
 
 
-              <div class="w3-container w3-card w3-white w3-round w3-margin campaigns"><br>
-                <span class="w3-right w3-opacity">1 min</span>
-                <h4>John Doe</h4><br>
-                <hr class="w3-clear">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                  <div class="w3-row-padding" style="margin:0 -16px">
-                    <div class="w3-half">
-                      <img src="/w3images/lights.jpg" style="width:100%" alt="pic" class="w3-margin-bottom">
-                    </div>
-                    <div class="w3-half">
-                      <img src="/w3images/nature.jpg" style="width:100%" alt="pic" class="w3-margin-bottom">
+              @foreach ($campaigns as $campaign)
+                  <div class="w3-container w3-card w3-white w3-round w3-margin campaigns"><br>
+                      <span class="w3-right w3-opacity">{{ $campaign->created_at->diffForHumans() }}</span>
+                      <h4>{{ $campaign->title }}</h4><br>
+                      <hr class="w3-clear">
+                      <p>{{ $campaign->description }}</p>
+                      <div class="w3-row-padding" style="margin:0 -16px">
+                          <div class="w3-half">
+                              @if ($campaign->image)
+                                  <img src="{{ asset($campaign->image) }}" style="width:100%" alt="pic" class="w3-margin-bottom">
+                              @endif
+                          </div>
+                      </div>
+                      <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom" data-toggle="modal" data-target="#myModal2"><i class="fas fa-hand-holding-usd"></i> Donate</button> 
                   </div>
-                </div>
-                <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom" data-toggle="modal" data-target="#myModal2"><i class="fas fa-hand-holding-usd"></i>  Donate</button> 
-              </div>
+              @endforeach
+
+<!-- Pagination -->
+<div class="w3-center w3-padding-32">
+    {{ $campaigns->links() }}
+</div>
+
 
 		<!-- Modal 2 -->
 		<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -200,23 +229,30 @@
                 </button>
               </div>
               <div class="modal-body" style="font-family: 'Roboto', sans-serif;">
-                <form action="" method="POST" enctype="multipart/form-data">
+                <form method="POST" class="needs-validation" novalidate>
                   <div class="form-group">
-                      <label for="name">Name:</label>
-                      <input type="text" class="form-control" id="name" name="name" placeholder="Enter your name">
+                      <label for="firstName">Full name</label>
+                      <input type="text" class="form-control" id="donor_name" name="donor_name" placeholder="Enter your name" required>
                   </div>
 
                   <div class="form-group">
-                      <label for="phone">Phone:</label>
-                      <input type="tel" class="form-control" id="phone" name="phone" placeholder="Enter your phone number">
+                    <label for="phone">Phone</label>
+                      <div class="input-group-prepend">
+                          <span class="input-group-text">+88</span>
+                      </div>
+                      <input type="text" name="phone" class="form-control" id="phone" placeholder="Enter your phone number"
+                               value="01711xxxxxx" required>
                   </div>
+
                   <div class="form-group">
-                  <label for="category">Payment Method:</label>
-                    <select class="form-control" id="payment" name="payment">
-                        <option value="" selected disabled>Select payment method</option>
-                        <option value="bKash">bKash</option>
-                        <option value="creditcard">Credit Card</option>
-                    </select>    
+                    <label for="address">Address</label>
+                    <input type="text" class="form-control" id="address" placeholder="1234 Main St"
+                           value="93 B, New Eskaton Road" required>   
+                  </div>
+                  
+                  <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="save-info">
+                    <label class="custom-control-label" for="save-info">Save this information for next time</label>
                   </div>
 
 				<div class="frDonation">
@@ -226,13 +262,13 @@
 						<label>Tk</label>
 						<input type="text" id="frAmount_2" name="amount" value="" class="frText frW70 frAmountText">
 					</div>
-					<!-- <button class="frButton frButtonDonate">Donate</button> -->
+					<button class="frButton frButtonDonate">Donate</button>
 
-          <button class="frButton frButtonDonate" id="sslczPayBtn"
-            token="if you have any token validation"
-            postdata=""
-            order="If you already have the transaction generated for current order"
-            endpoint="/pay-via-ajax"> Donate
+          <button class="btn btn-primary btn-lg btn-block" id="sslczPayBtn"
+                        token="if you have any token validation"
+                        postdata="your javascript arrays or objects which requires in backend"
+                        order="If you already have the transaction generated for current order"
+                        endpoint="{{ url('/pay-via-ajax') }}"> Pay Now
           </button>
 
 				</div>
@@ -247,8 +283,6 @@
 						<label>1&nbsp;donation&nbsp;&nbsp;</label>
 					</div>
 			</div>
-
-
 
                 </form>
               </div>
@@ -361,7 +395,8 @@
     (function (window, document) {
         var loader = function () {
             var script = document.createElement("script"), tag = document.getElementsByTagName("script")[0];
-            script.src = "https://sandbox.sslcommerz.com/embed.min.js?" + Math.random().toString(36).substring(7);
+            // script.src = "https://seamless-epay.sslcommerz.com/embed.min.js?" + Math.random().toString(36).substring(7); // USE THIS FOR LIVE
+            script.src = "https://sandbox.sslcommerz.com/embed.min.js?" + Math.random().toString(36).substring(7); // USE THIS FOR SANDBOX
             tag.parentNode.insertBefore(script, tag);
         };
 
@@ -371,10 +406,9 @@
 
 <script>
     var obj = {};
-    obj.cus_name = $('#customer_name').val();
-    obj.cus_phone = $('#mobile').val();
-    obj.cus_email = $('#email').val();
-    obj.cus_addr1 = $('#address').val();
+    obj.donor_name = $('#donor_name').val();
+    obj.phone = $('#phone').val();
+    obj.address = $('#address').val();
     obj.amount = $('#total_amount').val();
     
     $('#sslczPayBtn').prop('postdata', obj);

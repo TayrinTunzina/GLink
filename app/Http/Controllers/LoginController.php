@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
-use App\Models\Login;
 use Illuminate\Http\Request;
+use App\Models\Login;
 use App\Models\Admin;
 use App\Models\Donors;
 

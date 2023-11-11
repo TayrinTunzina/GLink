@@ -1,5 +1,7 @@
 <?php
 
+
+use App\Http\Controllers\SslCommerzPaymentController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\DonorsController;
@@ -43,7 +45,7 @@ Route::post('/logout', [DonorsController::class, 'logout'])->name('logout');
 
 
 // SSLCOMMERZ Start
-Route::get('/example1', [SslCommerzPaymentController::class, 'exampleEasyCheckout']);
+Route::get('/payment', [SslCommerzPaymentController::class, 'payment']);
 Route::get('/example2', [SslCommerzPaymentController::class, 'exampleHostedCheckout']);
 
 Route::post('/pay', [SslCommerzPaymentController::class, 'index']);
