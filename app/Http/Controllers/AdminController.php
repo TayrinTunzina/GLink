@@ -7,28 +7,28 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Login;
 use App\Models\Admin;
+use App\Models\Campaign;
 
 class AdminController extends Controller
 {
-    
+
     /**
      * Display a listing of the resource.
      */
 
-     public function index()
-     {
-         $users = Admin::where('role', 'admin')->get(); // Fetch users where role is 'admin'
-     
-         return view('admin', ['users' => $users]);
-     }
-     
+    public function index()
+    {
+        $users = Admin::where('role', 'admin')->get(); // Fetch users where role is 'admin'
+
+        return view('admin', ['users' => $users]);
+    }
+
 
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
-        //
     }
 
     /**
@@ -36,7 +36,7 @@ class AdminController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**

@@ -4,6 +4,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\DonorsController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CampaignController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,11 +34,13 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 
 
+
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::get('/admin', [AdminController::class, 'index'])->name('admin');
 Route::get('/donors', [DonorsController::class, 'index'])->name('donors');
 
 
+Route::post('/submit-campaign', [CampaignController::class, 'store'])->name('campaign.store');
 Route::post('/login', [LoginController::class, 'login'])->name('login.post');
 Route::post('/logout', [DonorsController::class, 'logout'])->name('logout');
 

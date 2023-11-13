@@ -55,7 +55,9 @@
             </div>
         </div>
         <div class="tab-pane fade" id="add-campaign" role="tabpanel" aria-labelledby="add-campaign-tab">
-            <form>
+            
+            <form method="POST" action="{{ route('campaign.store') }}" enctype="multipart/form-data">
+            @csrf
                 <div class="mb-3">
                     <label for="title" class="form-label">Title</label>
                     <input type="text" class="form-control" id="title" name="title">

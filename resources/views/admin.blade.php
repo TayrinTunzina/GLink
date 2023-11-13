@@ -242,8 +242,7 @@
 
 
 							<div id="donations" class="content-section">
-								<h2>Donations Content</h2>
-								<p>This is the Donation content.</p>
+								@include('donation')
 							</div>
 
 
