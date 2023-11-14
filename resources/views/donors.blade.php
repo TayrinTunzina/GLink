@@ -195,27 +195,24 @@
               </header>
 
 
-              @foreach ($campaigns as $campaign)
-                  <div class="w3-container w3-card w3-white w3-round w3-margin campaigns"><br>
-                      <span class="w3-right w3-opacity">{{ $campaign->created_at->diffForHumans() }}</span>
-                      <h4>{{ $campaign->title }}</h4><br>
-                      <hr class="w3-clear">
-                      <p>{{ $campaign->description }}</p>
-                      <div class="w3-row-padding" style="margin:0 -16px">
-                          <div class="w3-half">
-                              @if ($campaign->image)
-                                  <img src="{{ asset($campaign->image) }}" style="width:100%" alt="pic" class="w3-margin-bottom">
-                              @endif
-                          </div>
+          @foreach($campaigns as $campaign)
+              <div class="w3-container w3-card w3-white w3-round w3-margin campaigns"><br>
+                  <span class="w3-right w3-opacity">{{ \Carbon\Carbon::parse($campaign->deadline)->diffForHumans() }}</span>
+                  <h4>{{ $campaign->title }}</h4><br>
+                  <hr class="w3-clear">
+                  <p>{{ $campaign->description }}</p>
+                  <div class="w3-row-padding" style="margin:0 -16px">
+                      <div class="w3-half">
+                          @if ($campaign->image)
+                              <img src="{{ asset($campaign->image) }}" style="width:100%" alt="pic" class="w3-margin-bottom">
+                          @endif
                       </div>
-                      <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom" data-toggle="modal" data-target="#myModal2"><i class="fas fa-hand-holding-usd"></i> Donate</button> 
                   </div>
-              @endforeach
-
-<!-- Pagination -->
-<div class="w3-center w3-padding-32">
-    {{ $campaigns->links() }}
-</div>
+                  <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom" data-toggle="modal" data-target="#myModal2">
+                      <i class="fas fa-hand-holding-usd"></i> Donate
+                  </button>
+              </div>
+          @endforeach
 
 
 		<!-- Modal 2 -->

@@ -6,6 +6,8 @@ use App\Models\cr;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use App\Models\Donors;
+use App\Models\Campaign;
 
 
 class DonorsController extends Controller
@@ -16,7 +18,8 @@ class DonorsController extends Controller
      */
     public function index()
     {
-        return view('donors');
+        $campaigns = DB::table('campaigns')->get(); // Fetch all campaigns from the database
+        return view('donors', ['campaigns' => $campaigns]);
     }
 
     public function logout(Request $request)

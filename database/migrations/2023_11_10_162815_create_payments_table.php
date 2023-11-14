@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('payments', function (Blueprint $table) {
-            $table->pay_id();
+            $table->bigIncrements("pay_id");
             $table->string('name')->nullable();
             $table->string('phone', 20)->nullable();
             $table->text('address')->nullable();
