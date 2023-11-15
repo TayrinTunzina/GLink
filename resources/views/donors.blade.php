@@ -37,6 +37,9 @@
                 font-size: 3.5rem;
             }
         }
+    .custom-background {
+      background: linear-gradient(273deg, rgba(3,164,237,0.9669117647058824) 0%, rgba(27,140,140,0.9921218487394958) 11%, rgba(0,68,68,0.9641106442577031) 51%, rgba(9,16,85,0.9585084033613446) 89%);
+    }
     </style>
 
 </head>
@@ -44,14 +47,14 @@
 
 <!-- Navbar -->
 <div class="w3-top">
- <div class="w3-bar w3-theme-d2 w3-left-align w3-large">
+ <div class="w3-bar w3-theme-d2 w3-left-align w3-large custom-background">
   <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-theme-d2" href="javascript:void(0);" onclick="openNav()"><i class="fa fa-bars"></i></a>
-  <a href="#" class="w3-bar-item w3-button w3-padding-large w3-theme-d4"><i class="fa fa-home w3-margin-right"></i>Logo</a>
-  <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="News"><i class="fa fa-globe"></i></a>
-  <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Account Settings"><i class="fa fa-user"></i></a>
-  <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Messages"><i class="fa fa-envelope"></i></a>
+  <a href="#" class="w3-bar-item w3-button w3-padding-large w3-theme-d4 custom-background"><i class="fa fa-home w3-margin-right"></i>Logo</a>
+  <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white custom-background" title="News"><i class="fa fa-globe"></i></a>
+  <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white custom-background" title="Account Settings"><i class="fa fa-user"></i></a>
+  <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white custom-background" title="Messages"><i class="fa fa-envelope"></i></a>
   <div class="w3-dropdown-hover w3-hide-small">
-    <button class="w3-button w3-padding-large" title="Notifications"><i class="fa fa-bell"></i><span class="w3-badge w3-right w3-small w3-green">3</span></button>     
+    <button class="w3-button w3-padding-large custom-background" title="Notifications"><i class="fa fa-bell"></i><span class="w3-badge w3-right w3-small w3-green">3</span></button>     
     <div class="w3-dropdown-content w3-card-4 w3-bar-block" style="width:300px">
       <a href="#" class="w3-bar-item w3-button">One new friend request</a>
       <a href="#" class="w3-bar-item w3-button">John Doe posted on your wall</a>
@@ -60,7 +63,7 @@
   </div>
   <form method="POST" action="{{ route('logout') }}">
     @csrf
-    <button class="w3-right w3-bar-item w3-button w3-padding-large w3-theme-d5" type="submit"><i class="fa fa-home w3-margin-right"></i>Logout</button>
+    <button class="w3-right w3-bar-item w3-button w3-padding-large w3-theme-d5 custom-background" type="submit"><i class="fa fa-home w3-margin-right"></i>Logout</button>
   </form>
 
  </div>
