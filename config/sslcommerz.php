@@ -17,7 +17,7 @@ return [
 	],
 	'apiDomain' => $apiDomain,
 	'connect_from_localhost' => env("IS_LOCALHOST", true), // For Sandbox, use "true", For Live, use "false"
-	'success_url' => '/success',
+	'success_url' => '/donors',
 	'failed_url' => '/fail',
 	'cancel_url' => '/cancel',
 	'ipn_url' => '/ipn',

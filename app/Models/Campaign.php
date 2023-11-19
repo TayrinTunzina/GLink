@@ -10,4 +10,5 @@ class Campaign extends Model
     use HasFactory;
     
     protected $table = 'campaigns';
+    protected $primaryKey = 'camp_id';
 }

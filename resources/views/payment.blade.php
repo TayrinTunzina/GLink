@@ -5,7 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="SSLCommerz">
-    <title>Example - EasyCheckout (Popup) | SSLCommerz</title>
+    <title>Payment</title>
+
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue-grey.css">
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css">
 
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -26,47 +33,57 @@
                 font-size: 3.5rem;
             }
         }
+    .custom-background {
+      background: linear-gradient(273deg, rgba(3,164,237,0.9669117647058824) 0%, rgba(27,140,140,0.9921218487394958) 11%, rgba(0,68,68,0.9641106442577031) 51%, rgba(9,16,85,0.9585084033613446) 89%);
+    }
     </style>
 </head>
+
+<!-- Navbar -->
+<div class="w3-top">
+ <div class="w3-bar w3-theme-d2 w3-left-align w3-large custom-background">
+  <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-theme-d2" href="javascript:void(0);" onclick="openNav()"><i class="fa fa-bars"></i></a>
+  <a href="#" class="w3-bar-item w3-button w3-padding-large w3-theme-d4 custom-background"><i class="fa-solid fa-signal ms-3 scale5 w3-margin-right"></i>Generosity Link</a>
+ </div>
+</div>
+
 <body class="bg-light">
 <div class="container">
     <div class="py-5 text-center">
-        <h2>EasyCheckout (Popup) - SSLCommerz</h2>
+        <br>
+        <h2>Donation Form</h2>
 
-        <p class="lead">Below is an example form built entirely with Bootstrap’s form controls. We have provided this
-            sample form for understanding EasyCheckout (Popup) Payment integration with SSLCommerz.</p>
+        <p class="lead">Please fill up your information.</p>
     </div>
 
     <div class="row">
         <div class="col-md-4 order-md-2 mb-4">
             <h4 class="d-flex justify-content-between align-items-center mb-3">
-                <span class="text-muted">Your cart</span>
-                <span class="badge badge-secondary badge-pill">3</span>
+                <span class="text-muted">Details</span>
+                <span class="badge badge-secondary badge-pill" style="background-color:#fe3f40">Time left: {{ \Carbon\Carbon::parse($campaign->deadline)->diffForHumans() }}</span>
             </h4>
             <ul class="list-group mb-3">
                 <li class="list-group-item d-flex justify-content-between lh-condensed">
                     <div>
-                        <h6 class="my-0">Product name</h6>
-                        <small class="text-muted">Brief description</small>
+                        <h6 class="my-0">Campaign ID</h6>
+                        <!-- <small class="text-muted">Brief description</small> -->
                     </div>
-                    <span class="text-muted">1000</span>
+                    <span class="text-muted">{{ $campaign->camp_id }}</span>
                 </li>
                 <li class="list-group-item d-flex justify-content-between lh-condensed">
                     <div>
-                        <h6 class="my-0">Second product</h6>
-                        <small class="text-muted">Brief description</small>
+                    <h6 class="my-0">{{ $campaign->title }}</h6>
+                    <small class="text-muted">{{ $campaign->description }}</small>
                     </div>
-                    <span class="text-muted">50</span>
                 </li>
                 <li class="list-group-item d-flex justify-content-between lh-condensed">
                     <div>
-                        <h6 class="my-0">Third item</h6>
-                        <small class="text-muted">Brief description</small>
+                        <h6 class="my-0">Donated User</h6>
                     </div>
-                    <span class="text-muted">150</span>
+                    <span class="text-muted">4</span>
                 </li>
                 <li class="list-group-item d-flex justify-content-between">
-                    <span>Total (BDT)</span>
+                    <span>Total Fund Raised (BDT)</span>
                     <strong>1200 TK</strong>
                 </li>
             </ul>
@@ -117,11 +134,6 @@
                     </div>
                 </div>
 
-                <div class="mb-3">
-                    <label for="address2">Address 2 <span class="text-muted">(Optional)</span></label>
-                    <input type="text" class="form-control" id="address2" placeholder="Apartment or suite">
-                </div>
-
                 <div class="row">
                     <div class="col-md-5 mb-3">
                         <label for="country">Country</label>
@@ -153,12 +165,6 @@
                 </div>
                 <hr class="mb-4">
                 <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="same-address">
-                    <input type="hidden" value="1200" name="amount" id="total_amount" required/>
-                    <label class="custom-control-label" for="same-address">Shipping address is the same as my billing
-                        address</label>
-                </div>
-                <div class="custom-control custom-checkbox">
                     <input type="checkbox" class="custom-control-input" id="save-info">
                     <label class="custom-control-label" for="save-info">Save this information for next time</label>
                 </div>
@@ -167,19 +173,15 @@
                         token="if you have any token validation"
                         postdata="your javascript arrays or objects which requires in backend"
                         order="If you already have the transaction generated for current order"
-                        endpoint="{{ url('/pay-via-ajax') }}"> Pay Now
+                        endpoint="{{ url('/pay-via-ajax') }}"
+                        style="background-color: #fe3f40; border-color: #fe3f40;"> Pay Now
                 </button>
             </form>
         </div>
     </div>
 
     <footer class="my-5 pt-5 text-muted text-center text-small">
-        <p class="mb-1">&copy; 2019 Company Name</p>
-        <ul class="list-inline">
-            <li class="list-inline-item"><a href="#">Privacy</a></li>
-            <li class="list-inline-item"><a href="#">Terms</a></li>
-            <li class="list-inline-item"><a href="#">Support</a></li>
-        </ul>
+        <p>© Copyright 2023 Team ASPIRANTS. All Rights Reserved. <br><a rel="nofollow" href="#">GENEROSITY LINK</a></p>
     </footer>
 </div>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

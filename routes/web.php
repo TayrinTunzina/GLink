@@ -34,9 +34,8 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
-
-Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::get('/admin', [AdminController::class, 'index'])->name('admin');
+Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::get('/donors', [DonorsController::class, 'index'])->name('donors');
 
 
@@ -45,10 +44,10 @@ Route::post('/logout', [DonorsController::class, 'logout'])->name('logout');
 
 
 // SSLCOMMERZ Start
-Route::get('/payment', [SslCommerzPaymentController::class, 'payment']);
-Route::get('/example2', [SslCommerzPaymentController::class, 'exampleHostedCheckout']);
+Route::get('/donors', [SslCommerzPaymentController::class, 'payment']);
+// Route::get('/example2', [SslCommerzPaymentController::class, 'exampleHostedCheckout']);
 
-Route::post('/pay', [SslCommerzPaymentController::class, 'index']);
+// Route::post('/pay', [SslCommerzPaymentController::class, 'index']);
 Route::post('/pay-via-ajax', [SslCommerzPaymentController::class, 'payViaAjax']);
 
 Route::post('/success', [SslCommerzPaymentController::class, 'success']);
@@ -57,3 +56,10 @@ Route::post('/cancel', [SslCommerzPaymentController::class, 'cancel']);
 
 Route::post('/ipn', [SslCommerzPaymentController::class, 'ipn']);
 //SSLCOMMERZ END
+
+
+Route::get('/payment/{camp_id}', function ($camp_id) {
+    $campaign = App\Models\Campaign::find($camp_id);
+    return view('payment', ['campaign' => $campaign]);
+})->name('payment');
+
