@@ -38,7 +38,6 @@ Route::get('/admin', [AdminController::class, 'index'])->name('admin');
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::get('/donors', [DonorsController::class, 'index'])->name('donors');
 
-
 Route::post('/login', [LoginController::class, 'login'])->name('login.post');
 Route::post('/logout', [DonorsController::class, 'logout'])->name('logout');
 
@@ -62,4 +61,7 @@ Route::get('/payment/{camp_id}', function ($camp_id) {
     $campaign = App\Models\Campaign::find($camp_id);
     return view('payment', ['campaign' => $campaign]);
 })->name('payment');
+
+//Route::get('/payment/{camp_id}/{user_id}', [PaymentController::class, 'index'])->name('payment');
+
 

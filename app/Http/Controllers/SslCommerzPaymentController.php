@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Library\SslCommerz\SslCommerzNotification;
 use App\Library\SslCommerz\SslCommerzInterface;
 use App\Library\SslCommerz\AbstractSslCommerz;
+use App\Http\Controllers\DonorsController;
+
 
 
 class SslCommerzPaymentController extends Controller
@@ -14,7 +16,7 @@ class SslCommerzPaymentController extends Controller
 
     public function payment()
     {
-        return redirect()->route('donors');
+        return view('donors');
     }
 
     public function exampleHostedCheckout()

@@ -13,14 +13,24 @@ use App\Models\Campaign;
 class DonorsController extends Controller
 {
 
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function index(Request $request)
     {
-        $campaigns = DB::table('campaigns')->get(); // Fetch all campaigns from the database
-        return view('donors', ['campaigns' => $campaigns]);
+        // Retrieve user from session
+        $user = session('user');
+    
+        if ($user && $user->role === 'Donor') {
+            // Store user ID in session
+            $request->session()->put('user_id', $user->user_id);
+    
+            $campaigns = DB::table('campaigns')->get(); // Fetch all campaigns from the database
+            return view('donors', ['campaigns' => $campaigns, 'user' => $user]);
+        }
+    
+        // Handle cases where user is not authenticated as a 'Donor' or user is not available
+        return redirect()->route('login')->with('error', 'Unauthorized access.');
     }
+    
+    
 
     public function logout(Request $request)
     {

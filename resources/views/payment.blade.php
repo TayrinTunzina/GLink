@@ -89,7 +89,9 @@
             </ul>
         </div>
         <div class="col-md-8 order-md-1">
-            <h4 class="mb-3">Billing address</h4>
+            <h4 class="mb-3">User ID: {{ session('user_id') }}</h4><!-- Output generated URL for debugging -->
+<p>Generated URL: {{ route('payment', ['camp_id' => $campaign->camp_id, 'user_id' => session('user_id')]) }}</p>
+
             <form method="POST" class="needs-validation" novalidate>
                 <div class="row">
                     <div class="col-md-12 mb-3">
