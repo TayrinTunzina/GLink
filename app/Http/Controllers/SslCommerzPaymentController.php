@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Http\Request;
 use App\Library\SslCommerz\SslCommerzNotification;
 use App\Library\SslCommerz\SslCommerzInterface;
@@ -10,13 +11,12 @@ use App\Library\SslCommerz\AbstractSslCommerz;
 use App\Http\Controllers\DonorsController;
 
 
-
 class SslCommerzPaymentController extends Controller
 {
 
     public function payment()
     {
-        return view('donors');
+        return view('payment');
     }
 
     public function exampleHostedCheckout()
@@ -166,7 +166,7 @@ class SslCommerzPaymentController extends Controller
 
     public function success(Request $request)
     {
-        echo "Transaction is Successful";
+        echo "Transaction is successfully Completed!";
 
         $tran_id = $request->input('tran_id');
         $amount = $request->input('amount');
@@ -192,19 +192,21 @@ class SslCommerzPaymentController extends Controller
                     ->where('transaction_id', $tran_id)
                     ->update(['status' => 'Processing']);
 
-                echo "<br >Transaction is successfully Completed";
+                // echo "<br >Transaction is successfully Completed";
+                $userId = session('user_id');
+
+                // Redirect to the user's payment page
+                echo "Transaction is successfully Completed! ";
             }
         } else if ($order_details->status == 'Processing' || $order_details->status == 'Complete') {
             /*
              That means through IPN Order status already updated. Now you can just show the customer that transaction is completed. No need to udate database.
              */
-            echo "Transaction is successfully Completed";
+            //echo "Transaction is successfully Completed! ";
         } else {
             #That means something wrong happened. You can redirect customer to your product page.
             echo "Invalid Transaction";
         }
-
-
     }
 
     public function fail(Request $request)

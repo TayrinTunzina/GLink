@@ -119,6 +119,7 @@
                           <option value="electronics">Electronics</option>
                           <option value="furniture">Furniture</option>
                           <option value="books">Books</option>
+                          <option value="furniture">Pet Adoption</option>
                       </select>
                     </div>
             <div class="form-group">
@@ -140,7 +141,7 @@
 
 
 
-          <button onclick="myFunction('Demo2')" class="w3-button w3-block w3-left-align" style="background-color:#03a4ed; color:white;"><i class="fas fa-paw w3-margin-right" style="color:white;"></i> Upload Pet Video</button>
+          <!-- <button onclick="myFunction('Demo2')" class="w3-button w3-block w3-left-align" style="background-color:#03a4ed; color:white;"><i class="fas fa-paw w3-margin-right" style="color:white;"></i> Upload Pet Video</button> -->
           <div id="Demo2" class="w3-hide w3-container">
             <p>Some other text..</p>
           </div>
@@ -212,7 +213,6 @@
                         <a href="{{ route('payment', ['camp_id' => $campaign->camp_id, 'user_id' => session('user_id')]) }}" class="w3-button w3-theme-d1 w3-margin-bottom">
                             <i class="fas fa-hand-holding-usd"></i> Donate
                         </a>
-
                     </div>
                 @endforeach
               </div>

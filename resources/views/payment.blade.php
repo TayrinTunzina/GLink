@@ -36,6 +36,12 @@
     .custom-background {
       background: linear-gradient(273deg, rgba(3,164,237,0.9669117647058824) 0%, rgba(27,140,140,0.9921218487394958) 11%, rgba(0,68,68,0.9641106442577031) 51%, rgba(9,16,85,0.9585084033613446) 89%);
     }
+
+    .neumorphic {
+        background-color: rgb(232 234 236)!important;/* Adjust this to your desired background color */
+        border-radius: 15px; /* Adjust border-radius for rounded corners */
+        box-shadow: 10px 10px 20px #c7c7c7, -10px -10px 20px #ffffff; /* Adjust the shadow values */
+    }
     </style>
 </head>
 
@@ -60,25 +66,25 @@
         <div class="col-md-4 order-md-2 mb-4">
             <h4 class="d-flex justify-content-between align-items-center mb-3">
                 <span class="text-muted">Details</span>
-                <span class="badge badge-secondary badge-pill" style="background-color:#fe3f40">Time left: {{ \Carbon\Carbon::parse($campaign->deadline)->diffForHumans() }}</span>
+                <span class="badge badge-secondary badge-pill" style="background-color:#fe3f40">Time left: {{ \Carbon\Carbon::parse($campaigns->deadline)->diffForHumans() }}</span>
             </h4>
-            <ul class="list-group mb-3">
+            <ul class="list-group mb-3 neumorphic">
                 <li class="list-group-item d-flex justify-content-between lh-condensed">
                     <div>
                         <h6 class="my-0">Campaign ID</h6>
                         <!-- <small class="text-muted">Brief description</small> -->
                     </div>
-                    <span class="text-muted">{{ $campaign->camp_id }}</span>
+                    <span class="text-muted">{{ $campaigns->camp_id }}</span>
                 </li>
                 <li class="list-group-item d-flex justify-content-between lh-condensed">
                     <div>
-                    <h6 class="my-0">{{ $campaign->title }}</h6>
-                    <small class="text-muted">{{ $campaign->description }}</small>
+                    <h6 class="my-0">{{ $campaigns->title }}</h6>
+                    <small class="text-muted">{{ $campaigns->description }}</small>
                     </div>
                 </li>
                 <li class="list-group-item d-flex justify-content-between lh-condensed">
                     <div>
-                        <h6 class="my-0">Donated User</h6>
+                        <h6 class="my-0">Donated Users</h6>
                     </div>
                     <span class="text-muted">4</span>
                 </li>
@@ -88,9 +94,8 @@
                 </li>
             </ul>
         </div>
-        <div class="col-md-8 order-md-1">
+        <div class="col-md-8 order-md-1 neumorphic"><br>
             <h4 class="mb-3">User ID: {{ session('user_id') }}</h4><!-- Output generated URL for debugging -->
-<p>Generated URL: {{ route('payment', ['camp_id' => $campaign->camp_id, 'user_id' => session('user_id')]) }}</p>
 
             <form method="POST" class="needs-validation" novalidate>
                 <div class="row">
@@ -179,6 +184,7 @@
                         style="background-color: #fe3f40; border-color: #fe3f40;"> Pay Now
                 </button>
             </form>
+            <br>
         </div>
     </div>
 
