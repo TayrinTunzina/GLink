@@ -42,6 +42,45 @@
         border-radius: 15px; /* Adjust border-radius for rounded corners */
         box-shadow: 10px 10px 20px #c7c7c7, -10px -10px 20px #ffffff; /* Adjust the shadow values */
     }
+        /* Apply neumorphic styles to the input fields */
+        .form-control {
+        border: none;
+        background: #f0f0f0;
+        border-radius: 10px;
+        padding: 12px;
+        box-shadow: 5px 5px 10px #bfbfbf, -5px -5px 10px #ffffff;
+        transition: all 0.3s ease-in-out;
+    }
+
+    .form-control:focus {
+        outline: none;
+        box-shadow: 3px 3px 6px #bfbfbf, -3px -3px 6px #ffffff;
+    }
+
+    /* Apply styles for button */
+    .btn {
+        border: none;
+        border-radius: 10px;
+        padding: 12px 24px;
+        background: #fe3f40;
+        color: white;
+        cursor: pointer;
+        box-shadow: 5px 5px 10px #bfbfbf, -5px -5px 10px #ffffff;
+        transition: all 0.3s ease-in-out;
+    }
+
+    .btn:hover {
+        box-shadow: 3px 3px 6px #bfbfbf, -3px -3px 6px #ffffff;
+    }
+    .input-group-text {
+        background: #e7e4e4;
+        border: none;
+        padding: 6px;
+        border-radius: 10px;
+        box-shadow: 5px 5px 10px #bfbfbf, -5px -5px 10px #ffffff;
+        
+    }
+
     </style>
 </head>
 
@@ -94,14 +133,15 @@
                 </li>
             </ul>
         </div>
-        <div class="col-md-8 order-md-1 neumorphic"><br>
+        <div class="col-md-7 order-md-2 neumorphic"><br>
             <h4 class="mb-3">User ID: {{ session('user_id') }}</h4><!-- Output generated URL for debugging -->
 
             <form method="POST" class="needs-validation" novalidate>
+            @csrf
                 <div class="row">
                     <div class="col-md-12 mb-3">
-                        <label for="firstName">Full name</label>
-                        <input type="text" name="customer_name" class="form-control" id="customer_name" placeholder=""
+                        <label for="name"><b>Full name</b></label>
+                        <input type="text" name="name" class="form-control" id="name" placeholder=""
                                value="John Doe" required>
                         <div class="invalid-feedback">
                             Valid customer name is required.
@@ -110,22 +150,8 @@
                 </div>
 
                 <div class="mb-3">
-                    <label for="mobile">Mobile</label>
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text">+88</span>
-                        </div>
-                        <input type="text" name="customer_mobile" class="form-control" id="mobile" placeholder="Mobile"
-                               value="01711xxxxxx" required>
-                        <div class="invalid-feedback" style="width: 100%;">
-                            Your Mobile number is required.
-                        </div>
-                    </div>
-                </div>
-
-                <div class="mb-3">
-                    <label for="email">Email <span class="text-muted">(Optional)</span></label>
-                    <input type="email" name="customer_email" class="form-control" id="email"
+                    <label for="email"><b>Email</b></label>
+                    <input type="email" name="email" class="form-control" id="email"
                            placeholder="you@example.com" value="you@example.com" required>
                     <div class="invalid-feedback">
                         Please enter a valid email address for shipping updates.
@@ -133,56 +159,52 @@
                 </div>
 
                 <div class="mb-3">
-                    <label for="address">Address</label>
-                    <input type="text" class="form-control" id="address" placeholder="1234 Main St"
-                           value="93 B, New Eskaton Road" required>
-                    <div class="invalid-feedback">
-                        Please enter your shipping address.
+                    <label for="phone"><b>Phone</b></label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><b>+88&nbsp</b></span>
+                        </div>
+                        <input type="text" name="phone" class="form-control" id="phone" placeholder="Phone"
+                               value="01711xxxxxx" required>
+                        <div class="invalid-feedback" style="width: 100%;">
+                            Your Mobile number is required.
+                        </div>
                     </div>
                 </div>
 
                 <div class="row">
+
                     <div class="col-md-5 mb-3">
-                        <label for="country">Country</label>
-                        <select class="custom-select d-block w-100" id="country" required>
-                            <option value="">Choose...</option>
-                            <option value="Bangladesh">Bangladesh</option>
-                        </select>
-                        <div class="invalid-feedback">
-                            Please select a valid country.
+                        <label for="amount"><b>Amount to donate</b></label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><b>Tk&nbsp</b></span>
+                            </div>
+                            <input type="text" class="form-control" id="amount" placeholder="" value="10" required>
+                            <div class="invalid-feedback">
+                                Please enter the amount to donate.
+                            </div>
                         </div>
                     </div>
-                    <div class="col-md-4 mb-3">
-                        <label for="state">State</label>
-                        <select class="custom-select d-block w-100" id="state" required>
-                            <option value="">Choose...</option>
-                            <option value="Dhaka">Dhaka</option>
-                        </select>
+
+                    <div class="col-md-7 mb-3">
+                        <label for="address"><b>Address </b><span class="text-muted">(Optional)</span></label>
+                        <input type="text" class="form-control" id="address" placeholder="1234 Main St"
+                           value="93 B, New Eskaton Road" required>
                         <div class="invalid-feedback">
-                            Please provide a valid state.
+                            Please enter your address.
                         </div>
                     </div>
-                    <div class="col-md-3 mb-3">
-                        <label for="zip">Zip</label>
-                        <input type="text" class="form-control" id="zip" placeholder="" required>
-                        <div class="invalid-feedback">
-                            Zip code required.
-                        </div>
-                    </div>
+
                 </div>
                 <hr class="mb-4">
-                <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="save-info">
-                    <label class="custom-control-label" for="save-info">Save this information for next time</label>
-                </div>
-                <hr class="mb-4">
-                <button class="btn btn-primary btn-lg btn-block" id="sslczPayBtn"
+                    <button class="btn btn-primary btn-lg btn-block" id="sslczPayBtn"
                         token="if you have any token validation"
                         postdata="your javascript arrays or objects which requires in backend"
                         order="If you already have the transaction generated for current order"
                         endpoint="{{ url('/pay-via-ajax') }}"
                         style="background-color: #fe3f40; border-color: #fe3f40;"> Pay Now
-                </button>
+                    </button>
             </form>
             <br>
         </div>
@@ -206,11 +228,13 @@
 <!-- If you want to use the popup integration, -->
 <script>
     var obj = {};
-    obj.cus_name = $('#customer_name').val();
-    obj.cus_phone = $('#mobile').val();
-    obj.cus_email = $('#email').val();
-    obj.cus_addr1 = $('#address').val();
-    obj.amount = $('#total_amount').val();
+    obj.user_id = {{ session('user_id') }};
+    obj.camp_id = {{ $campaigns->camp_id }};
+    obj.name = $('#name').val();
+    obj.email = $('#email').val();
+    obj.phone = $('#phone').val();
+    obj.total_amount = $('#amount').val();
+    obj.address = $('#address').val();
 
     $('#sslczPayBtn').prop('postdata', obj);
 
@@ -225,4 +249,6 @@
         window.addEventListener ? window.addEventListener("load", loader, false) : window.attachEvent("onload", loader);
     })(window, document);
 </script>
+
+
 </html>

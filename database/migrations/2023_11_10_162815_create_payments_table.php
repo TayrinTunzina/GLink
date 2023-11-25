@@ -12,14 +12,19 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('payments', function (Blueprint $table) {
-            $table->bigIncrements("pay_id");
-            $table->string('name')->nullable();
+            $table->increments('pay_id');
+            $table->unsignedInteger('user_id')->nullable();
+            $table->unsignedInteger('camp_id')->nullable();
+            $table->string('name', 255)->nullable();
+            $table->string('email', 30)->nullable();
             $table->string('phone', 20)->nullable();
-            $table->text('address')->nullable();
             $table->double('amount')->nullable();
-            $table->string('status', 10)->nullable();
-            $table->string('transaction_id')->nullable();
+            $table->text('address')->nullable();
+            $table->string('state', 10)->nullable();
+            $table->string('transaction_id', 255)->nullable();
             $table->string('currency', 20)->nullable();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('camp_id')->references('id')->on('campaigns')->onDelete('cascade');
             $table->timestamps();
         });
     }

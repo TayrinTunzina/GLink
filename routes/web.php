@@ -46,9 +46,7 @@ Route::post('/logout', [DonorsController::class, 'logout'])->name('logout');
 
 //Route::get('/payment/{camp_id}/{user_id}', [SslCommerzPaymentController::class, 'payment'])->name('payment');
 Route::get('/payment', [SslCommerzPaymentController::class, 'payment']);
-// Route::get('/example2', [SslCommerzPaymentController::class, 'exampleHostedCheckout']);
 
-// Route::post('/pay', [SslCommerzPaymentController::class, 'index']);
 Route::post('/pay-via-ajax', [SslCommerzPaymentController::class, 'payViaAjax']);
 
 Route::post('/success', [SslCommerzPaymentController::class, 'success']);
