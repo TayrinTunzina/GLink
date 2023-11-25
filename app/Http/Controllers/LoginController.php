@@ -24,18 +24,21 @@ class LoginController extends Controller
         $password = $request->input('password');
     
         // Fetch user data from the database based on the provided email
-        $user = DB::table('users')->where('email', $email)->first();
+        $user = Donors::where('email', $email)->first();
     
-        if ($user && $user->role === 'Donor') {
-            // Use the 'donors' guard to authenticate the user
-            if (Auth::guard('donors')->attempt(['email' => $email, 'password' => $password])) {
-                // Authentication successful
-                return redirect('/donors')->with('success', 'Login successful.');
-            }
+        if ($user && $user->password === $password) {
+            // Log in the user using the 'donors' guard
+            Auth::guard('donors')->login($user);
+    
+            // Store the user_id in the session
+            $request->session()->put('user_id', $user->user_id);
+    
+            return redirect('/donors')->with('success', 'Login successful.');
         }
     
         return redirect()->route('login')->with('error', 'Invalid email or password.');
     }
+    
     
     
     

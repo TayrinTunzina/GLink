@@ -67,22 +67,17 @@
       <div class="w3-card w3-round w3-white neumorphic">
         <div class="w3-container"><br>
          <h4 class="w3-center">My Profile</h4>
-         @if(session()->has('users'))
-            @php
-                $user = session('users');
-            @endphp
-            <!-- Display user information -->
-            <p class="w3-center"><img src="data:image/png;base64,{{ base64_encode($user->pic) }}" width="106" height="106" alt="Avatar"/></p>
-            <hr>
-            <p style="color:#091055f5;font-weight:600"><i class="fas fa-pencil-alt fa-fw w3-margin-right" style="color:#091055f5;"></i> Role: {{ $user->role }}</p>
-            <p style="color:#091055f5;font-weight:600"><i class="fa fa-user fa-fw w3-margin-right" style="color:#091055f5;"></i> {{ $user->name }}</p>
-            <p style="color:#091055f5;font-weight:600"><i class="fa fa-envelope fa-fw w3-margin-right" style="color:#091055f5;"></i> {{ $user->email }}</p>
-        @else
-            <!-- Handle the case where $user is not available in the session -->
-            <p>No user data available.</p>
-        @endif
-
-
+         @if($user)
+              <!-- Display user information -->
+              <p class="w3-center"><img src="data:image/png;base64,{{ base64_encode($user->pic) }}" width="106" height="106" alt="Avatar"/></p>
+              <hr>
+              <p style="color:#091055f5;font-weight:600"><i class="fas fa-pencil-alt fa-fw w3-margin-right" style="color:#091055f5;"></i> Role: {{ $user->role }}</p>
+              <p style="color:#091055f5;font-weight:600"><i class="fa fa-user fa-fw w3-margin-right" style="color:#091055f5;"></i> {{ $user->name }}</p>
+              <p style="color:#091055f5;font-weight:600"><i class="fa fa-envelope fa-fw w3-margin-right" style="color:#091055f5;"></i> {{ $user->email }}</p>
+          @else
+              <!-- Handle the case where $user is not available in the session -->
+              <p>No user data available.</p>
+          @endif
 
         </div>
       </div>
