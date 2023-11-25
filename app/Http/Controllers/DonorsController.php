@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\cr;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 use App\Models\Donors;
 use App\Models\Campaign;
+use App\Models\Login;
 
 
 class DonorsController extends Controller
@@ -16,17 +18,17 @@ class DonorsController extends Controller
     public function index(Request $request)
     {
         // Retrieve user from session using 'users' key
-        $user = session('users');
-
+        $user = Auth::guard('donors')->user();
+    
         if ($user && $user->role === 'Donor') {
-            // Store user ID in session
-            $request->session()->put('user_id', $user->user_id);
-
-            $campaigns = DB::table('campaigns')->get(); // Fetch all campaigns from the database
+            // Store user ID in session (if needed)
+            // $request->session()->put('user_id', $user->user_id);
+    
+            $campaigns = DB::table('campaigns')->get();
             return view('donors', ['campaigns' => $campaigns, 'user' => $user]);
         }
-
-        // Handle cases where user is not authenticated as a 'Donor' or user is not available
+    
+        // Handle unauthorized access
         return redirect()->route('login')->with('error', 'Unauthorized access.');
     }
     

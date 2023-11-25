@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('role')->default("Donor");
             $table->string('name');
             $table->string('email');
-            $table->string('password');
+            $table->string('password')->nullable();
             $table->binary('pic');
             $table->timestamps();
         });

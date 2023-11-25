@@ -12,6 +12,5 @@ class Login extends AuthenticatableUser implements Authenticatable
     use HasFactory, Notifiable;
 
     protected $table = 'users';
-
-    // Your model's code here
+    protected $primaryKey = 'user_id'; 
 }

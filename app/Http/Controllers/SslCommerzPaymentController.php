@@ -10,6 +10,9 @@ use App\Library\SslCommerz\SslCommerzInterface;
 use App\Library\SslCommerz\AbstractSslCommerz;
 use App\Http\Controllers\DonorsController;
 use App\Http\Controllers\PaymentController;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Donors;
+use App\Models\Campaign;
 
 
 class SslCommerzPaymentController extends Controller
@@ -172,8 +175,6 @@ class SslCommerzPaymentController extends Controller
 
     public function success(Request $request)
     {
-        echo "Transaction is successfully Completed!";
-    
         $tran_id = $request->input('tran_id');
     
         // Fetch the payment details including camp_id and user_id using the $tran_id
@@ -191,12 +192,20 @@ class SslCommerzPaymentController extends Controller
             $request->session()->flash('success_message', 'Transaction is successfully completed!');
             $request->session()->flash('payment_amount', $amount);
     
-            return redirect()->route('donors', ['user_id' => $user_id, 'camp_id' => $camp_id]);
-        } else {
-            // Invalid transaction or order not found
-            return redirect()->back()->with('error', 'Invalid Transaction');
+            // Re-authenticate the user based on the user_id retrieved from the payment details
+            $user = Donors::find($user_id);
+    
+            if ($user) {
+                Auth::login($user); // Log the user back in
+    
+                return redirect()->route('donors', ['user_id' => $user_id, 'camp_id' => $camp_id]);
+            }
         }
+    
+        // Invalid transaction or user not found, redirect back with an error message
+        return redirect()->back()->with('error', 'Invalid Transaction or User');
     }
+    
     
  
 
