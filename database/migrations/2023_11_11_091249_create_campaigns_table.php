@@ -11,16 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('campaigns', function (Blueprint $table) {
-            $table->increments('camp_id');
-            $table->string('title');
-            $table->text('description');
-            $table->binary('image')->nullable();
-            $table->dateTime('deadline');
-            $table->double('amount');
-            $table->string('status');
-            $table->timestamps();
-        });
+        // Schema::create('campaigns', function (Blueprint $table) {
+        //     $table->increments('camp_id');
+        //     $table->string('title');
+        //     $table->text('description');
+        //     $table->binary('image')->nullable();
+        //     $table->dateTime('deadline');
+        //     $table->double('amount');
+        //     $table->string('status');
+        //     $table->timestamps();
+        // });
     }
 
     /**
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('campaigns');
+        // Schema::dropIfExists('campaigns');
     }
 };
