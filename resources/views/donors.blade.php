@@ -117,10 +117,10 @@
                           <option value="furniture">Pet Adoption</option>
                       </select>
                     </div>
-            <div class="form-group">
-            <label for="description">Write Description:</label>
-            <textarea class="form-control" id="description" name="description" rows="4" placeholder="Enter your description here"></textarea>
-            </div>
+                    <div class="form-group">
+                        <label for="description">Write Description:</label>
+                        <textarea class="form-control" id="description" name="description" rows="4" placeholder="Enter your description here"></textarea>
+                    </div>
                     <button type="submit" class="w3-button w3-theme fas fa-pencil-alt" name="send_file">&nbsp; Post</button>
                   </form>
                 </div>
@@ -128,20 +128,12 @@
             </div>
           </div>
 
-
-
-
-
-
-
-
-
-          <!-- <button onclick="myFunction('Demo2')" class="w3-button w3-block w3-left-align" style="background-color:#03a4ed; color:white;"><i class="fas fa-paw w3-margin-right" style="color:white;"></i> Upload Pet Video</button> -->
+          <button onclick="myFunction('Demo2')" class="w3-button w3-block w3-left-align" style="background-color:#03a4ed; color:white;"><i class="fa fa-calendar-check-o fa-fw w3-margin-right" style="color:white;"></i> My Posts</button>
           <div id="Demo2" class="w3-hide w3-container">
             <p>Some other text..</p>
           </div>
-          <button onclick="myFunction('Demo3')" class="w3-button w3-block w3-left-align" style="background-color:#03a4ed; color:white;"><i class="fa fa-calendar-check-o fa-fw w3-margin-right" style="color:white;"></i> My Posts</button>
-          <div id="Demo2" class="w3-hide w3-container">
+          <button onclick="myFunction('Demo3')" class="w3-button w3-block w3-left-align" style="background-color:#03a4ed; color:white;"><i class="fas fa-history w3-margin-right" style="color:white;"></i> Transaction History</button>
+          <div id="Demo3" class="w3-hide w3-container">
             <p>Some other text..</p>
           </div>
 
@@ -230,11 +222,11 @@
       <div class="w3-card w3-round w3-white w3-center neumorphic">
         <div class="w3-container">
         <br><p><strong>Services:</strong></p>
-          <img src="/w3images/forest.jpg" alt="pic" style="width:100%;">
+        <img src="/uploads/pic1.png" alt="pic" style="width:100%;"> <hr>
 
-          <p style="color:white;"><button class="w3-button w3-block" style="background-color:rgb(27 140 140 / 99%)">Items Donation</button></p>
-          <p style="color:white;"><button class="w3-button w3-block" style="background-color:rgb(27 140 140 / 99%)">Food Donations</button></p>
-          <p style="color:white;"><button class="w3-button w3-block" style="background-color:rgb(27 140 140 / 99%)">Pet Adoption</button></p>
+          <p style="color:white;"><button class="w3-button w3-block" style="background-color:rgb(27 140 140 / 99%)"><i class="fas fa-shopping-basket w3-margin-right"></i> Items Donation</button></p>
+          <p style="color:white;"><button class="w3-button w3-block" style="background-color:rgb(27 140 140 / 99%)"><i class="fas fa-utensils w3-margin-right"></i> Food Donations</button></p>
+          <p style="color:white;"><button class="w3-button w3-block" style="background-color:rgb(27 140 140 / 99%)"><i class="fas fa-paw w3-margin-right"></i> Pet Adoption</button></p>
         </div>
       </div>
       <br>
@@ -294,11 +286,15 @@
 </script>
 
 
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
 <script>
     // Check if there's a success message and payment amount in the session
     @if(session('success_message') && session('payment_amount'))
         var amount = {{ session('payment_amount') }};
-        alert('Transaction is successfully completed! Amount: ' + amount);
+        alert('Transaction is successfully completed! Transaction Amount: ' + amount);
     @endif
 </script>
 

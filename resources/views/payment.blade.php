@@ -137,7 +137,6 @@
             <h4 class="mb-3">User ID: {{ session('user_id') }}</h4><!-- Output generated URL for debugging -->
 
             <form method="POST" class="needs-validation" novalidate>
-            @csrf
                 <div class="row">
                     <div class="col-md-12 mb-3">
                         <label for="name"><b>Full name</b></label>
@@ -180,7 +179,9 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><b>Tk&nbsp</b></span>
                             </div>
-                            <input type="text" class="form-control" id="amount" placeholder="" value="10" required>
+                            
+                            <input type="text" class="form-control" id="amount" placeholder="" value="100" required>
+
                             <div class="invalid-feedback">
                                 Please enter the amount to donate.
                             </div>
@@ -227,28 +228,33 @@
 
 <!-- If you want to use the popup integration, -->
 <script>
-    var obj = {};
-    obj.user_id = {{ session('user_id') }};
-    obj.camp_id = {{ $campaigns->camp_id }};
-    obj.name = $('#name').val();
-    obj.email = $('#email').val();
-    obj.phone = $('#phone').val();
-    obj.total_amount = $('#amount').val();
-    obj.address = $('#address').val();
+    // Function to collect form data and initiate payment
+    function initiatePayment() {
+        var obj = {};
+        obj.user_id = '{{ session('user_id') }}';
+        obj.camp_id = '{{ $campaigns->camp_id }}';
+        obj.name = $('#name').val();
+        obj.email = $('#email').val();
+        obj.phone = $('#phone').val();
+        obj.total_amount = $('#amount').val();
+        obj.address = $('#address').val();
 
-    $('#sslczPayBtn').prop('postdata', obj);
+        // Assign the form data to the postdata property of the button
+        $('#sslczPayBtn').prop('postdata', obj);
 
-    (function (window, document) {
-        var loader = function () {
-            var script = document.createElement("script"), tag = document.getElementsByTagName("script")[0];
-            // script.src = "https://seamless-epay.sslcommerz.com/embed.min.js?" + Math.random().toString(36).substring(7); // USE THIS FOR LIVE
-            script.src = "https://sandbox.sslcommerz.com/embed.min.js?" + Math.random().toString(36).substring(7); // USE THIS FOR SANDBOX
-            tag.parentNode.insertBefore(script, tag);
-        };
+        // Trigger the payment initiation script
+        var script = document.createElement("script");
+        script.src = "https://sandbox.sslcommerz.com/embed.min.js?" + Math.random().toString(36).substring(7);
+        document.getElementsByTagName("head")[0].appendChild(script);
+    }
 
-        window.addEventListener ? window.addEventListener("load", loader, false) : window.attachEvent("onload", loader);
-    })(window, document);
+    // Attach the initiatePayment function to the button's click event
+    $('#sslczPayBtn').on('click', function(event) {
+        event.preventDefault(); // Prevent default form submission
+        initiatePayment(); // Call the function to gather data and initiate payment
+    });
 </script>
+
 
 
 </html>

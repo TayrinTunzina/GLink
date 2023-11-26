@@ -192,12 +192,15 @@ class SslCommerzPaymentController extends Controller
             $request->session()->flash('success_message', 'Transaction is successfully completed!');
             $request->session()->flash('payment_amount', $amount);
     
-            // Re-authenticate the user based on the user_id retrieved from the payment details
+            // Fetch user data to re-authenticate
             $user = Donors::find($user_id);
     
             if ($user) {
-                Auth::login($user); // Log the user back in
+                // Log the user in and update the session
+                Auth::guard('donors')->login($user);
+                $request->session()->put('user_id', $user_id);
     
+                // Redirect to the appropriate route
                 return redirect()->route('donors', ['user_id' => $user_id, 'camp_id' => $camp_id]);
             }
         }
@@ -205,6 +208,7 @@ class SslCommerzPaymentController extends Controller
         // Invalid transaction or user not found, redirect back with an error message
         return redirect()->back()->with('error', 'Invalid Transaction or User');
     }
+    
     
     
  
