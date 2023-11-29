@@ -11,18 +11,16 @@
 <body>
 
 
-    <div class="container">
+    <div class="container-fluid">
         <ul class="nav nav-tabs" id="myTab" role="tablist">
             <li class="nav-item">
-                <a class="nav-link active" id="campaigns-tab" data-bs-toggle="tab" href="#campaigns" role="tab" aria-controls="campaigns" aria-selected="true">Campaigns</a>
+                <a class="nav-link active" id="donations-tab" data-bs-toggle="tab" href="#donations" role="tab" aria-controls="donations" aria-selected="true">Donations</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" id="add-donation-tab" data-bs-toggle="tab" href="#add-donation" role="tab" aria-controls="add-donation" aria-selected="false">Add Donation</a>
-            </li>
+
         </ul>
 
         <div class="tab-content" id="myTabContent">
-            <div class="tab-pane fade show active" id="campaigns" role="tabpanel" aria-labelledby="campaigns-tab">
+            <div class="tab-pane fade show active" id="donations" role="tabpanel" aria-labelledby="donations-tab">
                 <table class="table">
                     <thead>
                         <tr>
@@ -31,54 +29,36 @@
                             <th>Date & Time</th>
                             <th>Amount</th>
                             <th>Status</th>
-                            <th>Edit/Update</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <!-- Campaigns data will be populated here -->
+                        @foreach($donations as $donation)
+                        <tr>
+                            <td><select name="campaign_id" class="form-select">
+                                    @foreach($campaigns as $campaign)
+                                    <option value="{{ $campaign->id }}" {{ $donation->campaign_id == $campaign->id ? 'selected' : '' }}>
+                                        {{ $campaign->title }}
+                                    </option>
+                                    @endforeach
+                                </select></td>
+                            <td>{{ $donation->name }}</td>
+                            <td>{{ $donation->created_at }}</td>
+                            <td>{{ $donation->amount }}</td>
+                            <td>{{ $donation->status }}</td>
+                            <td>
+                                <form action="{{ route('donation.destroy', $donation->id) }}" method="POST" style="display:inline;">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger" name="delete-donation" onclick="return confirm('Are you sure you want to delete this donation?')">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
-            <div class="tab-pane fade" id="add-donation" role="tabpanel" aria-labelledby="add-donation-tab">
-                <form>
-                    <div class="mb-3">
-                        <label for="campaign">Campaign:</label>
-                        <select class="form-select" id="campaign" name="campaign">
-                            <!-- Populate campaign options here -->
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <label for="name">Name:</label>
-                        <input type="text" class="form-control" id="name" name="name" placeholder="Enter your name">
-                    </div>
-                    <div class="mb-3">
-                        <label for="email">Email:</label>
-                        <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email">
-                    </div>
-                    <div class="mb-3">
-                        <label for="phone">Phone:</label>
-                        <input type="tel" class="form-control" id="phone" name="phone" placeholder="Enter your phone number">
-                    </div>
-                    <div class="mb-3">
-                        <label for="amount">Amount:</label>
-                        <input type="number" class="form-control" id="amount" name="amount" placeholder="Enter donation amount">
-                    </div>
-                    <div class="mb-3">
-                        <label for="payment-method">Payment Method:</label>
-                        <select class="form-select" id="payment-method" name="payment-method">
-                            <!-- Populate payment method options here -->
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <label for="status">Status:</label>
-                        <select class="form-select" id="status" name="status">
-                            <option value="paid">Paid</option>
-                            <option value="not-paid">Not Paid</option>
-                        </select>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                </form>
-            </div>
+
         </div>
     </div>
 

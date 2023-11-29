@@ -19,5 +19,8 @@ class Campaign extends Model
         'status',
     ];
 
-    
+    public function donations()
+    {
+        return $this->hasMany(Donation::class, 'campaign_id');
+    }
 }

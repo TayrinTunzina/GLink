@@ -14,14 +14,13 @@ class CreateCampaignsTable extends Migration
     public function up()
     {
         Schema::create('campaigns', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('camp_id');
             $table->string('title');
             $table->text('description');
-            $table->string('image')->nullable();
-            $table->date('deadline');
-            $table->decimal('amount', 10, 2);
-            $table->text('terms');
-            $table->enum('status', ['active', 'inactive'])->default('inactive');
+            $table->binary('image')->nullable();
+            $table->dateTime('deadline');
+            $table->double('amount');
+            $table->string('status');
             $table->timestamps();
         });
     }

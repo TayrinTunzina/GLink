@@ -217,11 +217,13 @@
 								</div>
 								<div>
 									<h2 class="text-white invoice-num">1</h2>
-									<span class="text-white fs-18">Completed Campaigns</span>
+									<span class="text-white fs-18">Completed Campaign </span>
 								</div>
 							</div>
 						</div>
 					</div>
+
+					
 
 				</div>
 				<div class="row">
@@ -247,8 +249,7 @@
 
 
 							<div id="donors" class="content-section">
-								<h2>Donors Content</h2>
-								<p>This is the Donors content.</p>
+								@include('user_list')
 							</div>
 
 							<div id="pet" class="content-section">

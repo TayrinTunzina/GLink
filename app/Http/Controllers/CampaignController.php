@@ -10,10 +10,8 @@ class CampaignController extends Controller
 {
     public function index()
     {
-        // Your code to retrieve and display campaigns goes here
-        $users = Admin::where('role', 'admin')->get(); // Fetch users where role is 'admin'
-
-        return view('admin', ['users' => $users]);
+        $campaigns = Campaign::all();
+        return view('campaigns', compact('campaigns'));
     }
 
     public function store(Request $request)
@@ -41,6 +39,41 @@ class CampaignController extends Controller
         // Save the campaign instance to the database
         $campaign->save();
 
-        return redirect()->route('admin.index')->with('success', 'Campaign created successfully');
+        return redirect()->route('admin')->with('success', 'Campaign created successfully');
+    }
+
+
+    public function edit($id)
+    {
+        $campaign = Campaign::find($id);
+        return view('edit', compact('campaign'));
+    }
+
+
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'title' => 'required',   
+        ]);
+
+        $campaign = Campaign::find($id);
+        $campaign->title = $request->input('title');
+        $campaign->description = $request->input('description');
+        $campaign->amount = $request->input('amount');
+        $campaign->deadline = $request->input('deadline');
+
+        $campaign->save();
+
+        return redirect()->route('admin')->with('success', 'Campaign updated successfully');
+    }
+
+
+    public function destroy($id)
+    {
+        $campaign = Campaign::findOrFail($id);
+        $campaign->delete();
+
+
+        return redirect()->route('admin')->with('success', 'Campaign deleted successfully');
     }
 }
