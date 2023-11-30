@@ -17,8 +17,6 @@
 <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
 <link rel="stylesheet" href="{{asset('donors_assets/donors.css')}}">
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css">
-
 
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -95,7 +93,7 @@
             <div class="modal-dialog" role="document">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title" style="font-family: 'Rubik', sans-serif;" id="myModalLabel">Create Donation Post</h5>
+                  <h5 class="modal-title" style="font-family: 'Rubik', sans-serif;" id="myModalLabel">Create Donation Request</h5>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>
@@ -123,7 +121,7 @@
                           <label for="description">Write Description:</label>
                           <textarea class="form-control" id="description" name="description" rows="4" placeholder="Enter your description here"></textarea>
                       </div>
-                      <button type="submit" class="w3-button w3-theme fas fa-pencil-alt" name="send_file">&nbsp; Post</button>
+                      <button type="submit" class="w3-button w3-theme-d1 fas fa-pencil-alt" name="send_file">&nbsp Request</button>
                 </form>
 
                 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
@@ -286,7 +284,7 @@
                 Swal.fire({
                     icon: 'success',
                     title: 'Success!',
-                    text: 'Your donation has been posted successfully.'
+                    text: 'Your donation request has been sent successfully.'
                 }).then(() => {
                     window.location.href = "{{ route('donors') }}";
                 });
