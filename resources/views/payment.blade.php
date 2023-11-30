@@ -225,7 +225,6 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
 
-
 <!-- If you want to use the popup integration, -->
 <script>
     // Function to collect form data and initiate payment

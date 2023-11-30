@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 use App\Library\SslCommerz\SslCommerzNotification;
 use App\Library\SslCommerz\SslCommerzInterface;
 use App\Library\SslCommerz\AbstractSslCommerz;
@@ -188,10 +189,6 @@ class SslCommerzPaymentController extends Controller
             $camp_id = $payment_details->camp_id;
             $amount = $payment_details->amount;
     
-            // Store the success message and amount in the session
-            $request->session()->flash('success_message', 'Transaction is successfully completed!');
-            $request->session()->flash('payment_amount', $amount);
-    
             // Fetch user data to re-authenticate
             $user = Donors::find($user_id);
     
@@ -201,13 +198,17 @@ class SslCommerzPaymentController extends Controller
                 $request->session()->put('user_id', $user_id);
     
                 // Redirect to the appropriate route
+                //alert()->success('Transaction is successfully completed!')->persistent(true);
+                Alert::success('Transaction Successfully Completed!', 'Payment Amount: ' . $amount)->persistent(true);
                 return redirect()->route('donors', ['user_id' => $user_id, 'camp_id' => $camp_id]);
             }
         }
     
         // Invalid transaction or user not found, redirect back with an error message
-        return redirect()->back()->with('error', 'Invalid Transaction or User');
+        alert()->error('Invalid Transaction or User')->persistent(true);
+        return redirect()->back();
     }
+    
     
     
     

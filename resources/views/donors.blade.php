@@ -101,7 +101,7 @@
                   </button>
                 </div>
                 <div class="modal-body" style="font-family: 'Roboto', sans-serif;">
-                <form action="{{ route('donation.store') }}" method="POST" enctype="multipart/form-data">
+                <form id="donationForm" action="{{ route('donation.store') }}" method="POST" enctype="multipart/form-data">
                       @csrf
                       <!-- Other form fields -->
                       <div class="form-group">
@@ -125,6 +125,8 @@
                       </div>
                       <button type="submit" class="w3-button w3-theme fas fa-pencil-alt" name="send_file">&nbsp; Post</button>
                 </form>
+
+                <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
                 </div>
               </div>
@@ -266,7 +268,42 @@
 <footer class="w3-container w3-theme-d5 w3-center">
   <p>© Copyright 2023 Team ASPIRANTS. All Rights Reserved. <br><a rel="nofollow" href="#">GENEROSITY LINK</a></p>
 </footer>
- 
+
+<script src="{{ asset('vendor/sweetalert/sweetalert.min.js') }}"></script>
+@include('sweetalert::alert')
+
+<script>
+    document.getElementById('donationForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent the default form submission
+        
+        fetch(this.action, {
+            method: this.method,
+            body: new FormData(this)
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Success!',
+                    text: 'Your donation has been posted successfully.'
+                }).then(() => {
+                    window.location.href = "{{ route('donors') }}";
+                });
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'There was an error while posting your donation.'
+                });
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    });
+</script>
+
 <script>
 
 	function search() {

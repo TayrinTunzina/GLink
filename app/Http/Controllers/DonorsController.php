@@ -33,7 +33,7 @@ class DonorsController extends Controller
         return redirect()->route('login')->with('error', 'Unauthorized access.');
     }
     
-
+    
     public function store(Request $request)
     {
         // Validate the incoming request data
@@ -59,9 +59,10 @@ class DonorsController extends Controller
     
         $donation->save();
     
-        // Redirect back to the donors view after successful submission
-        return redirect()->route('donors'); // Assuming the route name for donors view is 'donors'
+        // Return a success response
+        return response()->json(['success' => true]);
     }
+    
     
     
 
