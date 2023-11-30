@@ -17,7 +17,8 @@
 <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
 <link rel="stylesheet" href="{{asset('donors_assets/donors.css')}}">
 
-
+<link rel="stylesheet" href="{{asset('donors_assets/donors.css')}}">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css">
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -86,7 +87,7 @@
         <div class="w3-white neumorphic">
 
 
-          <button  class="w3-button w3-block w3-left-align" style="background-color:#03a4ed; color:white;" data-toggle="modal" data-target="#myModal"><i class="fa fa-pencil-square-o fa-fw w3-margin-right" style="color:white;"></i> Create Donation Post</button>
+          <button  class="w3-button w3-block w3-left-align" style="background-color:#03a4ed; color:white;" data-toggle="modal" data-target="#myModal"><i class="fa fa-pencil-square-o fa-fw w3-margin-right" style="color:white;"></i> Create Donation Request</button>
 
           <!-- Modal -->
           <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -121,7 +122,9 @@
                           <label for="description">Write Description:</label>
                           <textarea class="form-control" id="description" name="description" rows="4" placeholder="Enter your description here"></textarea>
                       </div>
-                      <button type="submit" class="w3-button w3-theme-d1 fas fa-pencil-alt" name="send_file">&nbsp Request</button>
+                      <button type="submit" class="w3-button w3-theme-d1" name="send_file">
+                          <i class="fas fa-donate"></i>&nbsp; Send Donation Request
+                      </button>
                 </form>
 
                 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
@@ -131,7 +134,7 @@
             </div>
           </div>
 
-          <button onclick="myFunction('Demo2')" class="w3-button w3-block w3-left-align" style="background-color:#03a4ed; color:white;"><i class="fa fa-calendar-check-o fa-fw w3-margin-right" style="color:white;"></i> My Posts</button>
+          <button onclick="myFunction('Demo2')" class="w3-button w3-block w3-left-align" style="background-color:#03a4ed; color:white;"><i class="fa fa-calendar-check-o fa-fw w3-margin-right" style="color:white;"></i> My Donations</button>
           <div id="Demo2" class="w3-hide w3-container">
             <p>Some other text..</p>
           </div>
@@ -227,7 +230,7 @@
         <br><p><strong>Services:</strong></p>
         <img src="/uploads/pic1.png" alt="pic" style="width:100%;"> <hr>
 
-          <p style="color:white;"><button class="w3-button w3-block" style="background-color:rgb(27 140 140 / 99%)"><i class="fas fa-shopping-basket w3-margin-right"></i> Items Donation</button></p>
+          <p style="color:white;"><a href="{{ route('ditems') }}" class="w3-button w3-block" style="background-color:rgb(27 140 140 / 99%)"><i class="fas fa-shopping-basket w3-margin-right"></i> Items Donation</a></p>
           <p style="color:white;"><button class="w3-button w3-block" style="background-color:rgb(27 140 140 / 99%)"><i class="fas fa-utensils w3-margin-right"></i> Food Donations</button></p>
           <p style="color:white;"><button class="w3-button w3-block" style="background-color:rgb(27 140 140 / 99%)"><i class="fas fa-paw w3-margin-right"></i> Pet Adoption</button></p>
         </div>

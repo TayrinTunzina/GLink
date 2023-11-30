@@ -6,6 +6,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\DonorsController;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\DitemsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -44,9 +45,7 @@ Route::post('/logout', [DonorsController::class, 'logout'])->name('logout');
 
 Route::post('/donors', [DonorsController::class, 'store'])->name('donation.store');
 
-
 Route::get('/payment/{camp_id}/{user_id}', [PaymentController::class, 'index'])->name('payment');
-
 // SSLCOMMERZ Start
 Route::get('/payment', [SslCommerzPaymentController::class, 'payment']);
 Route::post('/pay-via-ajax', [SslCommerzPaymentController::class, 'payViaAjax']);
@@ -57,4 +56,7 @@ Route::post('/cancel', [SslCommerzPaymentController::class, 'cancel']);
 
 Route::post('/ipn', [SslCommerzPaymentController::class, 'ipn']);
 //SSLCOMMERZ END
+
+Route::get('/ditems', [DitemsController::class, 'index'])->name('ditems');
+
 
