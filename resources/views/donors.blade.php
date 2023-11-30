@@ -101,28 +101,31 @@
                   </button>
                 </div>
                 <div class="modal-body" style="font-family: 'Roboto', sans-serif;">
-                  <form action="" method="POST" enctype="multipart/form-data">
-                    <div class="form-group">
-                      <label for="file">Select pictures of item:</label>
-                      <input type="file" class="form-control-file" id="file" name="file">
-                    </div>
-                    <div class="form-group">
-                    <label for="category">Donation Category:</label>
-                      <select class="form-control" id="category" name="category">
-                          <option value="" selected disabled>Select a category</option>
-                          <option value="clothing">Clothing</option>
-                          <option value="electronics">Electronics</option>
-                          <option value="furniture">Furniture</option>
-                          <option value="books">Books</option>
-                          <option value="furniture">Pet Adoption</option>
-                      </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="description">Write Description:</label>
-                        <textarea class="form-control" id="description" name="description" rows="4" placeholder="Enter your description here"></textarea>
-                    </div>
-                    <button type="submit" class="w3-button w3-theme fas fa-pencil-alt" name="send_file">&nbsp; Post</button>
-                  </form>
+                <form action="{{ route('donation.store') }}" method="POST" enctype="multipart/form-data">
+                      @csrf
+                      <!-- Other form fields -->
+                      <div class="form-group">
+                          <label for="file">Select pictures of item:</label>
+                          <input type="file" class="form-control-file" id="file" name="image">
+                      </div>
+                      <div class="form-group">
+                          <label for="category">Donation Category:</label>
+                          <select class="form-control" id="category" name="category">
+                              <option value="" selected disabled>Select a category</option>
+                              <option value="clothing">Clothing</option>
+                              <option value="electronics">Electronics</option>
+                              <option value="furniture">Furniture</option>
+                              <option value="books">Books</option>
+                              <option value="furniture">Pet Adoption</option>
+                          </select>
+                      </div>
+                      <div class="form-group">
+                          <label for="description">Write Description:</label>
+                          <textarea class="form-control" id="description" name="description" rows="4" placeholder="Enter your description here"></textarea>
+                      </div>
+                      <button type="submit" class="w3-button w3-theme fas fa-pencil-alt" name="send_file">&nbsp; Post</button>
+                </form>
+
                 </div>
               </div>
             </div>

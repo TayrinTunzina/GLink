@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('category');
             $table->text('description');
-            $table->string('image')->nullable();
+            $table->binary('image')->nullable();
             $table->enum('delivery_status', ['pending', 'accepted', 'rejected'])->default('pending');
             $table->timestamps();
         });

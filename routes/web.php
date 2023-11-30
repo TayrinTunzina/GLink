@@ -42,11 +42,13 @@ Route::get('/donors', [DonorsController::class, 'index'])->name('donors');
 Route::post('/login', [LoginController::class, 'login'])->name('login.post');
 Route::post('/logout', [DonorsController::class, 'logout'])->name('logout');
 
+Route::post('/donors', [DonorsController::class, 'store'])->name('donation.store');
+
+
+Route::get('/payment/{camp_id}/{user_id}', [PaymentController::class, 'index'])->name('payment');
+
 // SSLCOMMERZ Start
-
-//Route::get('/payment/{camp_id}/{user_id}', [SslCommerzPaymentController::class, 'payment'])->name('payment');
 Route::get('/payment', [SslCommerzPaymentController::class, 'payment']);
-
 Route::post('/pay-via-ajax', [SslCommerzPaymentController::class, 'payViaAjax']);
 
 Route::post('/success', [SslCommerzPaymentController::class, 'success']);
@@ -56,11 +58,3 @@ Route::post('/cancel', [SslCommerzPaymentController::class, 'cancel']);
 Route::post('/ipn', [SslCommerzPaymentController::class, 'ipn']);
 //SSLCOMMERZ END
 
-
-// Route::get('/payment/{camp_id}', function ($camp_id) {
-//     $campaign = App\Models\Campaign::find($camp_id);
-//     return view('payment', ['campaign' => $campaign]);
-// })->name('payment');
-
-//Route::get('/payment/camp_id={camp_id}/user_id={user_id}', [PaymentController::class, 'index'])->name('payment');
-Route::get('/payment/{camp_id}/{user_id}', [PaymentController::class, 'index'])->name('payment');
