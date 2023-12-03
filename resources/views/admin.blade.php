@@ -256,7 +256,7 @@
 
 
 						<div id="campaigns" class="content-section">
-							@include('campaigns')
+							<!-- @include('campaigns') -->
 						</div>
 
 

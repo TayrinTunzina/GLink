@@ -142,7 +142,7 @@ https://templatemo.com/tm-562-space-dynamic
               </div>
             </div>
             <div class="contact-dec">
-              <img src="assets/images/contact-decoration.png" alt="">
+              <img src="" alt="">
             </div>
           </form>
         </div>

@@ -1,8 +1,12 @@
 <?php
 
+
+use App\Http\Controllers\SslCommerzPaymentController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\DonorsController;
+use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\DitemsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -32,13 +36,27 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
-
-Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::get('/admin', [AdminController::class, 'index'])->name('admin');
+Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::get('/donors', [DonorsController::class, 'index'])->name('donors');
-
 
 Route::post('/login', [LoginController::class, 'login'])->name('login.post');
 Route::post('/logout', [DonorsController::class, 'logout'])->name('logout');
+
+Route::post('/donors', [DonorsController::class, 'store'])->name('donation.store');
+
+Route::get('/payment/{camp_id}/{user_id}', [PaymentController::class, 'index'])->name('payment');
+// SSLCOMMERZ Start
+Route::get('/payment', [SslCommerzPaymentController::class, 'payment']);
+Route::post('/pay-via-ajax', [SslCommerzPaymentController::class, 'payViaAjax']);
+
+Route::post('/success', [SslCommerzPaymentController::class, 'success']);
+Route::post('/fail', [SslCommerzPaymentController::class, 'fail']);
+Route::post('/cancel', [SslCommerzPaymentController::class, 'cancel']);
+
+Route::post('/ipn', [SslCommerzPaymentController::class, 'ipn']);
+//SSLCOMMERZ END
+
+Route::get('/ditems', [DitemsController::class, 'index'])->name('ditems');
 
 
