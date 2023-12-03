@@ -32,6 +32,7 @@ class LoginController extends Controller
     
             // Store the user_id in the session
             $request->session()->put('user_id', $user->user_id);
+            $request->session()->put('pic', $user->pic);
     
             return redirect('/donors')->with('success', 'Login successful.');
         }
