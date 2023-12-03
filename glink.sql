@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 03, 2023 at 03:50 PM
+-- Generation Time: Dec 03, 2023 at 04:26 PM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -60,6 +60,7 @@ CREATE TABLE `donations` (
   `category` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `image` longblob DEFAULT NULL,
+  `post_status` enum('pending','accepted','rejected') COLLATE utf8mb4_unicode_ci DEFAULT 'pending',
   `delivery_status` enum('pending','accepted','rejected') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'pending',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -69,9 +70,9 @@ CREATE TABLE `donations` (
 -- Dumping data for table `donations`
 --
 
-INSERT INTO `donations` (`d_id`, `user_id`, `category`, `description`, `image`, `delivery_status`, `created_at`, `updated_at`) VALUES
-(23, 3, 'clothing', 'test1', 0x313730313336373738322e6a7067, 'pending', '2023-11-30 12:09:42', '2023-11-30 12:09:42'),
-(24, 3, 'books', 'test2', 0x313730313336383132352e6a7067, 'pending', '2023-11-30 12:15:25', '2023-11-30 12:15:25');
+INSERT INTO `donations` (`d_id`, `user_id`, `category`, `description`, `image`, `post_status`, `delivery_status`, `created_at`, `updated_at`) VALUES
+(23, 3, 'clothing', 'test1', 0x313730313336373738322e6a7067, 'pending', 'pending', '2023-11-30 12:09:42', '2023-11-30 12:09:42'),
+(24, 3, 'books', 'test2', 0x313730313336383132352e6a7067, 'pending', 'pending', '2023-11-30 12:15:25', '2023-11-30 12:15:25');
 
 -- --------------------------------------------------------
 
