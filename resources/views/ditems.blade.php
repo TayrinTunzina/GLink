@@ -32,7 +32,7 @@
   left: -15px;
   transition: 0.3s;
   padding: 15px;
-  width: 100px;
+  width: 120px;
   text-decoration: none;
   font-size: 20px;
   color: white;
@@ -59,15 +59,15 @@
   background-color: #f44336;
 }
 
-#toys {
+#furniture {
   top: 260px;
   background-color: #8c5fed;
 }
 
-#furniture {
+/* #toys {
   top: 340px;
   background-color: #555;
-}
+} */
 
 /* Footer ====================================*/
 
@@ -85,7 +85,7 @@
 }
 </style>
 </head>
-<body>
+<body style="background-color: #ccc;">
 
 <!-- Navbar -->
 <div class="w3-top">
@@ -101,8 +101,7 @@
 <div id="mySidenav" class="sidenav" style="margin-top: 40px;">
     <a href="#" data-content="book" id="book">Books</a>
     <a href="#" data-content="electronics" id="electronics">Electronic</a>
-    <a href="#" data-content="clothing" id="clothing">Clothing</a>
-    <a href="#" data-content="toys" id="toys">Toys</a>
+    <a href="#" data-content="clothing" id="clothing">Clothes</a>
     <a href="#" data-content="furniture" id="furniture">Furniture</a>
 </div>
 
@@ -118,11 +117,6 @@
   <div id="clothingContent" class="mySidenav" style="margin-left: 160px; margin-top: 70px;">
       <h2>Clothing</h2>
       <p>Content for clothing section...</p>
-  </div>
-
-  <div id="toysContent" class="mySidenav" style="margin-left: 160px; margin-top: 70px;">
-      <h2>Toys</h2>
-      <p>Content for toys section...</p>
   </div>
 
   <div id="furnitureContent" class="mySidenav" style="margin-left: 160px; margin-top: 70px;">

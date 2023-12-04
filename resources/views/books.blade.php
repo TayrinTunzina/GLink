@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <title>Books</title>
 <style>
     /* CSS reset */
@@ -384,16 +385,18 @@
 
                     <div class="inside-page">
                         <div class="inside-page__container">
-                            <h3 class="inside-page__heading inside-page__heading--city">
-                                  <h2 class="card-front__heading">
-                                  {{$book->title}}
-                                  </h2>
+                            <h3 class="inside-page__heading inside-page__heading--city">                                
+                                  {{$book->title}}                                 
                             </h3>
                             <p class="inside-page__text">
                                 {{$book->description}}
                             </p>
-                            <a href="#" class="inside-page__btn inside-page__btn--city" onclick="changeToPending(this)">Seek Donation</a>
-
+                            <form action="{{ route('handle.button.click') }}" method="POST">
+                              @csrf
+                              <input type="hidden" name="donation_id" value="{{ $book->d_id }}"> <!-- Donation ID -->
+                              <input type="hidden" name="user_id" value="{{ session()->get('user_id') }}"> <!-- Sessioned User ID -->
+                              <button id="donationButton" type="submit" class="inside-page__btn inside-page__btn--city">Seek Donation</button>
+                          </form>
                         </div>
                     </div>
                 </div>
@@ -406,13 +409,41 @@
     </main>
     
 </body>
-
 <script>
-  function changeToPending(btn) {
-    btn.textContent = 'Pending';
-    btn.classList.add('pending'); // Optional: Add a class to further style the pending button
-    btn.removeAttribute('onclick'); // Remove the onclick attribute to prevent multiple clicks
-}
+    $(document).ready(function() {
+        $('.inside-page__btn').click(function(e) {
+            e.preventDefault();
+
+            // Fetch data from the clicked button's parent form
+            var form = $(this).closest('form');
+            var donationId = form.find('[name="donation_id"]').val();
+            var userId = form.find('[name="user_id"]').val();
+
+            // Make an AJAX POST request
+            $.ajax({
+                url: '{{ route("handle.button.click") }}',
+                type: 'POST',
+                data: {
+                    donation_id: donationId,
+                    user_id: userId,
+                    _token: '{{ csrf_token() }}'
+                },
+                success: function(response) {
+                    if (response.error) {
+                        // Display error message using a popup or alert
+                        alert(response.error);
+                    } else if (response.success) {
+                        // Display success message using a popup or alert
+                        alert(response.success);
+                    }
+                },
+                error: function(xhr, status, error) {
+                    // Handle errors, if any
+                    console.error(error);
+                }
+            });
+        });
+    });
 </script>
 
 <script>

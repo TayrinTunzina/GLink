@@ -57,7 +57,7 @@
 </div>
 
 <!-- Page Container -->
-<div class="w3-container w3-content" style="max-width:1400px;margin-top:80px">    
+<div class="w3-container w3-content" style="max-width:1450px;margin-top:80px">    
   <!-- The Grid -->
   <div class="w3-row">
     <!-- Left Column -->
@@ -71,6 +71,7 @@
               <p class="w3-center"><img src="data:image/png;base64,{{ base64_encode($user->pic) }}" width="106" height="106" alt="Avatar"/></p>
               <hr>
               <p style="color:#091055f5;font-weight:600"><i class="fas fa-pencil-alt fa-fw w3-margin-right" style="color:#091055f5;"></i> Role: {{ $user->role }}</p>
+              <p style="color:#091055f5;font-weight:600"><i class="fa fa-id-card fa-fw w3-margin-right" style="color:#091055f5;"></i> User ID: {{ $user->user_id }}</p>
               <p style="color:#091055f5;font-weight:600"><i class="fa fa-user fa-fw w3-margin-right" style="color:#091055f5;"></i> {{ $user->name }}</p>
               <p style="color:#091055f5;font-weight:600"><i class="fa fa-envelope fa-fw w3-margin-right" style="color:#091055f5;"></i> {{ $user->email }}</p>
           @else
@@ -153,14 +154,6 @@
       
       <br>
       
-      <!-- Alert Box -->
-      <div class="w3-container w3-display-container w3-round w3-theme-l4 w3-border w3-theme-border w3-margin-bottom w3-hide-small">
-        <span onclick="this.parentElement.style.display='none'" class="w3-button w3-theme-l3 w3-display-topright">
-          <i class="fa fa-remove"></i>
-        </span>
-        <p><strong>Hey!</strong></p>
-        <p>People are looking at your profile. Find out who.</p>
-      </div>
     
     <!-- End Left Column -->
     </div>
@@ -235,11 +228,20 @@
         <img src="/uploads/pic1.png" alt="pic" style="width:100%;"> <hr>
 
           <p style="color:white;"><a href="{{ route('ditems') }}" class="w3-button w3-block" style="background-color:rgb(27 140 140 / 99%)"><i class="fas fa-shopping-basket w3-margin-right"></i> Items Donation</a></p>
-          <p style="color:white;"><button class="w3-button w3-block" style="background-color:rgb(27 140 140 / 99%)"><i class="fas fa-utensils w3-margin-right"></i> Food Donations</button></p>
+          <!-- <p style="color:white;"><button class="w3-button w3-block" style="background-color:rgb(27 140 140 / 99%)"><i class="fas fa-utensils w3-margin-right"></i> Food Donation</button></p> -->
           <p style="color:white;"><button class="w3-button w3-block" style="background-color:rgb(27 140 140 / 99%)"><i class="fas fa-paw w3-margin-right"></i> Pet Adoption</button></p>
         </div>
       </div>
       <br>
+
+      <!-- Alert Box -->
+      <div class="w3-container w3-display-container w3-round w3-theme-l4 w3-border w3-theme-border w3-margin-bottom w3-hide-small neumorphic">
+        <span onclick="this.parentElement.style.display='none'" class="w3-button w3-theme-l3 w3-display-topright">
+          <i class="fa fa-remove"></i>
+        </span><br>
+        <p><strong>Got extra food to share?</strong></p>
+        <p>Reach out to us or shoot an email via our website!</p>
+      </div>
       
       <!-- <div class="w3-card w3-round w3-white w3-center">
         <div class="w3-container">

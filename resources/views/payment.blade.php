@@ -95,7 +95,7 @@
  </div>
 </div>
 
-<body class="bg-light">
+<body style="background-image: url('/uploads/donation-box.png'); background-position: right; background-repeat: no-repeat; background-size: 300px auto; height: 100%; width: 100%;">
 <div class="container">
     <div class="py-5 text-center">
         <br>

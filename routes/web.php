@@ -57,5 +57,7 @@ Route::post('/ipn', [SslCommerzPaymentController::class, 'ipn']);
 //SSLCOMMERZ END
 
 Route::get('/ditems', [DitemsController::class, 'index'])->name('ditems');
+Route::post('/handle-button-click', [DitemsController::class, 'handleButtonClick'])->name('handle.button.click');
+
 
 
