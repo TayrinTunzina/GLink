@@ -61,6 +61,7 @@ CREATE TABLE `donations` (
   `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `image` longblob DEFAULT NULL,
   `post_status` enum('pending','accepted','rejected') COLLATE utf8mb4_unicode_ci DEFAULT 'pending',
+  `title` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `delivery_status` enum('pending','accepted','rejected') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'pending',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
