@@ -8,11 +8,14 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Models\Donors;
 use App\Models\Campaign;
+use App\Models\Donation;
 
 class DitemsController extends Controller
 {
     public function index()
     {
-        return view('ditems');
+        $donations = Donation::all();
+
+        return view('ditems', compact('donations'));
     }
 }

@@ -68,6 +68,21 @@
   top: 340px;
   background-color: #555;
 }
+
+/* Footer ====================================*/
+
+.footer {
+  background-color: #333;
+   margin-top: 3rem;
+  padding: 1rem 0;
+  width: 100%;
+}
+
+.footer-text {
+  color: #fff;
+  font-size: 1.2rem;
+  text-align: center;
+}
 </style>
 </head>
 <body>
@@ -83,7 +98,7 @@
     </div>
 </div>
 
-<div id="mySidenav" class="sidenav">
+<div id="mySidenav" class="sidenav" style="margin-top: 40px;">
     <a href="#" data-content="book" id="book">Books</a>
     <a href="#" data-content="electronics" id="electronics">Electronic</a>
     <a href="#" data-content="clothing" id="clothing">Clothing</a>
@@ -92,8 +107,7 @@
 </div>
 
   <div id="bookContent" class="mySidenav" style="margin-left: 160px; margin-top: 70px;">
-      <h2>Books</h2>
-      <p>Hover over the buttons in the left side navigation to open them.</p>
+      @include('books')
   </div>
 
   <div id="electronicsContent" class="mySidenav" style="margin-left: 160px; margin-top: 70px;">
@@ -101,7 +115,6 @@
       <p>Hover over the buttons in the left side navigation to open them.</p>
   </div>
 
-  <!-- Add content for other sections similarly -->
   <div id="clothingContent" class="mySidenav" style="margin-left: 160px; margin-top: 70px;">
       <h2>Clothing</h2>
       <p>Content for clothing section...</p>
@@ -117,6 +130,9 @@
       <p>Content for furniture section...</p>
   </div>
 
+  <footer class="footer">
+      <p class="footer-text">© Copyright 2023 Team ASPIRANTS. All Rights Reserved.</p>
+    </footer>
 
 </body>
 

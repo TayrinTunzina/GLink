@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('category');
             $table->text('description');
             $table->binary('image')->nullable();
+            $table->enum('post_status', ['pending', 'accepted', 'rejected'])->default('pending');
             $table->enum('delivery_status', ['pending', 'accepted', 'rejected'])->default('pending');
             $table->timestamps();
         });
