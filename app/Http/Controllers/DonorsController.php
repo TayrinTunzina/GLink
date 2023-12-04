@@ -47,6 +47,7 @@ class DonorsController extends Controller
         $donation = new Donation();
         $donation->user_id = $request->session()->get('user_id'); // Assuming 'user_id' is stored in the session
         $donation->category = $request->input('category');
+        $donation->title = $request->input('title');
         $donation->description = $request->input('description');
     
         // Handle file upload if needed

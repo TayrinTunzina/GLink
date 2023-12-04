@@ -119,6 +119,10 @@
                           </select>
                       </div>
                       <div class="form-group">
+                          <label for="title">Title:</label>
+                          <textarea class="form-control" id="title" name="title" rows="1" placeholder="Enter name of the item"></textarea>
+                      </div>
+                      <div class="form-group">
                           <label for="description">Write Description:</label>
                           <textarea class="form-control" id="description" name="description" rows="4" placeholder="Enter your description here"></textarea>
                       </div>

@@ -14,8 +14,10 @@ class DitemsController extends Controller
 {
     public function index()
     {
-        $donations = Donation::all();
+        $books = Donation::where('category', 'books')
+            ->where('post_status', 'accepted')
+            ->get(); // Fetch books with post_status as 'accepted'
 
-        return view('ditems', compact('donations'));
+        return view('ditems', compact('books'));
     }
 }
