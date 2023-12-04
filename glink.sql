@@ -58,6 +58,7 @@ CREATE TABLE `donations` (
   `d_id` int(11) NOT NULL,
   `user_id` int(11) DEFAULT NULL,
   `category` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `title` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `image` longblob DEFAULT NULL,
   `post_status` enum('pending','accepted','rejected') COLLATE utf8mb4_unicode_ci DEFAULT 'pending',
