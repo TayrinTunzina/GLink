@@ -49,13 +49,8 @@
                             <td class="align-middle">{{ $campaign->deadline }}</td>
                             <td class="align-middle">{{ $campaign->status }}</td>
                             <td class="align-middle">
-                                <!-- <form action="{{ route('campaigns.edit', $campaign->id) }}" method="POST">
-                                    @csrf
-                                    
-                                    <button type="submit" class="btn btn-primary" name="edit-campaign">Edit</button>
-                                </form> -->
-                                <a href="{{ route('campaigns.edit', $campaign->id) }}" class="btn btn-primary">Edit</a>
-                                <form action="{{ route('campaigns.destroy', $campaign->id) }}" method="POST">
+                                <a href="{{ route('campaigns.edit', $campaign->camp_id) }}" class="btn btn-primary">Edit</a>
+                                <form action="{{ route('campaigns.destroy', $campaign->camp_id) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-danger" name="delete-campaign">Delete</button>
@@ -97,10 +92,10 @@
                                     <input type="number" class="form-control" id="amount" name="amount">
                                 </div>
                             </div>
-                            <div class="mb-3">
+                            <!-- <div class="mb-3">
                                 <label for="terms" class="form-label">Terms</label>
                                 <textarea class="form-control" id="terms" name="terms"></textarea>
-                            </div>
+                            </div> -->
                             <div class="mb-3">
                                 <label for="status" class="form-label">Status</label>
                                 <select class="form-select" id="status" name="status">

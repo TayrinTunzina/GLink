@@ -15,12 +15,9 @@ class Campaign extends Model
         'image',
         'deadline',
         'amount',
-        'terms',
         'status',
     ];
 
-    public function donations()
-    {
-        return $this->hasMany(Donation::class, 'campaign_id');
-    }
+    protected $table = 'campaigns';
+    protected $primaryKey = 'camp_id';
 }

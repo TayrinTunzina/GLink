@@ -28,19 +28,31 @@ class DonationController extends Controller
 
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'name' => 'required',
-        ]);
+        $donation = Donation::findOrFail($id);
 
-        $donation = Donation::find($id);
-        $donation->campaign_id = $request->campaign_id;
-        $donation->name = $request->input('name');
-        $donation->amount = $request->input('amount');
-        $donation->status = $request->input('status');
+        $donation->post_status = $request->input('post_status');
+        $donation->delivery_status = $request->input('delivery_status');
 
         $donation->save();
 
-        return redirect()->route('admin')->with('success', 'Donation updated successfully');
+        return redirect()->route('admin')->with('success', 'Status updated successfully');
+
+
+        // $donations = $request->input('donations');
+
+        // foreach ($donations as $donation) {
+        //     //$id = $donation['id'];
+        //     $postStatus = $donation['post_status'];
+        //     $deliveryStatus = $donation['delivery_status'];
+
+        //     // Update the status in the database
+        //     Donation::where('d_id', $id)->update([
+        //         'post_status' => $postStatus,
+        //         'delivery_status' => $deliveryStatus
+        //     ]);
+        // }
+
+        // return response()->json(['message' => 'Status updated successfully']);
     }
 
     public function destroy($id)

@@ -11,18 +11,10 @@ class Donation extends Model
     use HasFactory;
 
     protected $fillable = [
-        'campaign_id',
-        'name',
-        'email',
-        'phone',
-        'amount',
-        'payment_method',
-        'status',
-        // add other fields as needed
+        'post_status',
+        'delivery_status',
     ];
 
-    public function campaign()
-    {
-        return $this->belongsTo(\App\Models\Campaign::class);
-    }
+    protected $table = 'donations';
+    protected $primaryKey = 'd_id';
 }

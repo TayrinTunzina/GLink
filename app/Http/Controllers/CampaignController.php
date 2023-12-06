@@ -23,17 +23,24 @@ class CampaignController extends Controller
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'deadline' => 'required|date',
             'amount' => 'required|numeric',
-            'terms' => 'required|string',
+            //'terms' => 'required|string',
             'status' => 'required|in:active,inactive',
         ]);
 
         $campaign = new Campaign;
         $campaign->title = $request->input('title');
         $campaign->description = $request->input('description');
-        $campaign->image = $request->input('image');
+
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('images'), $imageName);
+            $campaign->image = $imageName;
+        }  //Make sure you have the public/images directory created
+
         $campaign->deadline = $request->input('deadline');
         $campaign->amount = $request->input('amount');
-        $campaign->terms = $request->input('terms');
+        //$campaign->terms = $request->input('terms');
         $campaign->status = $request->input('status');
 
         // Save the campaign instance to the database
@@ -53,7 +60,7 @@ class CampaignController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'title' => 'required',   
+            'title' => 'required',
         ]);
 
         $campaign = Campaign::find($id);
