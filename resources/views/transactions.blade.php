@@ -32,6 +32,7 @@
         padding: 20px;
         margin: 60px;
         margin-top: 70px;
+        width: 68%;
         }
 
         table {
@@ -56,7 +57,7 @@
 
     </style>
 </head>
-<body>
+<body style="background-image: url('/uploads/pic2.jpg'); background-position: right center; background-repeat: no-repeat; background-size: 400px; height: 100vh; width: 100vw;">
     <!-- Navbar -->
     <div class="w3-top">
     <div class="w3-bar w3-theme-d2 w3-left-align w3-large custom-background">
@@ -71,17 +72,17 @@
 
     <div class="neumorphic-container">
         <h1 style="color:#fe3f40;"><b>Transaction</b><span style="color:#03a4ed;"><b> History</b></span></h1>
+        <div class="w3-bottombar"></div>
         <table>
             <thead>
                 <tr>
-                    <th>Pay ID</th>
+                    <th>Payment ID</th>
                     <th>User ID</th>
-                    <th>Camp ID</th>
+                    <th>Campaign ID</th>
                     <th>Name</th>
                     <th>Amount</th>
                     <th>Transaction ID</th>
-                    <th>Currency</th>
-                    <th>Timestamp</th>
+                    <th>Time & Date</th>
                 </tr>
             </thead>
             <tbody>
@@ -89,11 +90,10 @@
                 <tr>
                     <td>{{ $transaction->pay_id }}</td>
                     <td>{{ $transaction->user_id }}</td>
-                    <td>{{ $transaction->camp_id }}</td>
+                    <td >{{ $transaction->camp_id }}</td>
                     <td>{{ $transaction->name }}</td>
-                    <td>{{ $transaction->amount }}</td>
+                    <td>{{ $transaction->amount }} &nbsp{{ $transaction->currency }}</td>
                     <td>{{ $transaction->transaction_id }}</td>
-                    <td>{{ $transaction->currency }}</td>
                     <td>{{ $transaction->timestamp }}</td>
                 </tr>
                 @endforeach

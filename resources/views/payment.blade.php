@@ -84,6 +84,8 @@
     </style>
 </head>
 
+
+<body style="background-image: url('/uploads/donation-box.png'); background-position: right; background-repeat: no-repeat; background-size: 300px auto; height: 100%; width: 100%;">
 <!-- Navbar -->
 <div class="w3-top">
  <div class="w3-bar w3-theme-d2 w3-left-align w3-large custom-background">
@@ -95,12 +97,9 @@
  </div>
 </div>
 
-<body style="background-image: url('/uploads/donation-box.png'); background-position: right; background-repeat: no-repeat; background-size: 300px auto; height: 100%; width: 100%;">
-<div class="container">
-    <div class="py-5 text-center">
-        <br>
-        <h2>Donation Form</h2>
-
+<div class="container" style="margin-top:60px;">
+    <div class="py-4 text-center">
+        <h1 style="color:#03a4ed;"><b>Donation</b><span style="color:#fe3f40;"><b> Form</b></span></h1><p>
         <p class="lead">Please fill up your information.</p>
     </div>
 
