@@ -392,35 +392,11 @@ html { font-size: 85%; }
                                 {{$book->description}}
                             </p>
                             <!-- <form action="{{ route('handle.button.click') }}" method="POST"> -->
-                            <form id="requestForm" data-donation="{{ $book->d_id }}">
-                              @csrf
-                              <input type="hidden" name="donation_id" value="{{ $book->d_id }}">
-                              
-                              @php
-                                  $requestsCount = \App\Models\ItemRequest::where('donation_id', $book->d_id)->count();
-                                  $user_id = session()->get('user_id');
-                                  $itemRequest = \App\Models\ItemRequest::where('donation_id', $book->d_id)
-                                      ->where('user_id', $user_id)
-                                      ->first();
-                                  
-                                  if (!$itemRequest) {
-                                      $itemRequest = (object) ['req_status' => null];
-                                  }
-                              @endphp
-                              
-                              @if ($requestsCount >= 1 || in_array($itemRequest->req_status, ['pending', 'accepted', 'rejected']))
-                                  <button type="button" class="inside-page__btn inside-page__btn--city" disabled>
-                                      @if ($itemRequest->req_status)
-                                          {{ ucfirst($itemRequest->req_status) }}
-                                      @else
-                                          Request Limit Reached
-                                      @endif
-                                  </button>
-                              @else
-                                  <button type="submit" class="inside-page__btn inside-page__btn--city">Seek Donation</button>
-                              @endif
-                          </form>
-
+                            <form id="seekDonationForm" action="{{ route('handle.button.click') }}" method="POST">
+                                @csrf
+                                <input type="hidden" name="donation_id" value="{{ $book->d_id }}">
+                                <button type="submit" class="inside-page__btn inside-page__btn--city">Seek Donation</button>
+                            </form>
 
                         </div>
                     </div>
@@ -436,39 +412,33 @@ html { font-size: 85%; }
 </body>
 
 <script>
-    $(document).ready(function () {
-        $('#requestForm').on('submit', function (e) {
-            e.preventDefault();
-            var donationId = $(this).data('donation');
+$(document).ready(function() {
+    $('#seekDonationForm').on('submit', function(e) {
+        e.preventDefault();
+        var form = $(this);
+        var url = form.attr('action');
 
-            $.ajax({
-                type: 'POST',
-                url: '{{ route("handle.button.click") }}',
-                data: $(this).serialize(),
-                success: function (response) {
-                    handleResponse(response, donationId);
-                },
-                error: function (error) {
-                    console.log(error);
+        $.ajax({
+            type: 'POST',
+            url: url,
+            data: form.serialize(),
+            dataType: 'json', // Expect JSON response
+            success: function(response) {
+                console.log(response); // Log the response to check its structure
+                if (response.status) {
+                    form.find('button')
+                        .text(response.status)
+                        .prop('disabled', true);
                 }
-            });
-        });
-
-        function handleResponse(response, donationId) {
-            if (response.status === 'success') {
-                alert(response.message);
-                $('#requestForm[data-donation="' + donationId + '"] button')
-                    .text('Pending')
-                    .prop('disabled', true);
-            } else if (response.status === 'info') {
-                alert(response.message);
-            } else if (response.status === 'error') {
-                alert(response.message);
+            },
+            error: function(xhr, status, error) {
+                console.error(error);
             }
-        }
+        });
     });
-</script>
+});
 
+</script>
 
 <script>
 function search() {

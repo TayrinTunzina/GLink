@@ -11,6 +11,7 @@ use App\Models\Donors;
 use App\Models\Campaign;
 use App\Models\Login;
 use App\Models\Donation;
+use App\Models\Payment;
 
 
 class DonorsController extends Controller
@@ -62,6 +63,30 @@ class DonorsController extends Controller
     
         // Return a success response
         return response()->json(['success' => true]);
+    }
+
+    public function mydonations()
+    {
+        return view('mydonations');
+    }
+
+    public function transactions()
+    {
+        $user_id = session()->get('user_id');
+    
+        // Fetch the specified columns from the payments table for the session user
+        $transactions = Payment::select('pay_id', 'user_id', 'camp_id', 'name', 'amount', 'transaction_id', 'currency', 'timestamp')
+                                ->where('user_id', $user_id)
+                                ->get();
+    
+        // Pass the data to the view
+        return view('transactions', compact('transactions'));
+    }
+    
+
+    public function pets()
+    {
+        return view('pets');
     }
     
     

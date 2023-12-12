@@ -59,5 +59,8 @@ Route::post('/ipn', [SslCommerzPaymentController::class, 'ipn']);
 Route::get('/ditems', [DitemsController::class, 'index'])->name('ditems');
 Route::post('/handle-button-click', [DitemsController::class, 'handleButtonClick'])->name('handle.button.click');
 
+Route::get('/mydonations', [DonorsController::class, 'mydonations'])->name('mydonations');
+Route::get('/transactions', [DonorsController::class, 'transactions'])->name('transactions');
+Route::get('/pets', [DonorsController::class, 'pets'])->name('pets');
 
 

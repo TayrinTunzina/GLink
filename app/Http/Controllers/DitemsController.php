@@ -32,8 +32,8 @@ class DitemsController extends Controller
         $requestsCount = ItemRequest::where('donation_id', $donation_id)->count();
     
         // If more than 3 requests exist, prevent further requests
-        if ($requestsCount >= 3) {
-            return response()->json(['status' => 'error', 'message' => 'Sorry, maximum requests reached for this item.']);
+        if ($requestsCount >= 1) {
+            return redirect()->back()->with('error', 'Sorry, maximum requests reached for this item.');
         }
     
         // Check if the user has already requested this item
@@ -43,7 +43,7 @@ class DitemsController extends Controller
     
         // If the user has already requested, prevent duplicate requests
         if ($existingRequest) {
-            return response()->json(['status' => 'info', 'message' => 'You have already requested this item.']);
+            return redirect()->back()->with('info', 'You have already requested this item.');
         }
     
         // Create a new request
@@ -54,16 +54,8 @@ class DitemsController extends Controller
     
         // Additional logic if needed...
     
-            // Prepare the response
-        $response = [
-            'status' => 'success',
-            'message' => 'Request sent successfully!'
-        ];
-
-        // Return the response as JSON
-        return response()->json($response);
-        }
-    
+        return response()->json(['status' => 'pending']);
+    }
     
     
 

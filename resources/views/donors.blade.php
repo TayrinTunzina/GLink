@@ -139,11 +139,15 @@
             </div>
           </div>
 
-          <button onclick="myFunction('Demo2')" class="w3-button w3-block w3-left-align" style="background-color:#03a4ed; color:white;"><i class="fa fa-calendar-check-o fa-fw w3-margin-right" style="color:white;"></i> My Donations</button>
+          <a href="{{ route('mydonations') }}" class="w3-button w3-block w3-left-align" style="background-color:#03a4ed; color:white; display: block; text-decoration: none;">
+              <i class="fa fa-calendar-check-o fa-fw w3-margin-right" style="color:white;"></i> My Donations</a>
+
           <div id="Demo2" class="w3-hide w3-container">
             <p>Some other text..</p>
           </div>
-          <button onclick="myFunction('Demo3')" class="w3-button w3-block w3-left-align" style="background-color:#03a4ed; color:white;"><i class="fas fa-history w3-margin-right" style="color:white;"></i> Transaction History</button>
+          <a href="{{ route('transactions') }}" class="w3-button w3-block w3-left-align" style="background-color:#03a4ed; color:white;">
+              <i class="fas fa-history w3-margin-right" style="color:white;"></i> Transaction History</a>
+              
           <div id="Demo3" class="w3-hide w3-container">
             <p>Some other text..</p>
           </div>
@@ -229,7 +233,7 @@
 
           <p style="color:white;"><a href="{{ route('ditems') }}" class="w3-button w3-block" style="background-color:rgb(27 140 140 / 99%)"><i class="fas fa-shopping-basket w3-margin-right"></i> Items Donation</a></p>
           <!-- <p style="color:white;"><button class="w3-button w3-block" style="background-color:rgb(27 140 140 / 99%)"><i class="fas fa-utensils w3-margin-right"></i> Food Donation</button></p> -->
-          <p style="color:white;"><button class="w3-button w3-block" style="background-color:rgb(27 140 140 / 99%)"><i class="fas fa-paw w3-margin-right"></i> Pet Adoption</button></p>
+          <p style="color:white;"><a href="{{ route('pets') }}" class="w3-button w3-block" style="background-color:rgb(27 140 140 / 99%)"><i class="fas fa-paw w3-margin-right"></i> Pet Adoption</a></p>
         </div>
       </div>
       <br>

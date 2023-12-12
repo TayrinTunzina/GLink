@@ -122,8 +122,8 @@
     @include('furnitures')
   </div>
 
-  <footer class="footer">
-      <p class="footer-text">© Copyright 2023 Team ASPIRANTS. All Rights Reserved.</p>
+  <footer class="w3-container w3-theme-d5 w3-center w3-bottom">
+    <p>© Copyright 2023 Team ASPIRANTS. All Rights Reserved. <br><a rel="nofollow" href="#">GENEROSITY LINK</a></p>
     </footer>
 
 </body>
