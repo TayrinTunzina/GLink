@@ -1,11 +1,21 @@
+<?php
+
+use App\Models\User;
+
+// Fetch all users from the database
+$users = User::all();
+
+?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <title>User Page</title>
 </head>
+
 <body>
     <div class="container-fluid">
         <h2>Users</h2>
@@ -21,18 +31,21 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- Example donor data -->
+                    @foreach($users as $user)
                     <tr>
-                        <td>John Doe</td>
-                        <td>johndoe@example.com</td>
-                        <td>2023-10-31 12:00 PM</td>
-                        <td>Donor</td>
-                        <td>
-                            <button class="btn btn-primary">Edit</button>
-                            <button class="btn btn-danger">Delete</button>
+                        <td class="align-middle">{{ $user->name }}</td>
+                        <td class="align-middle">{{ $user->email }}</td>
+                        <td class="align-middle">{{ $user->created_at }}</td>
+                        <td class="align-middle">{{ $user->role }}</td>
+                        <td class="align-middle">
+                            <form action="{{ route('donors.destroy', $user->user_id) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger" name="delete-campaign">Delete</button>
+                            </form>
                         </td>
                     </tr>
-                    <!-- Add more rows as needed -->
+                    @endforeach
                 </tbody>
             </table>
         </div>
@@ -43,4 +56,5 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
+
 </html>

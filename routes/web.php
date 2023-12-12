@@ -43,10 +43,11 @@ Route::get('/campaigns', [CampaignController::class, 'index'])->name('campaigns.
 Route::get('/donation', [DonationController::class, 'index'])->name('donation.index');
 Route::get('/edit/{id}', [CampaignController::class, 'edit'])->name('campaigns.edit');
 Route::get('/donation/{id}', [DonationController::class, 'update'])->name('donation.update');
-
+Route::get('/payments', [PaymentController::class, 'getPayments'])->name('payments');
 
 Route::delete('/campaigns/{id}', [CampaignController::class, 'destroy'])->name('campaigns.destroy');
 //Route::delete('/donation/{id}', [DonationController::class, 'destroy'])->name('donation.destroy');
+Route::delete('/donors/{id}', [DonorsController::class, 'destroy'])->name('donors.destroy');
 
 
 

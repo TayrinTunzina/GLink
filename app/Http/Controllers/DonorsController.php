@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\cr;
+use App\Models\Donors;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth; // Import the Auth facade
 
@@ -23,7 +24,7 @@ class DonorsController extends Controller
         return redirect()->route('login')->with('success', 'You have been logged out.');
     }
 
-    
+
 
     /**
      * Show the form for creating a new resource.
@@ -68,8 +69,12 @@ class DonorsController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(cr $cr)
+    public function destroy($id)
     {
-        //
+        $user = Donors::findOrFail($id);
+        
+        //$user->delete();
+
+        return redirect()->back()->with('success', 'User deleted successfully.');
     }
 }

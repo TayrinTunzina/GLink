@@ -35,7 +35,7 @@ class DonationController extends Controller
 
         $donation->save();
 
-        return redirect()->route('admin')->with('success', 'Status updated successfully');
+        return redirect()->back()->with('success', 'Status updated successfully');
 
 
         // $donations = $request->input('donations');

@@ -154,6 +154,7 @@
 							<li><a href="javascript:void(0);" data-content="dashboard"><i class="flaticon-025-dashboard"></i> Dashboard</a></li>
 							<li><a href="javascript:void(0);" data-content="campaigns"><i class="flaticon-086-star"></i> Campaigns</a></li>
 							<li><a href="javascript:void(0);" data-content="donations"><i class="flaticon-041-graph"></i> Donations</a></li>
+							<li><a href="javascript:void(0);" data-content="payments"><i class="flaticon-041-graph"></i> Payments</a></li>
 							<li><a href="javascript:void(0);" data-content="donors"><i class="flaticon-045-heart"></i> Donors</a></li>
 							<li><a href="javascript:void(0);" data-content="pet"><i class="fas fa-paw"></i> Pet Adoption</a></li>
 						</ul>
@@ -245,6 +246,11 @@
 
 							<div id="donations" class="content-section">
 								@include('donation')
+							</div>
+
+
+							<div id="payments" class="content-section">
+								@include('payments')
 							</div>
 
 
