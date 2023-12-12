@@ -27,62 +27,63 @@
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
         <style>
-#mySidenav a {
-  position: absolute;
-  left: -15px;
-  transition: 0.3s;
-  padding: 15px;
-  width: 120px;
-  text-decoration: none;
-  font-size: 20px;
-  color: white;
-  border-radius: 0 5px 5px 0;
-  margin-top: 60px;
-}
 
-#mySidenav a:hover {
-  left: 0;
-}
+        #mySidenav a {
+          position: absolute;
+          left: -8px;
+          transition: 0.3s;
+          padding: 15px;
+          width: 120px;
+          text-decoration: none;
+          font-size: 20px;
+          color: white;
+          border-radius: 0 5px 5px 0;
+          margin-top: 60px;
+        }
 
-#book {
-  top: 20px;
-  background-color: #069c49;
-}
+        #mySidenav a:hover {
+          left: 0;
+        }
 
-#electronics {
-  top: 100px;
-  background-color: #239bfa;
-}
+        #book {
+          top: 20px;
+          background-color: #069c49;
+        }
 
-#clothing {
-  top: 180px;
-  background-color: #f44336;
-}
+        #electronics {
+          top: 100px;
+          background-color: #239bfa;
+        }
 
-#furniture {
-  top: 260px;
-  background-color: #8c5fed;
-}
+        #clothing {
+          top: 180px;
+          background-color: #f44336;
+        }
 
-/* #toys {
-  top: 340px;
-  background-color: #555;
-} */
+        #furniture {
+          top: 260px;
+          background-color: #8c5fed;
+        }
 
-/* Footer ====================================*/
+        /* #toys {
+          top: 340px;
+          background-color: #555;
+        } */
 
-.footer {
-  background-color: #333;
-   margin-top: 3rem;
-  padding: 1rem 0;
-  width: 100%;
-}
+        /* Footer ====================================*/
 
-.footer-text {
-  color: #fff;
-  font-size: 1.2rem;
-  text-align: center;
-}
+        .footer {
+          background-color: #333;
+          margin-top: 3rem;
+          padding: 1rem 0;
+          width: 100%;
+        }
+
+        .footer-text {
+          color: #fff;
+          font-size: 1.2rem;
+          text-align: center;
+        }
 </style>
 </head>
 <body style="background-color: #ccc;">
@@ -110,18 +111,15 @@
   </div>
 
   <div id="electronicsContent" class="mySidenav" style="margin-left: 160px; margin-top: 70px;">
-      <h2>Electronics</h2>
-      <p>Hover over the buttons in the left side navigation to open them.</p>
+    @include('electronics')
   </div>
 
   <div id="clothingContent" class="mySidenav" style="margin-left: 160px; margin-top: 70px;">
-      <h2>Clothing</h2>
-      <p>Content for clothing section...</p>
+    @include('clothes')
   </div>
 
   <div id="furnitureContent" class="mySidenav" style="margin-left: 160px; margin-top: 70px;">
-      <h2>Furniture</h2>
-      <p>Content for furniture section...</p>
+    @include('furnitures')
   </div>
 
   <footer class="footer">

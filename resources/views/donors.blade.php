@@ -35,9 +35,9 @@
   <div class="w3-dropdown-hover w3-hide-small">
     <button class="w3-button w3-padding-large" style="background-color: #091055f5 !important;" title="Notifications"><i class="fa fa-bell"></i><span class="w3-badge w3-right w3-small" style="background-color:#fe3f40;">3</span></button>     
     <div class="w3-dropdown-content w3-card-4 w3-bar-block" style="width:300px">
-      <a href="#" class="w3-bar-item w3-button">One new friend request</a>
-      <a href="#" class="w3-bar-item w3-button">John Doe posted on your wall</a>
-      <a href="#" class="w3-bar-item w3-button">Jane likes your post</a>
+      <a href="#" class="w3-bar-item w3-button">Your Donation request has been accepted!</a>
+      <a href="#" class="w3-bar-item w3-button">Your Donation has been received!</a>
+      <a href="#" class="w3-bar-item w3-button">Your Donation has been delivered!</a>
     </div>
   </div>
   <form method="POST" action="{{ route('logout') }}">

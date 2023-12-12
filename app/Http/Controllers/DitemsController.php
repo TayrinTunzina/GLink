@@ -22,37 +22,50 @@ class DitemsController extends Controller
         return view('ditems', compact('books'));
     }
 
+
     public function handleButtonClick(Request $request)
     {
-        // Get the logged-in user ID
-        $user_id = $request->user_id;
+        $user_id = session()->get('user_id'); // Retrieve user ID from session
         $donation_id = $request->donation_id;
     
-        // Check if the user has already requested for this donation
-        $existingRequest = ItemRequest::where('user_id', $user_id)
-            ->where('donation_id', $donation_id)
-            ->first();
+        // Check the number of existing requests for the donation
+        $requestsCount = ItemRequest::where('donation_id', $donation_id)->count();
     
+        // If more than 3 requests exist, prevent further requests
+        if ($requestsCount >= 3) {
+            return response()->json(['status' => 'error', 'message' => 'Sorry, maximum requests reached for this item.']);
+        }
+    
+        // Check if the user has already requested this item
+        $existingRequest = ItemRequest::where('donation_id', $donation_id)
+            ->where('user_id', $user_id)
+            ->exists();
+    
+        // If the user has already requested, prevent duplicate requests
         if ($existingRequest) {
-            return response()->json(['error' => 'You have already requested this item.']);
+            return response()->json(['status' => 'info', 'message' => 'You have already requested this item.']);
         }
     
-        // Check the count of requests for this donation
-        $requestCount = ItemRequest::where('donation_id', $donation_id)->count();
-    
-        if ($requestCount >= 3) {
-            return response()->json(['error' => 'Requests for this item are full.']);
-        }
-    
-        // Create a new item request record
+        // Create a new request
         $itemRequest = new ItemRequest();
         $itemRequest->user_id = $user_id;
         $itemRequest->donation_id = $donation_id;
-        $itemRequest->req_status = 'pending'; // Set status to pending
         $itemRequest->save();
     
-        return response()->json(['success' => 'Request sent successfully!']);
-    }
+        // Additional logic if needed...
+    
+            // Prepare the response
+        $response = [
+            'status' => 'success',
+            'message' => 'Request sent successfully!'
+        ];
+
+        // Return the response as JSON
+        return response()->json($response);
+        }
+    
+    
+    
 
 }
 

@@ -15,7 +15,7 @@
   padding: 0;
 }
 
-html { font-size: 85%; }
+/* html { font-size: 80%; } */
 
     /* Main heading for card's front cover */
 .card-front__heading {
@@ -351,82 +351,13 @@ html { font-size: 85%; }
 <main class="main">
 
   <div class="w3-container w3-bottombar" style="display: flex; justify-content: space-between; align-items: center;">
-    <h1 style="margin: 0;"><b>Books</b></h1>
+    <h1 style="margin: 0;"><b>Furnitures</b></h1>
     <div class="w3-section w3-padding-16" style="margin-left: auto;">
-        <input style="box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.2); width: 300px; border-radius: 8px; padding: 10px;" class="form-control font-bold neumorphic" id="myInput" type="text" placeholder="Search Book..." onkeyup="search()">
+        <input style="box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.2); width: 300px; border-radius: 8px; padding: 10px;" class="form-control font-bold neumorphic" id="myInput" type="text" placeholder="Search Furnitures..." onkeyup="search()">
     </div>
   </div>
         <section class="card-area">
         
-            <!-- Card: City -->
-            @foreach ($books as $book)
-            <section class="card-section">
-                <div class="card">
-                    <div class="flip-card">
-                        <div class="flip-card__container">
-                            <div class="card-front">
-                                <div class="card-front__tp card-front__tp--city">
-                                <img src="data:image/jpeg;base64,{{ base64_encode($book->image) }}" alt="{{ $book->category }}">
-                                </div>
-
-                                <div class="card-front__bt">
-                                    <p class="card-front__text-view card-front__text-view--city">
-                                        View me
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="card-back">
-                                <video class="video__container" autoplay muted loop>
-                                    <source class="video__media" src="https://player.vimeo.com/external/370331493.sd.mp4?s=e90dcaba73c19e0e36f03406b47bbd6992dd6c1c&profile_id=139&oauth2_token_id=57447761" type="video/mp4">
-                                </video>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="inside-page">
-                        <div class="inside-page__container">
-                            <h3 class="inside-page__heading inside-page__heading--city">                                
-                                  {{$book->title}}                                 
-                            </h3>
-                            <p class="inside-page__text">
-                                {{$book->description}}
-                            </p>
-                            <!-- <form action="{{ route('handle.button.click') }}" method="POST"> -->
-                            <form id="requestForm" data-donation="{{ $book->d_id }}">
-                              @csrf
-                              <input type="hidden" name="donation_id" value="{{ $book->d_id }}">
-                              
-                              @php
-                                  $requestsCount = \App\Models\ItemRequest::where('donation_id', $book->d_id)->count();
-                                  $user_id = session()->get('user_id');
-                                  $itemRequest = \App\Models\ItemRequest::where('donation_id', $book->d_id)
-                                      ->where('user_id', $user_id)
-                                      ->first();
-                                  
-                                  if (!$itemRequest) {
-                                      $itemRequest = (object) ['req_status' => null];
-                                  }
-                              @endphp
-                              
-                              @if ($requestsCount >= 1 || in_array($itemRequest->req_status, ['pending', 'accepted', 'rejected']))
-                                  <button type="button" class="inside-page__btn inside-page__btn--city" disabled>
-                                      @if ($itemRequest->req_status)
-                                          {{ ucfirst($itemRequest->req_status) }}
-                                      @else
-                                          Request Limit Reached
-                                      @endif
-                                  </button>
-                              @else
-                                  <button type="submit" class="inside-page__btn inside-page__btn--city">Seek Donation</button>
-                              @endif
-                          </form>
-
-
-                        </div>
-                    </div>
-                </div>
-            </section>
-            @endforeach
 
 
         </section>
@@ -434,41 +365,42 @@ html { font-size: 85%; }
     </main>
     
 </body>
-
 <script>
-    $(document).ready(function () {
-        $('#requestForm').on('submit', function (e) {
+    $(document).ready(function() {
+        $('.inside-page__btn').click(function(e) {
             e.preventDefault();
-            var donationId = $(this).data('donation');
 
+            // Fetch data from the clicked button's parent form
+            var form = $(this).closest('form');
+            var donationId = form.find('[name="donation_id"]').val();
+            var userId = form.find('[name="user_id"]').val();
+
+            // Make an AJAX POST request
             $.ajax({
-                type: 'POST',
                 url: '{{ route("handle.button.click") }}',
-                data: $(this).serialize(),
-                success: function (response) {
-                    handleResponse(response, donationId);
+                type: 'POST',
+                data: {
+                    donation_id: donationId,
+                    user_id: userId,
+                    _token: '{{ csrf_token() }}'
                 },
-                error: function (error) {
-                    console.log(error);
+                success: function(response) {
+                    if (response.error) {
+                        // Display error message using a popup or alert
+                        alert(response.error);
+                    } else if (response.success) {
+                        // Display success message using a popup or alert
+                        alert(response.success);
+                    }
+                },
+                error: function(xhr, status, error) {
+                    // Handle errors, if any
+                    console.error(error);
                 }
             });
         });
-
-        function handleResponse(response, donationId) {
-            if (response.status === 'success') {
-                alert(response.message);
-                $('#requestForm[data-donation="' + donationId + '"] button')
-                    .text('Pending')
-                    .prop('disabled', true);
-            } else if (response.status === 'info') {
-                alert(response.message);
-            } else if (response.status === 'error') {
-                alert(response.message);
-            }
-        }
     });
 </script>
-
 
 <script>
 function search() {
