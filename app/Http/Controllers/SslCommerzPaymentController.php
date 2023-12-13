@@ -199,8 +199,9 @@ class SslCommerzPaymentController extends Controller
     
                 // Redirect to the appropriate route
                 //alert()->success('Transaction is successfully completed!')->persistent(true);
+                
                 Alert::success('Transaction Successfully Completed!', 'Payment Amount: ' . $amount)->persistent(true);
-                return redirect()->route('donors', ['user_id' => $user_id, 'camp_id' => $camp_id]);
+                return redirect()->route('donors')->with('success');
             }
         }
     

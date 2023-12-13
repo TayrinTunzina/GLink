@@ -44,7 +44,7 @@
         th, td {
         border-bottom: 1px solid #ddd;
         padding: 8px;
-        text-align: left;
+        text-align: center;
         }
 
         thead {
@@ -82,7 +82,7 @@
                     <th>Name</th>
                     <th>Amount</th>
                     <th>Transaction ID</th>
-                    <th>Time & Date</th>
+                    <th>Date & Time</th>
                 </tr>
             </thead>
             <tbody>

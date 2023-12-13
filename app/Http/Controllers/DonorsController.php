@@ -67,8 +67,24 @@ class DonorsController extends Controller
 
     public function mydonations()
     {
-        return view('mydonations');
+        $user_id = session()->get('user_id');
+        $donations = Donation::where('user_id', $user_id)->get();
+    
+        return view('mydonations', compact('donations'));
     }
+
+    public function getItemDetails($itemId)
+    {
+        // Fetch item details based on the $itemId
+        $item = Donation::find($itemId);
+    
+        // Convert the image to base64
+        $item->image = base64_encode($item->image);
+    
+        // Return item details as JSON response
+        return response()->json($item);
+    }
+    
 
     public function transactions()
     {

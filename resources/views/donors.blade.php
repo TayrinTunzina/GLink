@@ -229,7 +229,7 @@
       <div class="w3-card w3-round w3-white w3-center neumorphic">
         <div class="w3-container">
         <br><p><strong>Services:</strong></p>
-        <img src="/uploads/pic1.png" alt="pic" style="width:100%;"> <hr>
+        <img src="/uploads/donation-box2.png" alt="pic" style="height:10% !important; width:100%; border-radius: 20px;"> <hr>
 
           <p style="color:white;"><a href="{{ route('ditems') }}" class="w3-button w3-block" style="background-color:rgb(27 140 140 / 99%)"><i class="fas fa-shopping-basket w3-margin-right"></i> Items Donation</a></p>
           <!-- <p style="color:white;"><button class="w3-button w3-block" style="background-color:rgb(27 140 140 / 99%)"><i class="fas fa-utensils w3-margin-right"></i> Food Donation</button></p> -->

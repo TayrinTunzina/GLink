@@ -85,7 +85,7 @@
 </head>
 
 
-<body style="background-image: url('/uploads/donation-box.png'); background-position: right; background-repeat: no-repeat; background-size: 300px auto; height: 100%; width: 100%;">
+<body style="background-image: url('/uploads/donate-money.webp'); background-position: right; background-repeat: no-repeat; background-size: 300px auto; height: 100%; width: 100%;">
 <!-- Navbar -->
 <div class="w3-top">
  <div class="w3-bar w3-theme-d2 w3-left-align w3-large custom-background">
