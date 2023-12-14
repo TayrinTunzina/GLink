@@ -44,6 +44,9 @@ Route::get('/donation', [DonationController::class, 'index'])->name('donation.in
 Route::get('/edit/{id}', [CampaignController::class, 'edit'])->name('campaigns.edit');
 Route::get('/donation/{id}', [DonationController::class, 'update'])->name('donation.update');
 Route::get('/payments', [PaymentController::class, 'getPayments'])->name('payments');
+Route::get('/fetch-campaigns', [CampaignController::class, 'fetchCampaigns'])->name('campaigns.fetchCampaigns');
+Route::get('/campaigns/{id}', [CampaignController::class, 'edit'])->name('campaigns.edit');
+
 
 Route::delete('/campaigns/{id}', [CampaignController::class, 'destroy'])->name('campaigns.destroy');
 //Route::delete('/donation/{id}', [DonationController::class, 'destroy'])->name('donation.destroy');
@@ -54,9 +57,10 @@ Route::delete('/donors/{id}', [DonorsController::class, 'destroy'])->name('donor
 Route::post('/submit-campaigns', [CampaignController::class, 'store'])->name('campaigns.store');
 Route::post('/login', [LoginController::class, 'login'])->name('login.post');
 Route::post('/logout', [DonorsController::class, 'logout'])->name('logout');
+//Route::get('/edit-donations/{id}', [DonationController::class, 'edit'])->name('donation.edit');
 
 
-Route::put('/campaigns/{id}', [CampaignController::class, 'update'])->name('campaigns.update');
+Route::put('/update-campaigns/{id}', [CampaignController::class, 'update'])->name('campaigns.update');
 Route::put('/donation/{id}', [DonationController::class, 'update'])->name('donation.update');
 
 

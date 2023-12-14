@@ -172,9 +172,11 @@
 		<div class="content-body">
 			<!-- row -->
 			<div class="container-fluid">
+				
+			
 				<div class="row invoice-card-row">
 					<div class="col-xl-3 col-xxl-3 col-sm-6">
-						<div class="card bg-warning invoice-card">
+						<div class="card bg-warning invoice-card" style="height: 200px;">
 							<div class="card-body d-flex">
 								<div class="icon me-3">
 									<svg width="33px" height="32px">
@@ -183,14 +185,14 @@
 
 								</div>
 								<div>
-									<h2 class="text-white invoice-num">24</h2>
+									<h2 class="text-white invoice-num">{{ $activeCampaignsCount }}</h2>
 									<span class="text-white fs-18">Active Campaigns</span>
 								</div>
 							</div>
 						</div>
 					</div>
 					<div class="col-xl-3 col-xxl-3 col-sm-6">
-						<div class="card bg-success invoice-card">
+						<div class="card bg-success invoice-card" style="height: 200px;">
 							<div class="card-body d-flex">
 								<div class="icon me-3">
 									<svg width="35px" height="34px">
@@ -207,7 +209,7 @@
 						</div>
 					</div>
 					<div class="col-xl-3 col-xxl-3 col-sm-6">
-						<div class="card bg-info invoice-card">
+						<div class="card bg-info invoice-card" style="height: 200px;">
 							<div class="card-body d-flex">
 								<div class="icon me-3">
 									<svg width="35px" height="34px">
@@ -217,16 +219,14 @@
 
 								</div>
 								<div>
-									<h2 class="text-white invoice-num">1</h2>
+									<h2 class="text-white invoice-num">{{ $completedCampaignsCount }}</h2>
 									<span class="text-white fs-18">Completed Campaign </span>
 								</div>
 							</div>
 						</div>
-					</div>
-
-					
-
+					</div>	
 				</div>
+
 				<div class="row">
 
 					<div class="col-xl-6 col-xxl-12">

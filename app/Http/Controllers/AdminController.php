@@ -19,8 +19,14 @@ class AdminController extends Controller
     public function index()
     {
         $users = Admin::where('role', 'admin')->get(); // Fetch users where role is 'admin'
+        $activeCampaignsCount = Campaign::where('status', 'active')->count();
+        $completedCampaignsCount = Campaign::where('status', 'inactive')->count();
 
-        return view('admin', ['users' => $users]);
+        return view('admin', [
+            'users' => $users,
+            'completedCampaignsCount' => $completedCampaignsCount,
+            'activeCampaignsCount' => $activeCampaignsCount,
+        ]);
     }
 
 

@@ -5,12 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Campaign; // Import the Campaign model
 use App\Models\Admin;
+use Monolog\Handler\ElasticaHandler;
 
 class CampaignController extends Controller
 {
     public function index()
     {
         $campaigns = Campaign::all();
+        
         return view('campaigns', compact('campaigns'));
     }
 
@@ -44,16 +46,30 @@ class CampaignController extends Controller
         $campaign->status = $request->input('status');
 
         // Save the campaign instance to the database
-        $campaign->save();
+        // $campaign->save();
 
-        return redirect()->route('admin')->with('success', 'Campaign created successfully');
+        // return redirect()->route('admin')->with('success', 'Campaign created successfully');
+
+        if ($campaign->save()) {
+            return response()->json('success', 200);
+        } else {
+            return response()->json('fail', 400);
+        }
     }
 
 
     public function edit($id)
     {
         $campaign = Campaign::find($id);
-        return view('edit', compact('campaign'));
+        if ($campaign) {
+            return response()->json([
+                'status' => 200, 'campaign' => $campaign,
+            ]);
+        } else {
+            return response()->json([
+                'status' => 400, 'message' => 'Not found'
+            ]);
+        }
     }
 
 
@@ -63,15 +79,17 @@ class CampaignController extends Controller
             'title' => 'required',
         ]);
 
-        $campaign = Campaign::find($id);
+        $campaign = Campaign::findOrFail($id);
+
+        // Update campaign properties based on the request
         $campaign->title = $request->input('title');
         $campaign->description = $request->input('description');
         $campaign->amount = $request->input('amount');
-        $campaign->deadline = $request->input('deadline');
+        $campaign->status = $request->input('status');
 
         $campaign->save();
 
-        return redirect()->route('admin')->with('success', 'Campaign updated successfully');
+        return response()->json(['message' => 'Campaign updated successfully']);
     }
 
 
@@ -81,6 +99,13 @@ class CampaignController extends Controller
         $campaign->delete();
 
 
-        return redirect()->route('admin')->with('success', 'Campaign deleted successfully');
+        return redirect()->back()->with('success', 'Campaign deleted successfully');
+    }
+
+    public function fetchCampaigns()
+    {
+        $campaigns = Campaign::all(); // Fetch all campaigns
+
+        return response()->json(['campaigns' => $campaigns]);
     }
 }

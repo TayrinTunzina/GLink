@@ -9,7 +9,7 @@ class DonationController extends Controller
 {
     public function index()
     {
-        $donations = Donation::with('campaign')->get();
+        $donations = Donation::with('user')->get();
 
         return view('donation.index', compact('donations'))->with('donations', $donations);
     }
