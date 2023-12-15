@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <title>Books</title>
 <style>
     /* CSS reset */
@@ -391,11 +392,11 @@ html { font-size: 85%; }
                             <p class="inside-page__text">
                                 {{$book->description}}
                             </p>
-                            <!-- <form action="{{ route('handle.button.click') }}" method="POST"> -->
-                            <form id="seekDonationForm" action="{{ route('handle.button.click') }}" method="POST">
+
+                            <form id="seekDonationForm" data-donation-id="{{ $book->d_id }}" action="{{ route('handle.button.click') }}" method="POST">
                                 @csrf
                                 <input type="hidden" name="donation_id" value="{{ $book->d_id }}">
-                                <button type="submit" class="inside-page__btn inside-page__btn--city">Seek Donation</button>
+                                <button type="button" class="inside-page__btn inside-page__btn--city">Seek Donation</button>
                             </form>
 
                         </div>
@@ -412,31 +413,42 @@ html { font-size: 85%; }
 </body>
 
 <script>
-$(document).ready(function() {
-    $('#seekDonationForm').on('submit', function(e) {
-        e.preventDefault();
-        var form = $(this);
-        var url = form.attr('action');
-
-        $.ajax({
-            type: 'POST',
-            url: url,
-            data: form.serialize(),
-            dataType: 'json', // Expect JSON response
-            success: function(response) {
-                console.log(response); // Log the response to check its structure
-                if (response.status) {
-                    form.find('button')
-                        .text(response.status)
-                        .prop('disabled', true);
+document.addEventListener("DOMContentLoaded", function() {
+    const buttons = document.querySelectorAll('.inside-page__btn--city');
+    
+    // Loop through each button to fetch its req_status
+    buttons.forEach(button => {
+        const donationId = button.closest('form').getAttribute('data-donation-id');
+        
+        // Set default text before fetching req_status
+        button.textContent = "Seek Donation";
+        
+        fetch(`/get-req-status?donation_id=${donationId}`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Network response was not ok.");
                 }
-            },
-            error: function(xhr, status, error) {
-                console.error(error);
-            }
-        });
+                return response.json();
+            })
+            .then(data => {
+                if (data.req_status) {
+                    if (data.req_status.toLowerCase() === 'pending') {
+                        button.textContent = 'Requested';
+                    } else if (data.req_status.toLowerCase() === 'accepted') {
+                        button.textContent = 'Accepted';
+                    } else if (data.req_status.toLowerCase() === 'rejected') {
+                        button.textContent = 'Sorry, donated.';
+                    } else {
+                        button.textContent = data.req_status;
+                    }
+                }
+            })
+            .catch(error => {
+                console.error('There was an error:', error);
+            });
     });
 });
+
 
 </script>
 

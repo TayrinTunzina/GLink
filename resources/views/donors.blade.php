@@ -112,11 +112,11 @@
                           <label for="category">Donation Category:</label>
                           <select class="form-control" id="category" name="category">
                               <option value="" selected disabled>Select a category</option>
-                              <option value="clothing">Clothing</option>
+                              <option value="clothes">Clothes</option>
                               <option value="electronics">Electronics</option>
                               <option value="furniture">Furniture</option>
                               <option value="books">Books</option>
-                              <option value="furniture">Pet Adoption</option>
+                              <option value="pets">Pet Adoption</option>
                           </select>
                       </div>
                       <div class="form-group">

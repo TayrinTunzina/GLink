@@ -15,11 +15,30 @@ class DitemsController extends Controller
 {
     public function index()
     {
+        $user_id = session()->get('user_id'); // Get the session user ID
+
         $books = Donation::where('category', 'books')
             ->where('post_status', 'accepted')
-            ->get(); // Fetch books with post_status as 'accepted'
+            ->where('user_id', '!=', $user_id) // Filter out books where user_id doesn't match the session user ID
+            ->get();
 
-        return view('ditems', compact('books'));
+
+        $electronics = Donation::where('category', 'electronics')
+            ->where('post_status', 'accepted')
+            ->where('user_id', '!=', $user_id)
+            ->get();
+
+        $furniture = Donation::where('category', 'furniture')
+            ->where('post_status', 'accepted')
+            ->where('user_id', '!=', $user_id)
+            ->get();
+
+        $clothes = Donation::where('category', 'clothes')
+            ->where('post_status', 'accepted')
+            ->where('user_id', '!=', $user_id)
+            ->get();
+
+        return view('ditems', compact('books','electronics', 'furniture', 'clothes'));    
     }
 
 
@@ -32,8 +51,8 @@ class DitemsController extends Controller
         $requestsCount = ItemRequest::where('donation_id', $donation_id)->count();
     
         // If more than 3 requests exist, prevent further requests
-        if ($requestsCount >= 1) {
-            return redirect()->back()->with('error', 'Sorry, maximum requests reached for this item.');
+        if ($requestsCount >= 3) {
+            return response()->json(['error' => 'Sorry, maximum requests reached for this item.'], 422);
         }
     
         // Check if the user has already requested this item
@@ -43,7 +62,7 @@ class DitemsController extends Controller
     
         // If the user has already requested, prevent duplicate requests
         if ($existingRequest) {
-            return redirect()->back()->with('info', 'You have already requested this item.');
+            return response()->json(['info' => 'You have already requested this item.'], 200);
         }
     
         // Create a new request
@@ -54,8 +73,21 @@ class DitemsController extends Controller
     
         // Additional logic if needed...
     
-        return response()->json(['status' => 'pending']);
+        return response()->json(['status' => 'pending'], 200);
     }
+
+    public function getReqStatus(Request $request)
+    {
+        $user_id = session()->get('user_id');
+        $donation_id = $request->donation_id;
+
+        $req_status = ItemRequest::where('donation_id', $donation_id)
+            ->where('user_id', $user_id)
+            ->value('req_status');
+
+        return response()->json(['req_status' => $req_status]);
+    }
+
     
     
 

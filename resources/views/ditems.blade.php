@@ -17,7 +17,7 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-        <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+        <!-- <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script> -->
         <link rel="stylesheet" href="{{asset('donors_assets/donors.css')}}">
 
         <link rel="stylesheet" href="{{asset('donors_assets/donors.css')}}">
@@ -25,6 +25,10 @@
         <!-- Bootstrap core CSS -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+        <!-- Add jQuery before Bootstrap's JavaScript -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 
         <style>
 
@@ -107,7 +111,7 @@
 </div>
 
   <div id="bookContent" class="mySidenav" style="margin-left: 160px; margin-top: 70px;">
-      @include('books')
+    @include('books')
   </div>
 
   <div id="electronicsContent" class="mySidenav" style="margin-left: 160px; margin-top: 70px;">

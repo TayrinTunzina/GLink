@@ -66,3 +66,6 @@ Route::get('/pets', [DonorsController::class, 'pets'])->name('pets');
 Route::get('/itemDetails/{itemId}', [DonorsController::class, 'getItemDetails'])->name('itemDetails');
 Route::get('/itemDetails/{donation_id}', [DonationController::class, 'getItemDetails2']);
 
+Route::get('/get-req-status', [DitemsController::class, 'getReqStatus'])->name('get.req.status');
+
+
