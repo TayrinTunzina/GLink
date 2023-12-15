@@ -64,4 +64,5 @@ Route::get('/transactions', [DonorsController::class, 'transactions'])->name('tr
 Route::get('/pets', [DonorsController::class, 'pets'])->name('pets');
 
 Route::get('/itemDetails/{itemId}', [DonorsController::class, 'getItemDetails'])->name('itemDetails');
+Route::get('/itemDetails/{donation_id}', [DonationController::class, 'getItemDetails2']);
 

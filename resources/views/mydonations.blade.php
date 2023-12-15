@@ -205,21 +205,17 @@
                     <tr>
                         <th>Seeked Donation ID</th>
                         <th>Item Details</th>
-                        <th>Post Status</th>
-                        <th>Delivery Status</th>
+                        <th>Request Status</th>
                         <th>Date & Time</th>                  
                     </tr>
                 </thead>
                 <tbody>
-                        @foreach($donations as $donation)
+                        @foreach($itemRequests as $itemRequest)
                         <tr>
-                            <td>{{ $donation->d_id }}</td>
-                            <!-- <td><button onclick="showItemDetails('{{ $donation->image }}', '{{ $donation->description }}', '{{ $donation->title }}', '{{ $donation->category }}')">View Details</button></td> -->
-                            <td><button onclick="showItemDetails('{{ $donation->d_id }}')" class="view-button">View</button></td>
-
-                            <td >{{ $donation->post_status }}</td>
-                            <td>{{ $donation->delivery_status }}</td>
-                            <td>{{ $donation->created_at }}</td>
+                            <td>{{ $itemRequest->donation_id }}</td>
+                            <td><button onclick="showItemDetails2('{{ $itemRequest->donation_id }}')" class="view-button">View</button></td>
+                            <td >{{ $itemRequest->req_status }}</td>
+                            <td>{{ $itemRequest->created_at }}</td>
                         </tr>
                         @endforeach
                 </tbody>
@@ -231,28 +227,6 @@
             </div>
 
         </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 </div>
@@ -303,6 +277,51 @@ function showItemDetails(itemId) {
                 position: relative;
                 border-right: 8px inset #fe3f40; /* Inset red border on the right side */
                 border-bottom: 8px inset rgb(9 16 85 / 96%);
+            `;
+
+            // Styling for the image
+            const imageStyles = `
+                height: ${imageSize};
+                width: auto;
+                border-radius: 10px;
+                margin-bottom: 15px;
+            `;
+
+            // Create HTML content for item details with updated styles
+            const detailsContent = `
+                <div class="neuromorphic-details" style="${containerStyles}">
+                    <img src="data:image/jpeg;base64,${data.image}" alt="${data.title}" class="detail-image" style="${imageStyles}">
+                    <h3 class="detail-title" style="color: #333; font-size: 24px; margin-bottom: 10px;">${data.title}</h3>
+                    <p class="detail-category" style="color: #555; font-size: 16px; margin-bottom: 5px;">Category: ${data.category}</p>
+                    <p class="detail-description" style="color: #777; font-size: 14px;">${data.description}</p>
+                </div>
+            `;
+
+            // Update the details container with the content
+            detailsContainer.innerHTML = detailsContent;
+        })
+        .catch(error => console.error('Error:', error));
+}
+
+function showItemDetails2(donationId) {
+    fetch(`/itemDetails/${donationId}`)
+        .then(response => response.json())
+        .then(data => {
+            const detailsContainer = document.getElementById('seekitemDetailsContainer');
+
+            const imageSize = '200px'; // Adjust as needed
+
+            // Styling for the container and text elements
+            const containerStyles = `
+                border-radius: 10px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                padding: 20px;
+                margin: 20px;
+                background-color: #ffffff;
+                text-align: center;
+                position: relative;
+                border-right: 8px inset #fe3f40; /* Inset red border on the right side */
+                border-bottom: 8px inset rgb(46 106 106 / 99%);
             `;
 
             // Styling for the image

@@ -11,6 +11,7 @@ use App\Models\Donors;
 use App\Models\Campaign;
 use App\Models\Login;
 use App\Models\Donation;
+use App\Models\ItemRequest;
 use App\Models\Payment;
 
 
@@ -68,11 +69,15 @@ class DonorsController extends Controller
     public function mydonations()
     {
         $user_id = session()->get('user_id');
+        
+        // Fetch donations and item requests for the user
         $donations = Donation::where('user_id', $user_id)->get();
-    
-        return view('mydonations', compact('donations'));
-    }
+        $itemRequests = ItemRequest::where('user_id', $user_id)->with('donation')->get();
+        
+        return view('mydonations', compact('donations', 'itemRequests'));
+    }  
 
+    
     public function getItemDetails($itemId)
     {
         // Fetch item details based on the $itemId
@@ -83,6 +88,23 @@ class DonorsController extends Controller
     
         // Return item details as JSON response
         return response()->json($item);
+    }
+
+    public function getItemDetails2($donation_id)
+    {
+        $donation = Donation::find($donation_id);
+
+        if ($donation) {
+            return response()->json([
+                'image' => base64_encode($donation->image),
+                'title' => $donation->title,
+                'category' => $donation->category,
+                'description' => $donation->description,
+                // Add other fields you need
+            ]);
+        }
+
+        return response()->json(['error' => 'Donation not found'], 404);
     }
     
 

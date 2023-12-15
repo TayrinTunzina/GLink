@@ -11,4 +11,10 @@ class ItemRequest extends Model
     
     protected $table = 'item_requests';
     //protected $primaryKey = 'id';
+
+    // ItemRequest.php (Model)
+    public function donation()
+    {
+        return $this->belongsTo(Donation::class, 'donation_id', 'd_id');
+    }
 }
