@@ -155,11 +155,11 @@
         <div class="w3-bottombar"></div>
 
         <button onclick="showDonatedItems()" class="neuromorphic-button">
-            <i class="fas fa-hands-helping"></i> <b>Gave Help</b>
+            <i class="fas fa-hands-helping"></i> <b>Give Help</b>
         </button>
 
         <button onclick="showSeekedDonations()" class="neuromorphic-button">
-            <i class="fas fa-hands"></i> <b>Got Help</b>
+            <i class="fas fa-hands"></i> <b>Get Help</b>
         </button>
 
         <div class="sections">
@@ -204,6 +204,7 @@
                 <thead>
                     <tr>
                         <th>Seeked Donation ID</th>
+                        <th>Item ID</th>
                         <th>Item Details</th>
                         <th>Request Status</th>
                         <th>Date & Time</th>                  
@@ -212,6 +213,7 @@
                 <tbody>
                         @foreach($itemRequests as $itemRequest)
                         <tr>
+                            <td>{{ $itemRequest->id }}</td>
                             <td>{{ $itemRequest->donation_id }}</td>
                             <td><button onclick="showItemDetails2('{{ $itemRequest->donation_id }}')" class="view-button">View</button></td>
                             <td >{{ $itemRequest->req_status }}</td>
