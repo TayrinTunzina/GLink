@@ -5,18 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap JavaScript -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
     <title>Books</title>
 <style>
     /* CSS reset */
-*,
+/* *,
 *::after,
 *::before {
   box-sizing: inherit;
   margin: 0;
   padding: 0;
-}
+} */
 
-html { font-size: 85%; }
+/* html { font-size: 85%; } */
 
     /* Main heading for card's front cover */
 .card-front__heading {
@@ -357,10 +366,17 @@ html { font-size: 85%; }
         <input style="box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.2); width: 300px; border-radius: 8px; padding: 10px;" class="form-control font-bold neumorphic" id="myInput" type="text" placeholder="Search Book..." onkeyup="search()">
     </div>
   </div>
-        <section class="card-area">
-        
-            <!-- Card: City -->
-            @foreach ($books as $book)
+
+  <div id="carouselExampleControls" class="carousel slide card-area" data-ride="carousel">
+    <div class="carousel-inner">
+        @php $chunks = $books->chunk(2); @endphp
+        @foreach ($chunks as $index => $chunk)
+        <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
+
+        <div class="row justify-content-center">
+              @foreach ($chunk as $book)
+              <div class="col-md-4">
+
             <section class="card-section">
                 <div class="card">
                     <div class="flip-card">
@@ -403,10 +419,22 @@ html { font-size: 85%; }
                     </div>
                 </div>
             </section>
-            @endforeach
+              </div>
+                @endforeach
+            </div>
+        </div>
+        @endforeach
+      </div>
+      <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+      </a>
+  </div>
 
-
-        </section>
 
     </main>
     
@@ -448,7 +476,6 @@ document.addEventListener("DOMContentLoaded", function() {
             });
     });
 });
-
 
 </script>
 

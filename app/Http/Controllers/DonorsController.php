@@ -56,8 +56,8 @@ class DonorsController extends Controller
         if ($request->hasFile('image')) {
             $image = $request->file('image');
             $imageName = time().'.'.$image->getClientOriginalExtension();
-            $image->move(public_path('images'), $imageName);
-            $donation->image = $imageName; // Save the image path in the database
+            $image->move(public_path('uploads'), $imageName);
+            $donation->image = 'uploads/'.$imageName; // Save the image path in the database
         }
     
         $donation->save();
