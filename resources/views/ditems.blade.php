@@ -134,34 +134,41 @@
 
 
 <script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const sidebarItems = document.querySelectorAll("#mySidenav a");
-        const contentSections = document.querySelectorAll(".mySidenav");
+  document.addEventListener("DOMContentLoaded", function() {
+    const sidebarItems = document.querySelectorAll("#mySidenav a");
+    const contentSections = document.querySelectorAll(".mySidenav");
 
-        function hideAllContentSections() {
-            contentSections.forEach(section => {
-                section.style.display = "none";
-            });
-        }
+    function hideAllContentSections() {
+      contentSections.forEach(section => {
+        section.style.display = "none";
+      });
+    }
 
-        function showContentSection(sectionId) {
-            hideAllContentSections();
-            const section = document.getElementById(sectionId);
-            if (section) {
-                section.style.display = "block";
-            }
-        }
+    function showContentSection(sectionId) {
+      hideAllContentSections();
+      const section = document.getElementById(sectionId);
+      if (section) {
+        section.style.display = "block";
+      }
+    }
 
-        sidebarItems.forEach(item => {
-            item.addEventListener("click", function (event) {
-                event.preventDefault();
-                const contentToLoad = item.getAttribute("data-content");
-                showContentSection(contentToLoad + "Content");
-            });
-        });
+    // Check if there's a stored section ID
+    const lastClickedSectionId = localStorage.getItem('lastClickedSectionId');
+    if (lastClickedSectionId) {
+      showContentSection(lastClickedSectionId);
+    }
 
-        showContentSection("bookContent"); // Show default content on page load
+    sidebarItems.forEach(item => {
+      item.addEventListener("click", function(event) {
+        event.preventDefault();
+        const contentToLoad = item.getAttribute("data-content");
+        showContentSection(contentToLoad + "Content");
+
+        // Store the clicked section ID in local storage
+        localStorage.setItem('lastClickedSectionId', contentToLoad + "Content");
+      });
     });
+  });
 </script>
 
 </html>

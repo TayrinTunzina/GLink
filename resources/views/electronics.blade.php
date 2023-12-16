@@ -158,12 +158,12 @@
                                 <h2 class="card__title"><b>{{$electronic->title}} </b></h2>
                                 <img class="card__img" src="data:image/jpeg;base64,{{ base64_encode($electronic->image) }}" alt="{{ $electronic->category }}">
                                 <p class="card__text"><b>{{$electronic->description}}</b></p>
-                                <!-- <a class="card__btn" href="#">Seek Donation</a> -->
-                                <!-- <form id="seekDonationForm" data-donation-id="{{ $electronic->d_id }}" action="{{ route('handle.button.click') }}" method="POST">
+                                
+                              <form id="electronicSeekDonationForm" data-donation-id="{{ $electronic->d_id }}" action="{{ route('handle.button.click') }}" method="POST">
                                 @csrf
                                 <input type="hidden" name="donation_id" value="{{ $electronic->d_id }}">
                                 <button type="button" class="card__btn">Seek Donation</button>
-                            </form> -->
+                              </form>
                             </div>
                         </div>
                     @endforeach
@@ -201,12 +201,12 @@
   });
 </script>
 
-<!-- <script>
+<script>
 document.addEventListener("DOMContentLoaded", function() {
-    const buttons = document.querySelectorAll('.card__btn');
+    const electronicButtons = document.querySelectorAll('.card__btn');
     
     // Loop through each button to fetch its req_status
-    buttons.forEach(button => {
+    electronicButtons.forEach(button => {
         const donationId = button.closest('form').getAttribute('data-donation-id');
         
         // Set default text before fetching req_status
@@ -238,7 +238,8 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 });
 
-</script> -->
+</script>
+
 
 <script>
     function searches() {

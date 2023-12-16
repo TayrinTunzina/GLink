@@ -15,11 +15,11 @@ class DitemsController extends Controller
 {
     public function index()
     {
-        $user_id = session()->get('user_id'); // Get the session user ID
+        $user_id = session()->get('user_id'); 
 
         $books = Donation::where('category', 'books')
             ->where('post_status', 'accepted')
-            ->where('user_id', '!=', $user_id) // Filter out books where user_id doesn't match the session user ID
+            ->where('user_id', '!=', $user_id) 
             ->get();
 
 
