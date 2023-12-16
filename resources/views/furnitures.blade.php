@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
     <!-- Bootstrap CSS -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 
@@ -12,127 +13,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-    <title>Books</title>
+    <title>Electronics</title>
 <style>
-    /* CSS reset */
-*,
-*::after,
-*::before {
-  box-sizing: inherit;
-  margin: 0;
-  padding: 0;
-}
 
-/* html { font-size: 80%; } */
-
-    /* Main heading for card's front cover */
-.card-front__heading {
-  font-size: 1.5rem;
-  margin-top: .25rem;
-}
-
-/* Main heading for inside page */
-.inside-page__heading { 
-  padding-bottom: 1rem; 
-  width: 100%;
-}
-
-/* Mixed */
-
-/* For both inside page's main heading and 'view me' text on card front cover */
-.inside-page__heading,
-.card-front__text-view {
-  font-size: 1.3rem;
-  font-weight: 800;
-  margin-top: .2rem;
-}
-
-.inside-page__heading--city,
-.card-front__text-view--city { color: rgb(9 16 85 / 96%); }
-
-.inside-page__heading--ski,
-.card-front__text-view--ski { color: #2aaac1; }
-
-.inside-page__heading--beach,
-.card-front__text-view--beach { color: #fa7f67; }
-
-.inside-page__heading--camping,
-.card-front__text-view--camping { color: #00b97c; }
-
-/* Front cover */
-
-.card-front__tp { color: #fafbfa; }
-
-/* For pricing text on card front cover */
-.card-front__text-price {
-  font-size: 1.2rem;
-  margin-top: -.2rem;
-}
-
-/* Back cover */
-
-/* For inside page's body text */
-.inside-page__text {
-  color: #333;
-}
-
-/* Icons ===========================================*/
-
-.card-front__icon {
-  fill: #fafbfa;
-  font-size: 3vw;
-  height: 3.25rem;
-  margin-top: -.5rem;
-  width: 3.25rem;
-}
-
-/* Buttons =================================================*/
-
-.inside-page__btn {
-  background-color: transparent;
-  border: 3px solid;
-  border-radius: .5rem;
-  font-size: 1.2rem;
-  font-weight: 600;
-  margin-top: 2rem;
-  overflow: hidden;
-  padding: .7rem .75rem;
-  position: relative;
-  text-decoration: none;
-  transition: all .3s ease;
-  width: 90%;
-  z-index: 10;
-}
-
-.inside-page__btn::before { 
-  content: "";
-  height: 100%;
-  left: 0;
-  position: absolute;
-  top: 0;
-  transform: scaleY(0);
-  transition: all .3s ease;
-  width: 100%;
-  z-index: -1;
-}
-
-.inside-page__btn--city { 
-  border-color: #fe3f40;
-  color: #fe3f40;
-}
-
-.inside-page__btn--city::before { 
-  background-color: rgb(30 118 118 / 99%);
-}
-
-.inside-page__btn:hover { 
-  color: #fafbfa;
-}
-
-.inside-page__btn:hover::before { 
-  transform: scaleY(1);
-}
 
 /* Layout Structure=========================================*/
 
@@ -150,9 +33,64 @@
     -10px -10px 15px #ffffff; /* Dark shadow on the bottom-right */
 }
 
+@import url('https://fonts.googleapis.com/css?family=El+Messiri');
 
-/* Container to hold all cards in one place */
-.card-area {
+.cardf {
+  position: relative;
+  max-width: 20em;
+  max-height: 27em;
+  margin: 2rem auto;
+  padding: 2em;
+  background: #fff;
+  border-radius: 1.5em; /* Adjust the value for desired roundness */
+  box-shadow: 0 0 1em rgba(0, 0, 0, 0.1), 0 0.5em 1em rgba(0, 0, 0, 0.2); /* Neumorphic shadow */
+  justify-content: center; /* Center horizontally */
+  align-items: center;
+}
+
+.card__img {
+  display: block;
+  width: 100%; /* Adjust this if needed */
+  height: 10em; /* Set a fixed height */
+  object-fit: contain; /* Fit the whole image within the container */
+  margin: 1em auto;
+  border-radius: 2px;
+}
+
+
+
+.card__title {
+  margin: 0 auto 1em;
+  color: #091055f5;
+  text-align: center;
+  text-transform: capitalize;
+}
+
+.card__text {
+  margin: 2em 5%;
+  color: #646464;
+}
+
+.card__btn {
+  display: table;
+  padding: .7em 4em;
+  background: rgb(30 118 118 / 99%);
+  border-color: #fe3f40;
+  color: #fff;
+  text-decoration: none;
+  margin: 1em auto 0;
+  transition: color 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.2);
+  border-radius: 1.3em;
+}
+
+.card__btn:hover {
+  color: #fe3f40;
+  font-weight: bold;
+  box-shadow: 2px 2px 5px 2px rgba(0, 0, 0, 0.2);
+}
+
+.cardf-area {
   align-items: center;
   display: flex;
   flex-wrap: nowrap;
@@ -161,198 +99,40 @@
   padding: 1rem;
 }
 
-/* Card ============================================*/
+/**
+ * Card #9
+ */
 
-/* Area to hold an individual card */
-.card-section {
-  align-items: center;
-  display: flex;
-  height: 100%;
-  justify-content: center;
-  width: 100%;
-}
+.card--8 {
 
-/* A container to hold the flip card and the inside page */
-.card {
-  background-color: rgba(0,0,0, .05);
-  box-shadow: -.1rem 1.7rem 6.6rem -3.2rem rgba(0,0,0,0.5);
-  height: 15rem;
+    transition: background-color 0.3s ease;
+  --mouseX9: 0;
+  --mouseY9: 0;
+  --padding: 1em;
+
+  background: #fff;
   position: relative;
-  transition: all 1s ease;
-  width: 15rem;
+
+  &::before {
+    display: block;
+    position: absolute;
+    top: calc(var(--padding) * -1);
+    bottom: calc(var(--padding) * -1);
+    left: calc(var(--padding) * -1);
+    right: calc(var(--padding) * -1);
+    content: ' ';
+    z-index: -1;
+    background: #091055f5;
+    opacity: .9;
+    transform: perspective(700px) rotateX(calc(var(--mouseY9) * -1deg)) rotateY(calc(var(--mouseX9) * 1deg));
+  }
 }
 
-/* Flip card - covering both the front and inside front page */
+.card--8:hover {
+    background-color: #f7f0ff;
+  }
 
-/* An outer container to hold the flip card. This excludes the inside page */
-.flip-card {
-  height: 15rem;
-  perspective: 100rem;
-  position: absolute;
-  right: 0;
-  transition: all 1s ease;
-  visibility: hidden;
-  width: 15rem;
-  z-index: 100;
-}
 
-/* The outer container's visibility is set to hidden. This is to make everything within the container NOT set to hidden  */
-/* This is done so content in the inside page can be selected */
-.flip-card > * {
-  visibility: visible;
-}
-
-/* An inner container to hold the flip card. This excludes the inside page */
-.flip-card__container {
-  height: 100%;
-  position: absolute;
-  right: 0;
-  transform-origin: left;
-  transform-style: preserve-3d;
-  transition: all 1s ease;
-  width: 100%;
-}
-
-.card-front,
-.card-back {
-  backface-visibility: hidden;
-  height: 100%;
-  left: 0;
-  position: absolute;
-  top: 0;
-  width: 100%;
-}
-
-/* Styling for the front side of the flip card */
-
-/* container for the front side */
-.card-front {
-  background-color: #fafbfa;
-  height: 15rem;
-  width: 15rem;
-}
-
-/* Front side's top section */
-.card-front__tp {
-  align-items: center;
-  clip-path: polygon(0 0, 100% 0, 100% 90%, 57% 90%, 50% 100%, 43% 90%, 0 90%);
-  display: flex;
-  flex-direction: column;
-  height: 12rem;
-  justify-content: center;
-  padding: .75rem;
-  position: relative; /* Add this to maintain the aspect ratio of the image */
-  overflow: hidden;
-}
-
-.card-front__tp img {
-        /* Set the image width and height to fit the card */
-        width: 100%; /* Ensure the image fills the container */
-        height: 100%; /* Ensure the image fills the container */
-        object-fit: cover; /* Maintain aspect ratio and fill */
-        position: absolute; /* Position the image */
-        top: 0; /* Align to the top */
-        left: 0; /* Align to the left */
-    }
-
-.card-front__tp--city {
-  background: linear-gradient(
-    to bottom,
-    rgb(9 16 85 / 96%),
-    rgb(0 68 68 / 96%)
-  );
-}
-
-.card-front__tp--ski {
-  background: linear-gradient(
-    to bottom,
-    #47c2d7,
-    #279eb2
-  );
-}
-
-.card-front__tp--beach {
-  background: linear-gradient(
-    to bottom,
-    #fb9b88,
-    #f86647
-  );
-}
-
-.card-front__tp--camping {
-  background: linear-gradient(
-    to bottom,
-    #00db93,
-    #00b97d
-  );
-}
-
-/* Front card's bottom section */
-.card-front__bt {
-  align-items: center;
-  display: flex;
-  justify-content: center;
-}
-
-/* Styling for the back side of the flip card */
-
-.card-back {
-  background-color: #fafbfa;
-  transform: rotateY(180deg);
-}
-
-/* Specifically targeting the <video> element */
-.video__container {
-  clip-path: polygon(0% 0%, 100% 0%, 90% 50%, 100% 100%, 0% 100%);
-  height: auto;
-  min-height: 100%;
-  object-fit: cover;
-  width: 100%;
-}
-
-/* Inside page */
-
-.inside-page {
-  background-color: #fafbfa;
-  box-shadow: inset 20rem 0px 5rem -2.5rem rgba(0,0,0,0.25);
-  height: 100%;
-  padding: 1rem;
-  position: absolute;
-  right: 0;
-  transition: all 1s ease;
-  width: 15rem;
-  z-index: 1;
-  justify-content: center;
-  text-align: center; 
-}
-
-.inside-page__container {
-  align-items: center;
-  /* display: flex;   */
-  flex-direction: column;
-  height: 100%;
-  text-align: center; 
-  width: 100%;
-}
-
-/* Functionality ====================================*/
-
-/* This is to keep the card centered (within its container) when opened */
-.card:hover {
-  box-shadow:
-  -.1rem 1.7rem 6.6rem -3.2rem rgba(0,0,0,0.75);
-  width: 30rem;
-}
-
-/* When the card is hovered, the flip card container will rotate */
-.card:hover .flip-card__container {
-  transform: rotateY(-180deg);
-}
-
-/* When the card is hovered, the shadow on the inside page will shrink to the left */
-.card:hover .inside-page {
-  box-shadow: inset 1rem 0px 5rem -2.5rem rgba(0,0,0,0.1);
-}
 </style>  
 </head>
 <body>
@@ -362,71 +142,153 @@
   <div class="w3-container w3-bottombar" style="display: flex; justify-content: space-between; align-items: center;">
     <h1 style="margin: 0;"><b>Furnitures</b></h1>
     <div class="w3-section w3-padding-16" style="margin-left: auto;">
-        <input style="box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.2); width: 300px; border-radius: 8px; padding: 10px;" class="form-control font-bold neumorphic" id="myInput" type="text" placeholder="Search Furnitures..." onkeyup="search()">
+        <input style="box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.2); width: 300px; border-radius: 8px; padding: 10px;" class="form-control font-bold neumorphic" id="myInput4" type="text" placeholder="Search Furnitures Product..." onkeyup="searchf()">
     </div>
   </div>
-        <section class="card-area">
-        
 
 
-        </section>
+  <div id="furnituresCarousel" class="carousel slide cardf-area" data-ride="carousel">
+    <div class="carousel-inner">
+        @php $chunks = $furnitures->chunk(2); @endphp
+        @foreach ($chunks as $index => $chunk)
+            <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
+                <div class="row justify-content-center">
+                    @foreach ($chunk as $furniture)
+                        <div class="col-md-4">
+                            <div class="cardf card--8">
+                                <h2 class="card__title"><b>{{$furniture->title}} </b></h2>
+                                <img class="card__img" src="data:image/jpeg;base64,{{ base64_encode($furniture->image) }}" alt="{{ $furniture->category }}">
+                                <p class="card__text"><b>{{$furniture->description}}</b></p>
+                                
+
+                              <form id="furnitureSeekDonationForm" data-donation-id="{{ $furniture->d_id }}" action="{{ route('handle.button.click') }}" method="POST">
+                                  @csrf
+                                  <input type="hidden" name="donation_id" value="{{ $furniture->d_id }}">
+                                  <button type="button" onclick="submitForm(this)" class="card__btn">Seek Donation</button>
+                              </form>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        @endforeach
+    </div>
+    <a class="carousel-control-prev" href="#furnituresCarousel" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#furnituresCarousel" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+      </a>
+</div>
 
     </main>
     
 </body>
+
 <script>
-    $(document).ready(function() {
-        $('.inside-page__btn').click(function(e) {
-            e.preventDefault();
+  var card9 = document.querySelector(".card--8");
 
-            // Fetch data from the clicked button's parent form
-            var form = $(this).closest('form');
-            var donationId = form.find('[name="donation_id"]').val();
-            var userId = form.find('[name="user_id"]').val();
+  card9.addEventListener('mousemove', function (e) {
+    var wh = window.innerHeight / 2,
+      ww = window.innerWidth / 2;
+    card9.style.setProperty('--mouseX9', (e.clientX - ww) / 25);
+    card9.style.setProperty('--mouseY9', (e.clientY - wh) / 25);
+  });
 
-            // Make an AJAX POST request
-            $.ajax({
-                url: '{{ route("handle.button.click") }}',
-                type: 'POST',
-                data: {
-                    donation_id: donationId,
-                    user_id: userId,
-                    _token: '{{ csrf_token() }}'
-                },
-                success: function(response) {
-                    if (response.error) {
-                        // Display error message using a popup or alert
-                        alert(response.error);
-                    } else if (response.success) {
-                        // Display success message using a popup or alert
-                        alert(response.success);
+  card9.addEventListener('mouseleave', function (e) {
+    card9.style.setProperty('--mouseX9', 0);
+    card9.style.setProperty('--mouseY9', 0);
+  });
+</script>
+
+<script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const buttons = document.querySelectorAll('.card__btn');
+
+        buttons.forEach(button => {
+            const donationId = button.closest('form').getAttribute('data-donation-id');
+            
+            fetch(`/get-req-status?donation_id=${donationId}`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error("Network response was not ok.");
                     }
-                },
-                error: function(xhr, status, error) {
-                    // Handle errors, if any
-                    console.error(error);
-                }
-            });
+                    return response.json();
+                })
+                .then(data => {
+                    if (data.req_status) {
+                        if (data.req_status.toLowerCase() === 'pending') {
+                            button.textContent = 'Requested';
+                        } else if (data.req_status.toLowerCase() === 'accepted') {
+                            button.textContent = 'Accepted';
+                        } else if (data.req_status.toLowerCase() === 'rejected') {
+                            button.textContent = 'Sorry, donated.';
+                        } else {
+                            button.textContent = data.req_status;
+                        }
+                    }
+                })
+                .catch(error => {
+                    console.error('There was an error:', error);
+                });
         });
     });
+    function submitForm(button) {
+        const form = button.closest('form');
+        const donationId = form.getAttribute('data-donation-id');
+        const formData = new FormData(form);
+
+        fetch(form.action, {
+            method: form.method,
+            body: formData
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok.');
+            }
+            return response.json();
+        })
+        .then(data => {
+            if (data.status) {
+                if (data.status.toLowerCase() === 'pending') {
+                    button.textContent = 'Requested';
+                } else if (data.status.toLowerCase() === 'accepted') {
+                    button.textContent = 'Accepted';
+                } else if (data.status.toLowerCase() === 'rejected') {
+                    button.textContent = 'Sorry, donated.';
+                } else {
+                    button.textContent = data.status;
+                }
+            }
+            // Display the JSON response in a popup
+            alert(JSON.stringify(data));
+        })
+        .catch(error => {
+            console.error('There was an error:', error);
+        });
+    }
 </script>
+
 
 <script>
-function search() {
-    var searchInput = document.getElementById("myInput").value.toLowerCase();
-    var elements = document.querySelectorAll(".card-section");
+    function searchf() {
+        var searchInput = document.getElementById("myInput4").value.toLowerCase();
+        var cards = document.querySelectorAll('#furnituresCarousel');
 
-    // Loop through the elements and check if the search input matches the content
-    elements.forEach(function(element) {
-        var title = element.querySelector(".inside-page__heading").innerText.toLowerCase();
-        var description = element.querySelector(".inside-page__text").innerText.toLowerCase();
-
-        if (title.includes(searchInput) || description.includes(searchInput)) {
-            element.style.display = "block";
-        } else {
-            element.style.display = "none";
-        }
-    });
-}
+        cards.forEach(function(card) {
+            var title = card.querySelector('.card__title').innerText.toLowerCase();
+            var description = card.querySelector('.card__text').innerText.toLowerCase();
+            var shouldShow = title.includes(searchInput) || description.includes(searchInput);
+            card.style.display = shouldShow ? 'block' : 'none';
+        });
+    }
 </script>
+
+
+
+
+
+
 </html>

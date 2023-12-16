@@ -129,7 +129,7 @@
 }
 
 .card--9:hover {
-    background-color: #dcf3fa; /* Change to the desired color */
+    background-color: #f0f3ff;
   }
 
 

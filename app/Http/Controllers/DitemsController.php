@@ -28,7 +28,7 @@ class DitemsController extends Controller
             ->where('user_id', '!=', $user_id)
             ->get();
 
-        $furniture = Donation::where('category', 'furniture')
+        $furnitures = Donation::where('category', 'furnitures')
             ->where('post_status', 'accepted')
             ->where('user_id', '!=', $user_id)
             ->get();
@@ -38,7 +38,7 @@ class DitemsController extends Controller
             ->where('user_id', '!=', $user_id)
             ->get();
 
-        return view('ditems', compact('books','electronics', 'furniture', 'clothes'));    
+        return view('ditems', compact('books','electronics', 'furnitures', 'clothes'));    
     }
 
 

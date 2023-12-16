@@ -116,7 +116,7 @@
                               <option value="" selected disabled>Select a category</option>
                               <option value="clothes">Clothes</option>
                               <option value="electronics">Electronics</option>
-                              <option value="furniture">Furniture</option>
+                              <option value="furnitures">Furniture</option>
                               <option value="books">Books</option>
                               <option value="pets">Pet Adoption</option>
                           </select>
