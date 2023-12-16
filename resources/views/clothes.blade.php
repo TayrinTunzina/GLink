@@ -43,8 +43,24 @@
   padding: 1rem;
 }
 
-/* Box ============================================*/
+.cardc {
+  position: relative;
+  max-width: 20em;
+  max-height: 30em;
+  margin: 2rem auto;
+  padding: 2em;
+  justify-content: center; /* Center horizontally */
+  align-items: center;
+}
 
+/* Card ============================================*/
+:root{
+  --size: 180px;
+  --icon-size: 35px;
+  --icon-color: #483C3E;
+}
+
+/* BOX STYLES*/
 .box{
   position: relative;
   width: var(--size);
@@ -298,8 +314,8 @@ clip-path: polygon(50% 0, 80% 30%, 60% 30%, 60% 100%, 40% 100%, 40% 30%, 20% 30%
   background-color: var(--icon-color);
 }
 .recycled{
-  height: calc(var(--icon-size) * 2);
-  width: calc(var(--icon-size) * 2);
+  height: calc(var(--icon-size) * 1);
+  width: calc(var(--icon-size) * 1);
   position: absolute;
   bottom: 3px;
   right: 3px;
@@ -315,30 +331,36 @@ clip-path: polygon(50% 0, 80% 30%, 60% 30%, 60% 100%, 40% 100%, 40% 30%, 20% 30%
   border: 1px solid var(--icon-color);
   background-image: radial-gradient(#CB9869 10%, var(--icon-color) 11% 13%,#CB9869 14% 20%, var(--icon-color) 21% 22%, #0000 24%),linear-gradient(var(--icon-color) 48%, #0000 46% 54%, var(--icon-color) 54% 55%, #0000 57%)
 }
-.label{
+.label {
   height: calc(var(--icon-size) * 1.5);
-  width: calc(var(--icon-size) * 2);
+  width: calc(var(--icon-size) * 4);
   position: absolute;
   background-color: #ddd;
   border: 3px double var(--icon-color);
   border-radius: 5px;
   top: 5px;
   left: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.label::before{
-  content:"From: Oak \A To: Ash";
+
+.label::before {
   font-family: sans-serif;
   font-size: .7rem;
-  transform: scalex(-1);
-  display: inline-block;
+  font-weight: bold; /* Making the text bolder */
   white-space: pre;
   position: absolute;
-  right: 3px;
-  top: 3px;
+  right: 50%;
+  transform: scale(-1) translateX(50%); /* Mirror effect and reposition */
+  top: 50%;
+  transform-origin: top right; /* Transform origin adjustment */
+  transform: scale(-1) translate(50%, -50%) rotate(180deg); /* Mirror effect and reposition */
 }
+
 .label::after{
-  height: 15px;
-  width: 3px;
+  height: 10px;
+  width: 2px;
   content: "";
   position:absolute;
   bottom: 3px;
@@ -347,6 +369,7 @@ clip-path: polygon(50% 0, 80% 30%, 60% 30%, 60% 100%, 40% 100%, 40% 30%, 20% 30%
   background-color: var(--icon-color);
   box-shadow: 3px 0,6px 0,10px 0,13px 0, 15px 0, 19px 0;
 }
+
 
 /* Picachu Styles*/
 .pikachu{
@@ -515,6 +538,27 @@ clip-path: polygon(50% 0, 80% 30%, 60% 30%, 60% 100%, 40% 100%, 40% 30%, 20% 30%
   left: 50%;
 }
 
+.box__btn {
+  display: table;
+  padding: .5em 2em;
+  background: rgb(30 118 118 / 99%);
+  border-color: #fe3f40;
+  color: #fff;
+  text-decoration: none;
+  margin: 2em 0 0 -3em; /* Adjust the margin to move it to the left */
+  transition: color 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.2);
+  border-radius: 0.8em;
+}
+
+
+.box__btn:hover {
+  color: #fe3f40;
+  font-weight: bold;
+  box-shadow: 2px 2px 5px 2px rgba(0, 0, 0, 0.2);
+}
+
+
 </style>  
 </head>
 <body>
@@ -524,71 +568,183 @@ clip-path: polygon(50% 0, 80% 30%, 60% 30%, 60% 100%, 40% 100%, 40% 30%, 20% 30%
   <div class="w3-container w3-bottombar" style="display: flex; justify-content: space-between; align-items: center;">
     <h1 style="margin: 0;"><b>Clothes</b></h1>
     <div class="w3-section w3-padding-16" style="margin-left: auto;">
-        <input style="box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.2); width: 300px; border-radius: 8px; padding: 10px;" class="form-control font-bold neumorphic" id="myInput" type="text" placeholder="Search Clothes..." onkeyup="search()">
+        <input style="box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.2); width: 300px; border-radius: 8px; padding: 10px;" class="form-control font-bold neumorphic" id="myInput3" type="text" placeholder="Search Clothes..." onkeyup="searchc()">
     </div>
   </div>
-        <section class="card-area">
-        
 
 
-        </section>
+
+  <div id="clothesCarousel" class="carousel slide cardc-area" data-ride="carousel">
+    <div class="carousel-inner">
+        @php $chunks = $clothes->chunk(2); @endphp
+        @foreach ($chunks as $index => $chunk)
+            <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
+                <div class="row justify-content-center">
+                    @foreach ($chunk as $cloth)
+                        <div class="col-md-4">
+                            <div class="cardc">
+                              <div class="box">
+                               
+                            <div class="face bottom"></div>
+                            <div class="face back"></div>
+                            <div class="face right"></div>
+                            <div class="face left">
+                              <div class="icons">
+                                <div class="umbrella"></div>
+                              <div class="orientation">
+                                <div class="base"></div>
+                              </div>
+                              <div class="glass"></div>
+                              </div>
+                            </div>
+                            <div class="face front">
+                              <div class="recycled">
+                                <div class="arrow"></div>
+                                <div class="arrow"></div>
+                                <div class="arrow"></div>
+                              </div>
+                              <div class="label" style="position: relative;">
+                                  <h5 style="transform: scaleX(-1); display: inline-block;">
+                                    <b>{{$cloth->title}}</b>
+                                  </h5>
+                              </div>
+                              <br>
+                              <div class="label" style="position: relative; background-color: #b3d7ff; padding: 10px; text-align: center; border: 3px double var(--icon-color);">
+                                <h6 style="transform: scaleX(-1); display: inline-block; color: black;">
+                                  <b>{{$cloth->description}}</b>
+                                </h6>
+                              </div>
+
+                            </div>
+                            <div class="face top">
+                              <div class="cover-back"></div>
+                              <div class="cover-right"></div>
+                              <div class="cover-left"></div>
+                              <div class="cover-front"></div>
+                            </div>
+                            <div class="content">
+                            <div class="pikachu">
+                              <div class="ear left"></div>
+                              <div class="ear"></div>
+                              <div class="head">
+                                <div class="eye"></div>
+                                <div class="eye"></div>
+                                <div class="nouse"></div>
+                                <div class="mouth"></div>
+                              </div>
+                            </div>
+                          </div>
+                        
+                                </div>
+                                <form id="clothesSeekDonationForm" data-donation-id="{{ $cloth->d_id }}" action="{{ route('handle.button.click') }}" method="POST">
+                                    @csrf
+                                    <input type="hidden" name="donation_id" value="{{ $cloth->d_id }}">
+                                    <button type="button" onclick="submitForm(this)" class="box__btn">Seek Donation</button>
+                                </form>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        @endforeach
+    </div>
+    <!-- Controls -->
+    <a class="carousel-control-prev" href="#clothesCarousel" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#clothesCarousel" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+</div>
+
 
     </main>
     
 </body>
 <script>
-    $(document).ready(function() {
-        $('.inside-page__btn').click(function(e) {
-            e.preventDefault();
+      document.addEventListener('DOMContentLoaded', function() {
+        const buttons = document.querySelectorAll('.box__btn');
 
-            // Fetch data from the clicked button's parent form
-            var form = $(this).closest('form');
-            var donationId = form.find('[name="donation_id"]').val();
-            var userId = form.find('[name="user_id"]').val();
-
-            // Make an AJAX POST request
-            $.ajax({
-                url: '{{ route("handle.button.click") }}',
-                type: 'POST',
-                data: {
-                    donation_id: donationId,
-                    user_id: userId,
-                    _token: '{{ csrf_token() }}'
-                },
-                success: function(response) {
-                    if (response.error) {
-                        // Display error message using a popup or alert
-                        alert(response.error);
-                    } else if (response.success) {
-                        // Display success message using a popup or alert
-                        alert(response.success);
+        buttons.forEach(button => {
+            const donationId = button.closest('form').getAttribute('data-donation-id');
+            
+            fetch(`/get-req-status?donation_id=${donationId}`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error("Network response was not ok.");
                     }
-                },
-                error: function(xhr, status, error) {
-                    // Handle errors, if any
-                    console.error(error);
-                }
-            });
+                    return response.json();
+                })
+                .then(data => {
+                    if (data.req_status) {
+                        if (data.req_status.toLowerCase() === 'pending') {
+                            button.textContent = 'Requested';
+                        } else if (data.req_status.toLowerCase() === 'accepted') {
+                            button.textContent = 'Accepted';
+                        } else if (data.req_status.toLowerCase() === 'rejected') {
+                            button.textContent = 'Sorry, donated.';
+                        } else {
+                            button.textContent = data.req_status;
+                        }
+                    }
+                })
+                .catch(error => {
+                    console.error('There was an error:', error);
+                });
         });
     });
+    function submitForm(button) {
+        const form = button.closest('form');
+        const donationId = form.getAttribute('data-donation-id');
+        const formData = new FormData(form);
+
+        fetch(form.action, {
+            method: form.method,
+            body: formData
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok.');
+            }
+            return response.json();
+        })
+        .then(data => {
+            if (data.status) {
+                if (data.status.toLowerCase() === 'pending') {
+                    button.textContent = 'Requested';
+                } else if (data.status.toLowerCase() === 'accepted') {
+                    button.textContent = 'Accepted';
+                } else if (data.status.toLowerCase() === 'rejected') {
+                    button.textContent = 'Sorry, donated.';
+                } else {
+                    button.textContent = data.status;
+                }
+            }
+            // Display the JSON response in a popup
+            alert(JSON.stringify(data));
+        })
+        .catch(error => {
+            console.error('There was an error:', error);
+        });
+    }
 </script>
+
 
 <script>
-function search() {
-    var searchInput = document.getElementById("myInput").value.toLowerCase();
-    var elements = document.querySelectorAll(".card-section");
+function searchc() {
+    var searchInput = document.getElementById("myInput3").value.toLowerCase();
+    var labels = document.querySelectorAll('#clothesCarousel');
 
-    // Loop through the elements and check if the search input matches the content
-    elements.forEach(function(element) {
-        var title = element.querySelector(".inside-page__heading").innerText.toLowerCase();
-        var description = element.querySelector(".inside-page__text").innerText.toLowerCase();
-
-        if (title.includes(searchInput) || description.includes(searchInput)) {
-            element.style.display = "block";
-        } else {
-            element.style.display = "none";
-        }
+    labels.forEach(function(label) {
+        var title = label.querySelector('h5').innerText.toLowerCase();
+        var description = label.querySelector('h6').innerText.toLowerCase();
+        var shouldShow = title.includes(searchInput) || description.includes(searchInput);
+        label.style.display = shouldShow ? 'block' : 'none';
     });
 }
+
 </script>
+
 </html>

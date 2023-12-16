@@ -132,6 +132,7 @@
     background-color: #dcf3fa; /* Change to the desired color */
   }
 
+
 </style>  
 </head>
 <body>
@@ -279,7 +280,7 @@
 <script>
     function searches() {
         var searchInput = document.getElementById("myInput2").value.toLowerCase();
-        var cards = document.querySelectorAll('#electronicsCarousel .carde-area .carousel-inner .carousel-item');
+        var cards = document.querySelectorAll('#electronicsCarousel');
 
         cards.forEach(function(card) {
             var title = card.querySelector('.card__title').innerText.toLowerCase();
