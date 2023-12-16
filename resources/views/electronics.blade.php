@@ -141,7 +141,7 @@
   <div class="w3-container w3-bottombar" style="display: flex; justify-content: space-between; align-items: center;">
     <h1 style="margin: 0;"><b>Electronics</b></h1>
     <div class="w3-section w3-padding-16" style="margin-left: auto;">
-        <input style="box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.2); width: 300px; border-radius: 8px; padding: 10px;" class="form-control font-bold neumorphic" id="myInput" type="text" placeholder="Search Electronics Product..." onkeyup="searches()">
+        <input style="box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.2); width: 300px; border-radius: 8px; padding: 10px;" class="form-control font-bold neumorphic" id="myInput2" type="text" placeholder="Search Electronics Product..." onkeyup="searches()">
     </div>
   </div>
 
@@ -159,10 +159,16 @@
                                 <img class="card__img" src="data:image/jpeg;base64,{{ base64_encode($electronic->image) }}" alt="{{ $electronic->category }}">
                                 <p class="card__text"><b>{{$electronic->description}}</b></p>
                                 
-                              <form id="electronicSeekDonationForm" data-donation-id="{{ $electronic->d_id }}" action="{{ route('handle.button.click') }}" method="POST">
+                              <!-- <form id="electronicSeekDonationForm" data-donation-id="{{ $electronic->d_id }}" action="{{ route('handle.button.click') }}" method="POST">
                                 @csrf
                                 <input type="hidden" name="donation_id" value="{{ $electronic->d_id }}">
-                                <button type="button" class="card__btn">Seek Donation</button>
+                                <button type="submit" class="card__btn">Seek Donation</button>
+                              </form> -->
+
+                              <form id="electronicSeekDonationForm" data-donation-id="{{ $electronic->d_id }}" action="{{ route('handle.button.click') }}" method="POST">
+                                  @csrf
+                                  <input type="hidden" name="donation_id" value="{{ $electronic->d_id }}">
+                                  <button type="button" onclick="submitForm(this)" class="card__btn">Seek Donation</button>
                               </form>
                             </div>
                         </div>
@@ -202,49 +208,78 @@
 </script>
 
 <script>
-document.addEventListener("DOMContentLoaded", function() {
-    const electronicButtons = document.querySelectorAll('.card__btn');
-    
-    // Loop through each button to fetch its req_status
-    electronicButtons.forEach(button => {
-        const donationId = button.closest('form').getAttribute('data-donation-id');
-        
-        // Set default text before fetching req_status
-        button.textContent = "Seek Donation";
-        
-        fetch(`/get-req-status?donation_id=${donationId}`)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error("Network response was not ok.");
-                }
-                return response.json();
-            })
-            .then(data => {
-                if (data.req_status) {
-                    if (data.req_status.toLowerCase() === 'pending') {
-                        button.textContent = 'Requested';
-                    } else if (data.req_status.toLowerCase() === 'accepted') {
-                        button.textContent = 'Accepted';
-                    } else if (data.req_status.toLowerCase() === 'rejected') {
-                        button.textContent = 'Sorry, donated.';
-                    } else {
-                        button.textContent = data.req_status;
-                    }
-                }
-            })
-            .catch(error => {
-                console.error('There was an error:', error);
-            });
-    });
-});
+      document.addEventListener('DOMContentLoaded', function() {
+        const buttons = document.querySelectorAll('.card__btn');
 
+        buttons.forEach(button => {
+            const donationId = button.closest('form').getAttribute('data-donation-id');
+            
+            fetch(`/get-req-status?donation_id=${donationId}`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error("Network response was not ok.");
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    if (data.req_status) {
+                        if (data.req_status.toLowerCase() === 'pending') {
+                            button.textContent = 'Requested';
+                        } else if (data.req_status.toLowerCase() === 'accepted') {
+                            button.textContent = 'Accepted';
+                        } else if (data.req_status.toLowerCase() === 'rejected') {
+                            button.textContent = 'Sorry, donated.';
+                        } else {
+                            button.textContent = data.req_status;
+                        }
+                    }
+                })
+                .catch(error => {
+                    console.error('There was an error:', error);
+                });
+        });
+    });
+    function submitForm(button) {
+        const form = button.closest('form');
+        const donationId = form.getAttribute('data-donation-id');
+        const formData = new FormData(form);
+
+        fetch(form.action, {
+            method: form.method,
+            body: formData
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok.');
+            }
+            return response.json();
+        })
+        .then(data => {
+            if (data.status) {
+                if (data.status.toLowerCase() === 'pending') {
+                    button.textContent = 'Requested';
+                } else if (data.status.toLowerCase() === 'accepted') {
+                    button.textContent = 'Accepted';
+                } else if (data.status.toLowerCase() === 'rejected') {
+                    button.textContent = 'Sorry, donated.';
+                } else {
+                    button.textContent = data.status;
+                }
+            }
+            // Display the JSON response in a popup
+            alert(JSON.stringify(data));
+        })
+        .catch(error => {
+            console.error('There was an error:', error);
+        });
+    }
 </script>
 
 
 <script>
     function searches() {
-        var searchInput = document.getElementById("myInput").value.toLowerCase();
-        var cards = document.querySelectorAll('#electronicsCarousel .carde-area .carousel-inner .carde');
+        var searchInput = document.getElementById("myInput2").value.toLowerCase();
+        var cards = document.querySelectorAll('#electronicsCarousel .carde-area .carousel-inner .carousel-item');
 
         cards.forEach(function(card) {
             var title = card.querySelector('.card__title').innerText.toLowerCase();

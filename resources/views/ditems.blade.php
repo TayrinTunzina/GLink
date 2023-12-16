@@ -164,6 +164,7 @@
         const contentToLoad = item.getAttribute("data-content");
         showContentSection(contentToLoad + "Content");
 
+        // showContentSection("bookContent"); // Show default content on page load
         // Store the clicked section ID in local storage
         localStorage.setItem('lastClickedSectionId', contentToLoad + "Content");
       });

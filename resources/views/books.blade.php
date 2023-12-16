@@ -412,7 +412,7 @@
                             <form id="seekDonationForm" data-donation-id="{{ $book->d_id }}" action="{{ route('handle.button.click') }}" method="POST">
                                 @csrf
                                 <input type="hidden" name="donation_id" value="{{ $book->d_id }}">
-                                <button type="button" class="inside-page__btn inside-page__btn--city">Seek Donation</button>
+                                <button type="button" onclick="submitForm(this)" class="inside-page__btn inside-page__btn--city">Seek Donation</button>
                             </form>
 
                         </div>
@@ -441,42 +441,71 @@
 </body>
 
 <script>
-document.addEventListener("DOMContentLoaded", function() {
-    const buttons = document.querySelectorAll('.inside-page__btn--city');
-    
-    // Loop through each button to fetch its req_status
-    buttons.forEach(button => {
-        const donationId = button.closest('form').getAttribute('data-donation-id');
-        
-        // Set default text before fetching req_status
-        button.textContent = "Seek Donation";
-        
-        fetch(`/get-req-status?donation_id=${donationId}`)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error("Network response was not ok.");
-                }
-                return response.json();
-            })
-            .then(data => {
-                if (data.req_status) {
-                    if (data.req_status.toLowerCase() === 'pending') {
-                        button.textContent = 'Requested';
-                    } else if (data.req_status.toLowerCase() === 'accepted') {
-                        button.textContent = 'Accepted';
-                    } else if (data.req_status.toLowerCase() === 'rejected') {
-                        button.textContent = 'Sorry, donated.';
-                    } else {
-                        button.textContent = data.req_status;
-                    }
-                }
-            })
-            .catch(error => {
-                console.error('There was an error:', error);
-            });
-    });
-});
+      document.addEventListener('DOMContentLoaded', function() {
+        const buttons = document.querySelectorAll('.inside-page__btn--city');
 
+        buttons.forEach(button => {
+            const donationId = button.closest('form').getAttribute('data-donation-id');
+            
+            fetch(`/get-req-status?donation_id=${donationId}`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error("Network response was not ok.");
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    if (data.req_status) {
+                        if (data.req_status.toLowerCase() === 'pending') {
+                            button.textContent = 'Requested';
+                        } else if (data.req_status.toLowerCase() === 'accepted') {
+                            button.textContent = 'Accepted';
+                        } else if (data.req_status.toLowerCase() === 'rejected') {
+                            button.textContent = 'Sorry, donated.';
+                        } else {
+                            button.textContent = data.req_status;
+                        }
+                    }
+                })
+                .catch(error => {
+                    console.error('There was an error:', error);
+                });
+        });
+    });
+    function submitForm(button) {
+        const form = button.closest('form');
+        const donationId = form.getAttribute('data-donation-id');
+        const formData = new FormData(form);
+
+        fetch(form.action, {
+            method: form.method,
+            body: formData
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok.');
+            }
+            return response.json();
+        })
+        .then(data => {
+            if (data.status) {
+                if (data.status.toLowerCase() === 'pending') {
+                    button.textContent = 'Requested';
+                } else if (data.status.toLowerCase() === 'accepted') {
+                    button.textContent = 'Accepted';
+                } else if (data.status.toLowerCase() === 'rejected') {
+                    button.textContent = 'Sorry, donated.';
+                } else {
+                    button.textContent = data.status;
+                }
+            }
+            // Display the JSON response in a popup
+            alert(JSON.stringify(data));
+        })
+        .catch(error => {
+            console.error('There was an error:', error);
+        });
+    }
 </script>
 
 <script>

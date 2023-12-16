@@ -16,125 +16,7 @@
     <title>Books</title>
 <style>
     /* CSS reset */
-*,
-*::after,
-*::before {
-  box-sizing: inherit;
-  margin: 0;
-  padding: 0;
-}
 
-/* html { font-size: 80%; } */
-
-    /* Main heading for card's front cover */
-.card-front__heading {
-  font-size: 1.5rem;
-  margin-top: .25rem;
-}
-
-/* Main heading for inside page */
-.inside-page__heading { 
-  padding-bottom: 1rem; 
-  width: 100%;
-}
-
-/* Mixed */
-
-/* For both inside page's main heading and 'view me' text on card front cover */
-.inside-page__heading,
-.card-front__text-view {
-  font-size: 1.3rem;
-  font-weight: 800;
-  margin-top: .2rem;
-}
-
-.inside-page__heading--city,
-.card-front__text-view--city { color: rgb(9 16 85 / 96%); }
-
-.inside-page__heading--ski,
-.card-front__text-view--ski { color: #2aaac1; }
-
-.inside-page__heading--beach,
-.card-front__text-view--beach { color: #fa7f67; }
-
-.inside-page__heading--camping,
-.card-front__text-view--camping { color: #00b97c; }
-
-/* Front cover */
-
-.card-front__tp { color: #fafbfa; }
-
-/* For pricing text on card front cover */
-.card-front__text-price {
-  font-size: 1.2rem;
-  margin-top: -.2rem;
-}
-
-/* Back cover */
-
-/* For inside page's body text */
-.inside-page__text {
-  color: #333;
-}
-
-/* Icons ===========================================*/
-
-.card-front__icon {
-  fill: #fafbfa;
-  font-size: 3vw;
-  height: 3.25rem;
-  margin-top: -.5rem;
-  width: 3.25rem;
-}
-
-/* Buttons =================================================*/
-
-.inside-page__btn {
-  background-color: transparent;
-  border: 3px solid;
-  border-radius: .5rem;
-  font-size: 1.2rem;
-  font-weight: 600;
-  margin-top: 2rem;
-  overflow: hidden;
-  padding: .7rem .75rem;
-  position: relative;
-  text-decoration: none;
-  transition: all .3s ease;
-  width: 90%;
-  z-index: 10;
-}
-
-.inside-page__btn::before { 
-  content: "";
-  height: 100%;
-  left: 0;
-  position: absolute;
-  top: 0;
-  transform: scaleY(0);
-  transition: all .3s ease;
-  width: 100%;
-  z-index: -1;
-}
-
-.inside-page__btn--city { 
-  border-color: #fe3f40;
-  color: #fe3f40;
-}
-
-.inside-page__btn--city::before { 
-  background-color: rgb(30 118 118 / 99%);
-}
-
-.inside-page__btn:hover { 
-  color: #fafbfa;
-}
-
-.inside-page__btn:hover::before { 
-  transform: scaleY(1);
-}
-
-/* Layout Structure=========================================*/
 
 .main {
   background: #eee8dd; /* Light background color */
@@ -152,7 +34,7 @@
 
 
 /* Container to hold all cards in one place */
-.card-area {
+.cardc-area {
   align-items: center;
   display: flex;
   flex-wrap: nowrap;
@@ -161,198 +43,478 @@
   padding: 1rem;
 }
 
-/* Card ============================================*/
+/* Box ============================================*/
 
-/* Area to hold an individual card */
-.card-section {
-  align-items: center;
-  display: flex;
-  height: 100%;
-  justify-content: center;
-  width: 100%;
-}
-
-/* A container to hold the flip card and the inside page */
-.card {
-  background-color: rgba(0,0,0, .05);
-  box-shadow: -.1rem 1.7rem 6.6rem -3.2rem rgba(0,0,0,0.5);
-  height: 15rem;
+.box{
   position: relative;
-  transition: all 1s ease;
-  width: 15rem;
-}
-
-/* Flip card - covering both the front and inside front page */
-
-/* An outer container to hold the flip card. This excludes the inside page */
-.flip-card {
-  height: 15rem;
-  perspective: 100rem;
-  position: absolute;
-  right: 0;
-  transition: all 1s ease;
-  visibility: hidden;
-  width: 15rem;
-  z-index: 100;
-}
-
-/* The outer container's visibility is set to hidden. This is to make everything within the container NOT set to hidden  */
-/* This is done so content in the inside page can be selected */
-.flip-card > * {
-  visibility: visible;
-}
-
-/* An inner container to hold the flip card. This excludes the inside page */
-.flip-card__container {
-  height: 100%;
-  position: absolute;
-  right: 0;
-  transform-origin: left;
+  width: var(--size);
+  height: var(--size);
   transform-style: preserve-3d;
-  transition: all 1s ease;
+  transform:rotatex(345deg) rotateY(216deg);
+  z-index: 0;
+}
+.face{
+  position: absolute;
+  height: 100%;
   width: 100%;
 }
-
-.card-front,
-.card-back {
-  backface-visibility: hidden;
-  height: 100%;
-  left: 0;
+.bottom{
+  transform:rotatex(-90deg);
+  transform-origin: bottom center;
+  background-color: #98511B; 
+  z-index: 0;
+  box-shadow: 0 var(--size) 3px #0005;
+}
+.front{
+  background-color: #CB9869;
+   z-index: 5;
+}
+.back{
+  background-color: #af8e6f; 
+  transform: translatez(var(--size));
+  z-index: 2;
+}
+.right{
+  background-color: #8d745e;
+  transform-origin: center left;
+   z-index: 4
+}
+.left{
+  background-color: #FFC889;
+  transform:rotatey(90deg);
+  transform-origin: center right;
+  z-index: 3;
+}
+.face.left::after, .face.right::after{
+  content: "";
+  height: 15%;
+  width: 10%;
   position: absolute;
   top: 0;
+  left: 45%;
+  background-color: #0004;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+/* COVER STYLES*/
+.top{
+  transform: rotatex(90deg);
+  transform-origin: top center;
+  z-index: 6;
+  position: absolute;
+  transform-style: preserve-3d;
+  cursor: pointer;
+}
+.cover-back, .cover-front{
+  width: var(--size);
+  height: calc(var(--size) / 2);
+  background-color: #EBB27A;
+  position: absolute;
+  transition: transform 0.5s .35s linear;
+  z-index: 8;
+}
+.cover-back::after, .cover-front::after{
+  content: "";
+  height: 10%;
   width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #0004;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+.cover-front::after{
+  top: 90%;
+}
+.cover-back{
+  left: 0;
+  bottom: 0;
+  transform-origin: center bottom;
+}
+.top:active > .cover-back{
+  transform: rotatex(-200deg);
+  transition: transform 0.5s linear;
+}
+.cover-front{
+  left: 0;
+  top: 0;
+  transform-origin: center top;
+}
+.top:active > .cover-back + .cover-right + .cover-left + .cover-front{
+  transform: rotatex(200deg);
+  transition: transform .5s linear;
+}
+.cover-left, .cover-right{
+  height: var(--size);
+  width: calc(var(--size) / 3);
+  background-color: #c99e76;
+  position: absolute;
+  transition: transform .5s linear;
+  z-index: 7;
+}
+.cover-left{
+  left: 0;
+  bottom: 0;
+  transform-origin: center left;
+}
+.top:active > .cover-back + .cover-right + .cover-left{
+  transform: rotatey(-190deg);
+  transition: transform .5s .35s linear;
+}
+.cover-right{
+  right: 0;
+  top: 0;
+  transform-origin: center right;
+}
+.top:active > .cover-back + .cover-right{
+  transform: rotatey(190deg);
+  transition: transform .5s .35s linear;
+}
+.content{
+  width: 80%;
+  height: 80%; 
+  position: absolute;
+  bottom: 1px;
+  display: grid;
+  place-items: center;
+  transform: rotateY(-216deg) 
+    translatez(calc(var(--size) / -2 )) 
+    translatex(-50%);
+  transition: transform .4s linear;
+  
+}
+.top:active + .content{
+  transform: rotateY(-216deg) 
+    translatez(calc(var(--size) / -2 )) 
+    translatex(-50%) translatey(-82%);
+  transition: transform .5s 1s 
+    cubic-bezier(.24,.05,.66,1.24);
 }
 
-/* Styling for the front side of the flip card */
-
-/* container for the front side */
-.card-front {
-  background-color: #fafbfa;
-  height: 15rem;
-  width: 15rem;
-}
-
-/* Front side's top section */
-.card-front__tp {
-  align-items: center;
-  clip-path: polygon(0 0, 100% 0, 100% 90%, 57% 90%, 50% 100%, 43% 90%, 0 90%);
+/* ICONS STYLES*/
+.icons{
   display: flex;
-  flex-direction: column;
-  height: 12rem;
-  justify-content: center;
-  padding: .75rem;
-  position: relative; /* Add this to maintain the aspect ratio of the image */
+  justify-content: flex-start;
+  position: absolute;
+  bottom: 5px;
+  left: 5px;
+}
+.icons div{
+  margin: 2px;
+  border-radius: 3px;
+}
+.arrow{
+  height: 100%;
+  width: 100%;
+  clip-path: polygon(21% 28%, 41% 39%, 52% 22%, 56% 29%, 48% 36%, 72% 38%, 84% 14%, 75% 19%, 67% 5%, 39% 5%);
+  background-color: var(--icon-color);
+  position: absolute;
+}
+.arrow:nth-child(2){
+  transform: rotate(120deg);
+}
+.arrow:nth-child(3){
+  transform: rotate(-125deg);
+}
+.umbrella{
+  height: var(--icon-size);
+  width: var(--icon-size);
+  position:relative;
+  border: 1px solid var(--icon-color);
+}
+.umbrella::after{
+  content:"";
+  height: 40%;
+  width: 100%;
+  top: 20%;
+  position: absolute;
+  background-color:var(--icon-color);
+  border-radius: 50% 50% 50% 50% / 90% 90% 10% 10%;
+}
+.umbrella::before{
+  content:"";
+  height: 80%;
+  width: 10%;
+  top: 10%;
+  left: 50%;
+  position: absolute;
+  border-radius: 0% 0% 50% 50% / 0% 0% 10% 10%;
+  border: calc(var(--icon-size) * 4 / 100) solid var(--icon-color);
+  border-top: none;
+  border-right: none;
+}
+.glass{
+  height: var(--icon-size);
+  width: var(--icon-size);
+  position:relative;
+  border: 1px solid var(--icon-color);
+}
+.glass::after{
+  content:"";
+  height: 60%;
+  width: 70%;
+  top:5%;
+  left:15%;
+  position: absolute;
+  background-color:var(--icon-color);
+  border-radius: 0% 0% 50% 50% / 0% 0% 100% 100% ;
+  clip-path: polygon(0% 0%, 55% 0, 68% 20%, 54% 34%, 75% 55%, 61% 34%, 75% 19%, 67% 0, 100% 0%, 100% 100%, 0% 100%);
+}
+.glass::before{
+  content:"";
+  height: 95%;
+  width: 100%;
+  position: absolute;
+  background-color: var(--icon-color);
+  clip-path: polygon(15% 100%, 45% 90%, 40% 55%, 60% 55%, 55% 90%, 85% 100%);
+}
+.orientation{
+  height: var(--icon-size);
+  width: var(--icon-size);
+  position:relative;
+  border: 1px solid var(--icon-color);
+}
+.orientation::after,
+.orientation::before{
+  content:"";
+  height: 70%;
+  width: 40%;
+  top:5%;
+  left:15%;
+  position: absolute;
+  background-color:var(--icon-color);
+clip-path: polygon(50% 0, 80% 30%, 60% 30%, 60% 100%, 40% 100%, 40% 30%, 20% 30%);
+}
+.orientation::after{
+  left: 45%;
+}
+.base{
+  height: 8%;
+  width: 70%;
+  left: 15%;
+  bottom: 10%;
+  position: absolute;
+  background-color: var(--icon-color);
+}
+.recycled{
+  height: calc(var(--icon-size) * 2);
+  width: calc(var(--icon-size) * 2);
+  position: absolute;
+  bottom: 3px;
+  right: 3px;
+}
+
+.ball{
+  height: calc(var(--icon-size) * 1.3);
+  width: calc(var(--icon-size) * 1.3);
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  border-radius: 50%;
+  border: 1px solid var(--icon-color);
+  background-image: radial-gradient(#CB9869 10%, var(--icon-color) 11% 13%,#CB9869 14% 20%, var(--icon-color) 21% 22%, #0000 24%),linear-gradient(var(--icon-color) 48%, #0000 46% 54%, var(--icon-color) 54% 55%, #0000 57%)
+}
+.label{
+  height: calc(var(--icon-size) * 1.5);
+  width: calc(var(--icon-size) * 2);
+  position: absolute;
+  background-color: #ddd;
+  border: 3px double var(--icon-color);
+  border-radius: 5px;
+  top: 5px;
+  left: 5px;
+}
+.label::before{
+  content:"From: Oak \A To: Ash";
+  font-family: sans-serif;
+  font-size: .7rem;
+  transform: scalex(-1);
+  display: inline-block;
+  white-space: pre;
+  position: absolute;
+  right: 3px;
+  top: 3px;
+}
+.label::after{
+  height: 15px;
+  width: 3px;
+  content: "";
+  position:absolute;
+  bottom: 3px;
+  left: 5px;
+  color: var(--icon-color);
+  background-color: var(--icon-color);
+  box-shadow: 3px 0,6px 0,10px 0,13px 0, 15px 0, 19px 0;
+}
+
+/* Picachu Styles*/
+.pikachu{
+  --pikachu-size: calc(var(--size) * .7);
+  width: var(--pikachu-size);
+  height: var(--pikachu-size);
+  position: absolute;
+}
+.pikachu .ear{
+  width: calc(var(--pikachu-size) * 0.174);
+  height: calc(var(--pikachu-size) * 0.514);
+  position: absolute;
+  border-radius: 20% 80% 35% 35% /
+    77% 60% 40% 23% ;
+  background-image: linear-gradient(90deg, 
+    #0000 30%,
+    #fff4 48% 53%,
+    #0000 70%),
+    radial-gradient(calc(var(--pikachu-size) * 0.2429) calc(var(--pikachu-size) * 0.4714) at 
+      calc(var(--pikachu-size) * 0.0714) 
+      calc(var(--pikachu-size) * 0.3571) , 
+      #E3D831 49%, #000 51% );
+  transform: rotate(30deg);
+  top: -1%;
+  right: 3%;
+  animation: move-right 2s linear infinite;
+  transform-origin: 0 70%;
+}
+.ear.left{
+  transform: scalex(-1)  rotate(30deg);
+  animation: move 2s linear infinite;
+  transform-origin: 140% 100%;
+  top: 3.5%;
+  right: 95.5%;
+}
+@keyframes move-right{
+  0%,40%,80%{
+    transform: rotate(30deg);
+  }
+  50%,60%{
+    transform: rotate(33deg);
+  }
+}
+@keyframes move{
+  0%,40%,80%{
+    transform: scalex(-1) rotate(30deg);
+  }
+  50%,60%{
+    transform: scalex(-1) rotate(33deg);
+  }
+}
+.pikachu .head{
+  width: calc(var(--pikachu-size) * 0.693);
+  height: calc(var(--pikachu-size) * 0.629);
+  position: absolute;
+  background-color: #DCD132;
+  border-radius:50%;
+  box-shadow: inset 5px 0 8px #F5EF30;
+  bottom: 6px;
+  left: 22px;
+}
+.pikachu .head::before{
+  width: calc(var(--pikachu-size) * 0.72);
+  height: calc(var(--pikachu-size) * 0.5);
+  content: "";
+  position: absolute;
+  background-color: #DCD132;
+  border-radius:50%;
+  bottom: -5px;
+  left: -2px;
+  background-image: radial-gradient(
+    calc(var(--pikachu-size) * 0.1285) 
+    calc(var(--pikachu-size) * 0.1714) 
+    at calc(var(--pikachu-size) * 0.0714) 
+    calc(var(--pikachu-size) * 0.25) , 
+    #AA0515 50%, #0000 54%), 
+    radial-gradient(
+    calc(var(--pikachu-size) * 0.1285) 
+    calc(var(--pikachu-size) * 0.1714) 
+    at calc(var(--pikachu-size) * 0.65) 
+    calc(var(--pikachu-size) * 0.25) , 
+    #AA0515 50%, #0000 54%),
+    radial-gradient(
+      calc(var(--pikachu-size) * 0.45)
+      calc(var(--pikachu-size) * 0.3714) at 
+      calc(var(--pikachu-size) * 0.1428)
+      calc(var(--pikachu-size) * 0.45), 
+      #B0A828 50%, #0000 60%),
+    radial-gradient(
+      calc(var(--pikachu-size) * 0.7857)
+      calc(var(--pikachu-size) * 0.5357) at 
+      calc(var(--pikachu-size) * .4286)
+      calc(var(--pikachu-size) * .1286),
+      #0000 50%, #B0A828 60%),
+    radial-gradient(
+      calc(var(--pikachu-size) * 0.7857)
+      calc(var(--pikachu-size) * 0.5357) at 
+      calc(var(--pikachu-size) * 0.3571) 
+      calc(var(--pikachu-size) * 0.4857), 
+      #0001 50%, #0000 60%),
+    radial-gradient(
+      calc(var(--pikachu-size) * 0.3143)
+      calc(var(--pikachu-size) * 0.4143) at 
+      calc(var(--pikachu-size) * 0.3571)
+      calc(var(--pikachu-size) * 0.25), 
+      #fff1 50%, #0000 70%);
+}
+.pikachu .eye{
+    width: calc(
+      var(--pikachu-size) * 0.114);
+    height: calc(
+      var(--pikachu-size) * 0.136);
+    position: absolute;
+    background-color: #000;
+    border-radius: 50%;
+    z-index: 1;
+    top: 32%;
+    left: 15%;
+}
+.pikachu .eye::after{
+  content: "";
+  width: 35%;
+  height: 35%;
+  position: absolute;
+  background-color: #fff;
+  border-radius: 50%;
+  top: 20%;
+  right: 10%;
+}
+.pikachu .eye:nth-child(2)::after{
+  left: 10%;
+}
+.pikachu .eye:nth-child(2){
+  left: 67%;
+}
+.pikachu .nouse{
+  width: calc(var(--pikachu-size) * 0.043);
+  height: calc(var(--pikachu-size) * 0.022);
+  background-color: #000;
+  z-index: 1;
+  position: absolute;
+  top: 54%;
+  left: 47%;
+  border-radius: 30% 30% 50% 50% / 30% 30% 70% 70%; 
+}
+.pikachu .mouth{
+  width: calc(var(--pikachu-size) * 0.2143);
+  height: calc(var(--pikachu-size) * 0.04);
+  position: absolute;
+  top: 70%;
+  left: 35%;
   overflow: hidden;
 }
-
-.card-front__tp img {
-        /* Set the image width and height to fit the card */
-        width: 100%; /* Ensure the image fills the container */
-        height: 100%; /* Ensure the image fills the container */
-        object-fit: cover; /* Maintain aspect ratio and fill */
-        position: absolute; /* Position the image */
-        top: 0; /* Align to the top */
-        left: 0; /* Align to the left */
-    }
-
-.card-front__tp--city {
-  background: linear-gradient(
-    to bottom,
-    rgb(9 16 85 / 96%),
-    rgb(0 68 68 / 96%)
-  );
-}
-
-.card-front__tp--ski {
-  background: linear-gradient(
-    to bottom,
-    #47c2d7,
-    #279eb2
-  );
-}
-
-.card-front__tp--beach {
-  background: linear-gradient(
-    to bottom,
-    #fb9b88,
-    #f86647
-  );
-}
-
-.card-front__tp--camping {
-  background: linear-gradient(
-    to bottom,
-    #00db93,
-    #00b97d
-  );
-}
-
-/* Front card's bottom section */
-.card-front__bt {
-  align-items: center;
-  display: flex;
-  justify-content: center;
-}
-
-/* Styling for the back side of the flip card */
-
-.card-back {
-  background-color: #fafbfa;
-  transform: rotateY(180deg);
-}
-
-/* Specifically targeting the <video> element */
-.video__container {
-  clip-path: polygon(0% 0%, 100% 0%, 90% 50%, 100% 100%, 0% 100%);
-  height: auto;
-  min-height: 100%;
-  object-fit: cover;
-  width: 100%;
-}
-
-/* Inside page */
-
-.inside-page {
-  background-color: #fafbfa;
-  box-shadow: inset 20rem 0px 5rem -2.5rem rgba(0,0,0,0.25);
-  height: 100%;
-  padding: 1rem;
+.pikachu .mouth::before,
+.pikachu .mouth::after{
+  content: "";
+  width: 50%;
+  height: 200%;
   position: absolute;
-  right: 0;
-  transition: all 1s ease;
-  width: 15rem;
-  z-index: 1;
-  justify-content: center;
-  text-align: center; 
+  border-radius: 50%;
+  box-shadow: 0 1px 0 #0004;
+  bottom: 1px;
+  left: 0;
+}
+.pikachu .mouth::after{
+  left: 50%;
 }
 
-.inside-page__container {
-  align-items: center;
-  /* display: flex;   */
-  flex-direction: column;
-  height: 100%;
-  text-align: center; 
-  width: 100%;
-}
-
-/* Functionality ====================================*/
-
-/* This is to keep the card centered (within its container) when opened */
-.card:hover {
-  box-shadow:
-  -.1rem 1.7rem 6.6rem -3.2rem rgba(0,0,0,0.75);
-  width: 30rem;
-}
-
-/* When the card is hovered, the flip card container will rotate */
-.card:hover .flip-card__container {
-  transform: rotateY(-180deg);
-}
-
-/* When the card is hovered, the shadow on the inside page will shrink to the left */
-.card:hover .inside-page {
-  box-shadow: inset 1rem 0px 5rem -2.5rem rgba(0,0,0,0.1);
-}
 </style>  
 </head>
 <body>
